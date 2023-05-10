@@ -47,10 +47,13 @@ public class AppManager : MonoBehaviour
     DontDestroyOnLoad(gameObject);
 
     // Setup scene based elements
-    FindSceneVariables();
-    UpdatePeriod();
-    AddMenuAnimals();
-    subjectFilters = new List<Toggle>() { subjectFilterBiology, subjectFilterGeography, subjectFilterHistory };
+    if (SceneManager.GetActiveScene().name == "Menu")
+    {
+      FindSceneVariables();
+      UpdatePeriod();
+      AddMenuAnimals();
+      subjectFilters = new List<Toggle>() { subjectFilterBiology, subjectFilterGeography, subjectFilterHistory };
+    }
   }
 
   // Updates every frame
