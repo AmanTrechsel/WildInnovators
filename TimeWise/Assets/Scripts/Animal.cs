@@ -22,3 +22,4 @@ public class Animal : ScriptableObject
   // Subject of the animal
   public Subject subject;
 }
+//

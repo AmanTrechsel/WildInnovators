@@ -15,7 +15,7 @@ public class ARCursor : MonoBehaviour
   void Start()
   {
     // Create the AR Object based on the object set in the App Manager
-    arObject = Instantiate(AppManager.Instance.arDisplayObject, transform.position, transform.rotation) as GameObject;
+    arObject = Instantiate(AppManager.appManager.arDisplayObject, transform.position, transform.rotation) as GameObject;
 
     // Get its mesh renderer
     arMesh = arObject.GetComponentInChildren<Renderer>();
