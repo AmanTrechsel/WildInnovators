@@ -35,6 +35,7 @@ public class AppManager : MonoBehaviour
   private Slider periodSlider;
   [HideInInspector]
   public float selectedPeriod;
+  public GameObject arDisplayObject;
 
   // Called once at the start of the app
   private void Awake()
