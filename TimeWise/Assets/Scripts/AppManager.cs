@@ -26,7 +26,7 @@ public class AppManager : MonoBehaviour
   public List<int> selectedSubjects;
 
   // Singleton
-  public static AppManager appManager;
+  public static AppManager Instance;
 
   // Period data
   private Toggle subjectFilterBiology, subjectFilterGeography, subjectFilterHistory;
@@ -36,12 +36,13 @@ public class AppManager : MonoBehaviour
   [HideInInspector]
   public float selectedPeriod;
   public GameObject arDisplayObject;
+  public Subject arSubject;
 
   // Called once at the start of the app
   private void Awake()
   {
     // Assign this instance as the singleton
-    if (appManager == null) { appManager = this; }
+    if (Instance == null) { Instance = this; }
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);

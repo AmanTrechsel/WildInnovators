@@ -41,14 +41,14 @@ public class AnimalMenuManager : MonoBehaviour
   // Check if the selected period is within this animal's filter period
   private bool WithinVisiblePeriod()
   {
-    float period = AppManager.appManager.selectedPeriod;
+    float period = AppManager.Instance.selectedPeriod;
     return period >= visiblePeriod.x && period <= visiblePeriod.y;
   }
 
   // Check if this animal's filter subject is selected
   private bool SubjectFiltered()
   {
-    return AppManager.appManager.selectedSubjects.Contains(subject);
+    return AppManager.Instance.selectedSubjects.Contains(subject);
   }
 
   // Updates all shown fields
@@ -61,6 +61,6 @@ public class AnimalMenuManager : MonoBehaviour
   // Called when this animal is selected
   public void AnimalClicked()
   {
-    AppManager.appManager.SelectAnimal(myIndex);
+    AppManager.Instance.SelectAnimal(myIndex);
   }
 }

@@ -10,15 +10,42 @@ public class ARCursor : MonoBehaviour
 
   private GameObject arObject;
   private Renderer arMesh;
+  private List<GameObject> arRepositionObjects;
+  private List<Renderer> arRepositionMeshes;
   private bool arPlacedCorrectly;
+  private bool subjectSet;
 
   void Start()
   {
-    // Create the AR Object based on the object set in the App Manager
-    arObject = Instantiate(AppManager.appManager.arDisplayObject, transform.position, transform.rotation) as GameObject;
+    
+    if (AppManager.Instance.arSubject == null)
+    {
+      // Create the AR Object based on the object set in the App Manager
+      arObject = Instantiate(AppManager.Instance.arDisplayObject, transform.position, transform.rotation) as GameObject;
 
-    // Get its mesh renderer
-    arMesh = arObject.GetComponentInChildren<Renderer>();
+      // Get its mesh renderer
+      arMesh = arObject.GetComponentInChildren<Renderer>();
+
+      subjectSet = false;
+    }
+    else
+    {
+      foreach (ARItem arItem in AppManager.Instance.arSubject.items)
+      {
+        GameObject arObjectToAdd = Instantiate(arItem.prefab,
+                                               transform.position + arItem.offsetPosition,
+                                               transform.rotation * Quaternion.Euler(arItem.offsetRotation.x, arItem.offsetRotation.y, arItem.offsetRotation.z)
+                                               ) as GameObject;
+        arObjectToAdd.transform.localScale += arItem.offsetScale;
+        if (arItem.recenter)
+        {
+          arRepositionObjects.Add(arObjectToAdd);
+          arRepositionMeshes.Add(arObjectToAdd.GetComponentInChildren<Renderer>());
+        }
+      }
+
+      subjectSet = true;
+    }
 
     RepositionARObject();
   }
@@ -29,7 +56,7 @@ public class ARCursor : MonoBehaviour
     UpdateCursor();
 
     // When the AR Object is no longer visible, try to reposition it.
-    if (!arMesh.isVisible && arPlacedCorrectly)
+    if ((!arMesh.isVisible || ShouldRecenter()) && arPlacedCorrectly)
     {
       RepositionARObject();
     }
@@ -45,8 +72,19 @@ public class ARCursor : MonoBehaviour
     raycastManager.Raycast(transform.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
     if (hits.Count > 0)
     {
-      arObject.transform.position = transform.position;
-      arObject.transform.rotation = transform.rotation;
+      if (subjectSet)
+      {
+        foreach (GameObject repositionObject in arRepositionObjects)
+        {
+          repositionObject.transform.position = transform.position;
+          repositionObject.transform.rotation = transform.rotation;
+        }
+      }
+      else
+      {
+        arObject.transform.position = transform.position;
+        arObject.transform.rotation = transform.rotation;
+      }
     }
   }
 
@@ -68,5 +106,15 @@ public class ARCursor : MonoBehaviour
     {
       arPlacedCorrectly = false;
     }
+  }
+
+  bool ShouldRecenter()
+  {
+    if (arRepositionMeshes == null) { return false; }
+    foreach (Renderer renderer in arRepositionMeshes)
+    {
+      if (!renderer.isVisible) { return true; }
+    }
+    return false;
   }
 }
