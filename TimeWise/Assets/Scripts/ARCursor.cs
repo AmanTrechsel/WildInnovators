@@ -12,6 +12,7 @@ public class ARCursor : MonoBehaviour
   private Renderer arMesh;
   private List<GameObject> arRepositionObjects;
   private List<Renderer> arRepositionMeshes;
+  private List<List<Vector3>> arRepositionOffsets;
   private bool arPlacedCorrectly;
   private bool subjectSet;
 
@@ -41,6 +42,11 @@ public class ARCursor : MonoBehaviour
         {
           arRepositionObjects.Add(arObjectToAdd);
           arRepositionMeshes.Add(arObjectToAdd.GetComponentInChildren<Renderer>());
+          List<Vector3> arObjectOffsets = new List<Vector3>();
+          arObjectOffsets.Add(arItem.offsetPosition);
+          arObjectOffsets.Add(arItem.offsetRotation);
+          //arObjectOffsets.Add(arItem.offsetScale);
+          arRepositionOffsets.Add(arObjectOffsets);
         }
       }
 
@@ -74,10 +80,12 @@ public class ARCursor : MonoBehaviour
     {
       if (subjectSet)
       {
-        foreach (GameObject repositionObject in arRepositionObjects)
+        foreach (int i = 0; i < arRepositionObjects.Count; i++)
         {
-          repositionObject.transform.position = transform.position;
-          repositionObject.transform.rotation = transform.rotation;
+          GameObject repositionObject = arRepositionObjects[i];
+          Vector3 rotationOffset = arRepositionOffsets[i][1];
+          repositionObject.transform.position = transform.position + arRepositionOffsets[i][0];
+          repositionObject.transform.rotation = transform.rotation * Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
         }
       }
       else
