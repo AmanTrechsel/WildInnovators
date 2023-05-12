@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ARItem", menuName = "ARItem", order = 1)]
+[CreateAssetMenu(fileName = "ARItem", menuName = "ScriptableObjects/ARItem", order = 1)]
 public class ARItem : ScriptableObject
 {
   public string name;

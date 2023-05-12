@@ -37,6 +37,7 @@ public class AppManager : MonoBehaviour
   public float selectedPeriod;
   public GameObject arDisplayObject;
   public Subject arSubject;
+  public List<int> unlockedEncyclopediaPages = new List<int>();
 
   // Called once at the start of the app
   private void Awake()

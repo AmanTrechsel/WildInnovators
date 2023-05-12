@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Animal", menuName = "Animal", order = 1)]
+[CreateAssetMenu(fileName = "Animal", menuName = "ScriptableObjects/Animal", order = 1)]
 public class Animal : ScriptableObject
 {
   // Possible subjects the animal can be a part of

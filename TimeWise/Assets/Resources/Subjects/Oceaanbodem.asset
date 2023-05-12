@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048143398e592eb4c93b8657e2f4624e, type: 3}
   m_Name: Oceaanbodem
   m_EditorClassIdentifier: 
+  id: 0
   name: Oceaanbodem
   items:
   - {fileID: 11400000, guid: 25eab745f847a2f499bfbe1aa1157cb5, type: 2}
