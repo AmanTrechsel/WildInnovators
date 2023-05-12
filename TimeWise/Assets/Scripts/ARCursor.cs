@@ -80,7 +80,7 @@ public class ARCursor : MonoBehaviour
     {
       if (subjectSet)
       {
-        foreach (int i = 0; i < arRepositionObjects.Count; i++)
+        for (int i = 0; i < arRepositionObjects.Count; i++)
         {
           GameObject repositionObject = arRepositionObjects[i];
           Vector3 rotationOffset = arRepositionOffsets[i][1];
