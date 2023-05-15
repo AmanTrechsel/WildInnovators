@@ -16,6 +16,15 @@ public class EncyclopediaManager : MonoBehaviour
   private Transform encyclopediaPageContent;
   [SerializeField]
   private GameObject encyclopediaPageButtonPrefab;
+  [Header("Page Extra Info")]
+  [SerializeField]
+  private GameObject pagePanel;
+  [SerializeField]
+  private Image pageImage;
+  [SerializeField]
+  private TextMeshProUGUI pageTitle;
+  [SerializeField]
+  private TextMeshProUGUI pageDescription;
   
   private void Awake()
   {
@@ -28,5 +37,18 @@ public class EncyclopediaManager : MonoBehaviour
       pageToAdd.GetComponent<EncyclopediaPageButton>().SetPage(encyclopediaPage);
       pageToAdd.transform.SetParent(encyclopediaPageContent);
     }
+  }
+
+  public void ShowPage(EncyclopediaPage pageToShow)
+  {
+    pagePanel.SetActive(true);
+    pageImage.sprite = pageToShow.displayImage;
+    pageTitle.text = pageToShow.displayName;
+    pageDescription.text = pageToShow.description;
+  }
+
+  public void HidePage()
+  {
+    pagePanel.SetActive(false);
   }
 }
