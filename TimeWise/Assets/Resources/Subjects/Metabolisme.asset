@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Metabolisme
   m_EditorClassIdentifier: 
   id: 0
-  name: 
-  items: []
+  name: Metabolisme
+  items:
+  - {fileID: 0}
