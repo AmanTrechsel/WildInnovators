@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048143398e592eb4c93b8657e2f4624e, type: 3}
-  m_Name: Virus
+  m_Script: {fileID: 11500000, guid: c95180ff07306e94c9d8ca839d8af0a8, type: 3}
+  m_Name: ModernHuman
   m_EditorClassIdentifier: 
-  id: 0
-  name: Virus
-  items:
-  - {fileID: 11400000, guid: 4e487a0f0ad6be64ab80161aaf07e475, type: 2}
-  - {fileID: 11400000, guid: fbaa955771b8aff4bb805f88c275af4f, type: 2}
+  name: 
+  prefab: {fileID: 0}
+  offsetPosition: {x: 0, y: 0, z: 0}
+  offsetRotation: {x: 0, y: 0, z: 0}
+  offsetScale: {x: 0, y: 0, z: 0}
+  recenter: 0
