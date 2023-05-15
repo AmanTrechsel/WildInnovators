@@ -42,9 +42,20 @@ public class EncyclopediaManager : MonoBehaviour
   public void ShowPage(EncyclopediaPage pageToShow)
   {
     pagePanel.SetActive(true);
-    pageImage.sprite = pageToShow.displayImage;
-    pageTitle.text = pageToShow.displayName;
-    pageDescription.text = pageToShow.description;
+    if (AppManager.Instance.unlockedEncyclopediaPages.Contains((int)pageToShow.id))
+    {
+      pageImage.sprite = pageToShow.displayImage;
+      pageImage.color = Color.white;
+      pageTitle.text = pageToShow.displayName;
+      pageDescription.text = pageToShow.description;
+    }
+    else
+    {
+      pageImage.sprite = null;
+      pageImage.color = Color.black;
+      pageTitle.text = "???";
+      pageDescription.text = "Onbekend, leer meer over dit dier om meer informatie te verkrijgen.";
+    }
   }
 
   public void HidePage()
