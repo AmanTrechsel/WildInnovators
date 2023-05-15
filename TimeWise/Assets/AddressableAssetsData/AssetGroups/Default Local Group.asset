@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 7ffa1f481d068a543a57c6167cf63127
+  m_SerializeEntries:
+  - m_GUID: 062713a76f67e7d4fa7c4a86c8ed3398
+    m_Address: Assets/Prefabs/Whale.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9dd4c1c272d828a4983e062798e4a6a1
+    m_Address: Assets/Prefabs/Seaweed.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7594d49901ec62f49ac979b254f4e183
+    m_Address: Assets/Prefabs/Plankton.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 91bd416cc22d4fd4a8283158d3581b37
+    m_Address: Assets/Prefabs/Covid.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d54ebab4591188f478b723cc2765bb90
+    m_Address: Assets/Prefabs/beeAnimationv3 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef59851a3c3ea5a4b935c78cf499b67a
+    m_Address: Assets/Prefabs/Bacteriophage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a86f57c293dde3f4185419a9f262d681, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 22e6053077689ba4db01a5dc4af06d76, type: 2}
+    - {fileID: 11400000, guid: 11169240687f9de4b9b246ac27019ecc, type: 2}
