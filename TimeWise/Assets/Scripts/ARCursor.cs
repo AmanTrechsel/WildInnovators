@@ -16,7 +16,7 @@ public class ARCursor : MonoBehaviour
   private bool arPlacedCorrectly;
   private bool subjectSet;
 
-  void Start()
+  private void Start()
   {
     
     if (AppManager.Instance.arSubject == null)
@@ -56,13 +56,13 @@ public class ARCursor : MonoBehaviour
     RepositionARObject();
   }
 
-  void Update()
+  private void Update()
   {
     // Cursor update
     UpdateCursor();
 
     // When the AR Object is no longer visible, try to reposition it.
-    if ((!arMesh.isVisible || ShouldRecenter()) && arPlacedCorrectly)
+    if ((!ARMeshVisible() || ShouldRecenter()) && arPlacedCorrectly)
     {
       RepositionARObject();
     }
@@ -72,7 +72,7 @@ public class ARCursor : MonoBehaviour
   }
 
   // This script checks your current AR plane for possible placement positions and repositions the AR Object accordingly
-  void RepositionARObject()
+  private void RepositionARObject()
   {
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
     raycastManager.Raycast(transform.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
@@ -98,7 +98,7 @@ public class ARCursor : MonoBehaviour
 
   // This script simply places a cursor on the center of the screen, which is used to reposition the AR Object
   // If there is none found it will set the 'arPlacedCorrectly' variable to false
-  void UpdateCursor()
+  private void UpdateCursor()
   {
     Vector2 screenPosition = ARManager.Instance.arCamera.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -116,7 +116,7 @@ public class ARCursor : MonoBehaviour
     }
   }
 
-  bool ShouldRecenter()
+  private bool ShouldRecenter()
   {
     if (arRepositionMeshes == null) { return false; }
     foreach (Renderer renderer in arRepositionMeshes)
@@ -124,5 +124,11 @@ public class ARCursor : MonoBehaviour
       if (!renderer.isVisible) { return true; }
     }
     return false;
+  }
+
+  private bool ARMeshVisible()
+  {
+    if (arMesh == null) { return true; }
+    return arMesh.isVisible;
   }
 }
