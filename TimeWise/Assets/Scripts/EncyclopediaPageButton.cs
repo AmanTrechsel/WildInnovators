@@ -30,6 +30,6 @@ public class EncyclopediaPageButton : MonoBehaviour
 
   public void ShowPageInfo()
   {
-
+    EncyclopediaManager.Instance.ShowPage(_page);
   }
 }

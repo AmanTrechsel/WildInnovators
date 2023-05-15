@@ -17,11 +17,16 @@ public class MenuManager : MonoBehaviour
   {
     SceneManager.LoadScene("AR");
   }
-
   
   // Function for the settingsbutton
   public void GoToSettings()
   {
     SceneManager.LoadScene("Settings");
+  }
+
+  // Function for getting to the Encyclopedia
+  public void GoToEncyclopedia()
+  {
+    SceneManager.LoadScene("Encyclopedia");
   }
 }
