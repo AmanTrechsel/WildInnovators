@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Plankton
   prefab: {fileID: 8625040579893133388, guid: 7594d49901ec62f49ac979b254f4e183, type: 3}
-  offsetPosition: {x: 0, y: 0, z: 0}
+  offsetPosition: {x: 0, y: 0, z: 0.1}
   offsetRotation: {x: 0, y: 0, z: 0}
   offsetScale: {x: 0, y: 0, z: 0}
   recenter: 1
