@@ -34,4 +34,9 @@ public class ARManager : MonoBehaviour
     byte[] bytes = photo.EncodeToPNG();
     File.WriteAllBytes("photo.png", bytes);
   }
+
+  public void BackToSelection()
+  {
+    AppManager.Instance.LoadScene("Selection");
+  }
 }

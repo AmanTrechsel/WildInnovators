@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95180ff07306e94c9d8ca839d8af0a8, type: 3}
   m_Name: Virus
   m_EditorClassIdentifier: 
-  name: 
-  prefab: {fileID: 0}
-  offsetPosition: {x: 0, y: 0, z: 0}
+  name: Virus
+  prefab: {fileID: 7538977101341155854, guid: 91bd416cc22d4fd4a8283158d3581b37, type: 3}
+  offsetPosition: {x: 0.1, y: 0, z: 0.1}
   offsetRotation: {x: 0, y: 0, z: 0}
   offsetScale: {x: 0, y: 0, z: 0}
-  recenter: 0
+  recenter: 1

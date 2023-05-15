@@ -58,6 +58,12 @@ public class AppManager : MonoBehaviour
     }
   }
 
+  // Basic method for loading a scene
+  public void LoadScene(string sceneName)
+  {
+    SceneManager.LoadScene(sceneName);
+  }
+
   // Updates every frame
   private void Update()
   {
