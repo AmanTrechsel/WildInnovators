@@ -53,8 +53,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6918f6685f8912e44937e95502a23721, type: 3}
       propertyPath: m_Name
-      value: CharlesDarwin
+      value: CharlesDarwin Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2787671609557530903, guid: 6918f6685f8912e44937e95502a23721, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a73f66aab9da7549a30e8e0d857ac2f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6918f6685f8912e44937e95502a23721, type: 3}
 --- !u!1 &4993448375495589778 stripped

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95180ff07306e94c9d8ca839d8af0a8, type: 3}
   m_Name: OldHuman
   m_EditorClassIdentifier: 
-  name: 
-  prefab: {fileID: 0}
-  offsetPosition: {x: 0, y: 0, z: 0}
+  name: Old Human
+  prefab: {fileID: 81276149741099869, guid: b478ed401380de940b0298249536da52, type: 3}
+  offsetPosition: {x: -0.1, y: 0, z: 0.1}
   offsetRotation: {x: 0, y: 0, z: 0}
   offsetScale: {x: 0, y: 0, z: 0}
-  recenter: 0
+  recenter: 1

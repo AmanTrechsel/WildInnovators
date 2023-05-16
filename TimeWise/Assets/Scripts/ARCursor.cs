@@ -31,6 +31,9 @@ public class ARCursor : MonoBehaviour
     }
     else
     {
+      arRepositionObjects = new List<GameObject>();
+      arRepositionMeshes = new List<Renderer>();
+      arRepositionOffsets = new List<List<Vector3>>();
       foreach (ARItem arItem in AppManager.Instance.arSubject.items)
       {
         GameObject arObjectToAdd = Instantiate(arItem.prefab,
@@ -68,7 +71,7 @@ public class ARCursor : MonoBehaviour
     }
 
     // Only show the AR Object if it is placed correctly
-    arObject.SetActive(arPlacedCorrectly);
+    if (arObject != null) { arObject.SetActive(arPlacedCorrectly); }
   }
 
   // This script checks your current AR plane for possible placement positions and repositions the AR Object accordingly

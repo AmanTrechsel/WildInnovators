@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Whale
   prefab: {fileID: 3895562448871043727, guid: 062713a76f67e7d4fa7c4a86c8ed3398, type: 3}
-  offsetPosition: {x: 0, y: 0, z: 0}
+  offsetPosition: {x: 0, y: 0.5, z: 0.5}
   offsetRotation: {x: 0, y: 0, z: 0}
-  offsetScale: {x: 0, y: 0, z: 0}
+  offsetScale: {x: 10, y: 10, z: 10}
   recenter: 0

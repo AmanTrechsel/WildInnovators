@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95180ff07306e94c9d8ca839d8af0a8, type: 3}
   m_Name: Bij + bloem
   m_EditorClassIdentifier: 
-  name: 
-  prefab: {fileID: 919132149155446097, guid: cc29c73098b1f8a45a0886bc51df2b63, type: 3}
-  offsetPosition: {x: 0, y: 0, z: 0}
+  name: Bee & Flower
+  prefab: {fileID: 4923647540941727446, guid: d54ebab4591188f478b723cc2765bb90, type: 3}
+  offsetPosition: {x: 0, y: 0, z: 0.1}
   offsetRotation: {x: 0, y: 0, z: 0}
-  offsetScale: {x: 0, y: 0, z: 0}
+  offsetScale: {x: -0.9, y: -0.9, z: -0.9}
   recenter: 0
