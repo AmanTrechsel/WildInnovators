@@ -15,4 +15,7 @@ MonoBehaviour:
   id: 4
   name: Metabolisme
   items:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6fd38b6237424e64ca9027830af8cde0, type: 2}
+  - {fileID: 11400000, guid: d8720a2aa2fbed94fa585e5c78e31ef6, type: 2}
+  - {fileID: 11400000, guid: da9caa38c7fd10a43a6651ac39c8c192, type: 2}
+  - {fileID: 11400000, guid: 2b623bf068e6997438f9b6fda2c72e33, type: 2}
