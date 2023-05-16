@@ -11,12 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 048143398e592eb4c93b8657e2f4624e, type: 3}
   m_Name: Metabolisme
-  m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  id: 0
-=======
+  m_EditorClassIdentifier: 2731bdefe7e51a26f12445ec807a5535870c1333
   id: 4
->>>>>>> 2731bdefe7e51a26f12445ec807a5535870c1333
   name: Metabolisme
   items:
   - {fileID: 0}
