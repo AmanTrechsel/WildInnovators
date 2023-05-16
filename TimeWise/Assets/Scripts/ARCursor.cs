@@ -40,7 +40,7 @@ public class ARCursor : MonoBehaviour
                                                transform.position + arItem.offsetPosition,
                                                transform.rotation * Quaternion.Euler(arItem.offsetRotation.x, arItem.offsetRotation.y, arItem.offsetRotation.z)
                                                ) as GameObject;
-        arObjectToAdd.transform.localScale += arItem.offsetScale;
+        arObjectToAdd.transform.localScale = arItem.offsetScale;
         if (arItem.recenter)
         {
           arRepositionObjects.Add(arObjectToAdd);
