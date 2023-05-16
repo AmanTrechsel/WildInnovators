@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/CourseSelect.unity
+    guid: 578608727f3eb3743873f1156ef00fe9
+  - enabled: 1
     path: Assets/Scenes/Selection.unity
     guid: 111164305700bf145b6660fce0a11d97
   - enabled: 1

@@ -35,6 +35,8 @@ public class AppManager : MonoBehaviour
   private Slider periodSlider;
   [HideInInspector]
   public float selectedPeriod;
+  [HideInInspector]
+  public Course selectedCourse;
   public GameObject arDisplayObject;
   public Subject arSubject;
   public List<int> unlockedEncyclopediaPages = new List<int>();
