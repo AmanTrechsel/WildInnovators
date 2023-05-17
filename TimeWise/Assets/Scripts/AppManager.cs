@@ -60,6 +60,15 @@ public class AppManager : MonoBehaviour
     }
   }
 
+  // Gets the Android storage path (https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
+  public string GetAndroidExternalStoragePath()
+  {
+    if (Application.platform != RuntimePlatform.Android) { return Application.persistentDataPath; }
+    var jc = new AndroidJavaClass("android.os.Environment");
+    var path = jc.CallStatic<AndroidJavaObject>("getExternalStoragePublicDirectory", jc.GetStatic<string>("DIRECTORY_DCIM")).Call<string>("getAbsolutePath");
+    return path;
+  }
+
   // Basic method for loading a scene
   public void LoadScene(string sceneName)
   {

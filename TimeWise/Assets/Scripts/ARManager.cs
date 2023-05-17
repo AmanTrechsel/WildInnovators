@@ -30,9 +30,21 @@ public class ARManager : MonoBehaviour
     RenderTexture.active = null;
     DestroyImmediate(renderTexture);
 
+    // Get directory for picture
+    System.DateTime dt = System.DateTime.Now;
+    dt = dt.Add(System.TimeSpan.FromSeconds(180));
+    string path = $"{AppManager.Instance.GetAndroidExternalStoragePath()}/Timewise";
+    string filename = $"{dt.ToString().Replace(":", "_").Replace(" ", "_").Replace("/", "_")}.png";
+
+    // Create path if it doesn't exist yet
+    if(!Directory.Exists(path))
+    {    
+      Directory.CreateDirectory(path);
+    }
+
     // Make screenshot
     byte[] bytes = photo.EncodeToPNG();
-    File.WriteAllBytes("photo.png", bytes);
+    File.WriteAllBytes($"{path}/{filename}", bytes);
   }
 
   public void BackToSelection()
