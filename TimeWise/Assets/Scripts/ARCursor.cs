@@ -41,16 +41,35 @@ public class ARCursor : MonoBehaviour
                                                transform.rotation * Quaternion.Euler(arItem.offsetRotation.x, arItem.offsetRotation.y, arItem.offsetRotation.z)
                                                ) as GameObject;
         arObjectToAdd.transform.localScale = arItem.offsetScale;
+        Renderer[] arObjectMeshes = arObjectToAdd.GetComponentsInChildren<Renderer>();
+        List<float> meshExtent = new List<float>();
+        foreach (Renderer arMesh in arObjectMeshes)
+        {
+          meshExtent.Add(arMesh.bounds.extents.z);
+        }
         if (arItem.recenter)
         {
           arRepositionObjects.Add(arObjectToAdd);
-          arRepositionMeshes.Add(arObjectToAdd.GetComponentInChildren<Renderer>());
+          arRepositionMeshes.Add(arObjectMeshes[0]);
           List<Vector3> arObjectOffsets = new List<Vector3>();
           arObjectOffsets.Add(arItem.offsetPosition);
           arObjectOffsets.Add(arItem.offsetRotation);
           //arObjectOffsets.Add(arItem.offsetScale);
           arRepositionOffsets.Add(arObjectOffsets);
         }
+
+        // Add the nametag to the object
+        if (arObjectMeshes.Length > 0)
+        {
+          GameObject nameTag = Instantiate(ARManager.Instance.nameTagPrefab) as GameObject;
+          nameTag.GetComponent<NameTagManager>().SetupNametag(ARManager.Instance.arCamera, arItem.name);
+          nameTag.transform.SetParent(arObjectToAdd.transform);
+          //nameTag.transform.localScale = arItem.offsetScale;
+          float topPosition = ((Mathf.Max(meshExtent.ToArray()) * arObjectToAdd.transform.localScale.z) + arObjectToAdd.transform.position.z) / 2f;
+          topPosition = 0.1f; // Debug
+          nameTag.transform.localPosition = new Vector3(0f, topPosition, 0f);
+        }
+        
       }
 
       subjectSet = true;

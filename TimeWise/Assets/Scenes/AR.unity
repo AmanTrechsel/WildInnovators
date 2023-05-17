@@ -1037,6 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arCamera: {fileID: 1302903668}
+  nameTagPrefab: {fileID: 4092426363746188461, guid: 3be3fe3befe5252468243eb30bb47cd8, type: 3}
 --- !u!4 &380042662
 Transform:
   m_ObjectHideFlags: 0

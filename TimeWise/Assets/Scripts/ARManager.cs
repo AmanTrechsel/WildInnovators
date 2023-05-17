@@ -7,6 +7,7 @@ public class ARManager : MonoBehaviour
 {
   public static ARManager Instance;
   public Camera arCamera;
+  public GameObject nameTagPrefab;
 
   private void Awake()
   {
