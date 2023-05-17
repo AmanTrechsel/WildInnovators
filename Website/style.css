@@ -1,0 +1,42 @@
+@font-face {
+    font-family: bruno Ace;
+    src: url("./fonts/Bruno_Ace/BrunoAce-Regular.ttf");
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: bruno Ace; 
+}
+
+#mainContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+header{
+    grid-column: 1/5;
+    background-image: url("./images/header.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -135px -445px;
+    height: 400px;
+}
+
+nav > ul{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    position: relative;
+    left: 250   px;
+    top: -75px;
+    font-size: 20px;
+}
+
+img{
+    position: relative;
+    left: 100px;
+    top: 10px;
+    height: 150px;
+    width: 150px;
+}
