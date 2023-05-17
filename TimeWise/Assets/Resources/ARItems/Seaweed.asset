@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Seaweed
   prefab: {fileID: 4413100929618150895, guid: 9dd4c1c272d828a4983e062798e4a6a1, type: 3}
-  offsetPosition: {x: 0, y: 0, z: 0.5}
+  offsetPosition: {x: 0, y: 0, z: 0.3}
   offsetRotation: {x: 0, y: 0, z: 0}
-  offsetScale: {x: 1, y: 1, z: 1}
+  offsetScale: {x: 50, y: 50, z: 50}
   recenter: 0
