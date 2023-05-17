@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Old Human
   prefab: {fileID: 81276149741099869, guid: b478ed401380de940b0298249536da52, type: 3}
   offsetPosition: {x: -0.1, y: 0, z: 0.1}
-  offsetRotation: {x: 0, y: 0, z: 0}
-  offsetScale: {x: 1, y: 1, z: 1}
+  offsetRotation: {x: 15, y: 0, z: 0}
+  offsetScale: {x: 0.2, y: 0.2, z: 0.2}
   recenter: 1
