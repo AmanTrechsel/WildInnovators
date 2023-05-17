@@ -130,8 +130,8 @@ Library: C:\Users\amant\Documents\GitHub\WildInnovators\TimeWise\Temp\StagingAre
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
 --compilation-defines=TIMELINE_FRAMEACCURATE
---compilation-defines=UNITY_ANALYTICS
 --compilation-defines=ENABLE_ASYNC_ASSETBUNDLE_UWR
+--compilation-defines=UNITY_ANALYTICS
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\amant\Documents\GitHub\WildInnovators\TimeWise\Temp\Burst
 --debug=Full
