@@ -7,27 +7,47 @@ using TMPro;
 public class SettingsManager : MonoBehaviour
 {
 
-  private TextMeshProUGUI title;
+  public TextMeshProUGUI title;
+  // public TextMeshProUGUI dutch;
+  // public TextMeshProUGUI english;
+  // public TextMeshProUGUI german;
 
-  void Start()
-  {
-    title = gameObject.GetComponent<TextMeshProUGUI>();
-  }
+  public TextMeshProUGUI[] languages;
+  public string[] dutch;
+  public string[] english;
+  public string[] german;
 
   public void SetLanguage(int index)
   {
     if(index == 0)
     {
         title.text = "Taal";
+        int counter = 0;
+        foreach(TextMeshProUGUI language in languages)
+        {
+          language.text = dutch[counter];
+          counter++;
+        }
     }
     else if(index == 1)
     {
         title.text = "Language";
+        int counter = 0;
+        foreach(TextMeshProUGUI language in languages)
+        {
+          language.text = english[counter];
+          counter++;
+        }
     }
     else if(index == 2)
     {
         title.text = "Sprache";
-        Debug.Log("duits");
+        int counter = 0;
+        foreach(TextMeshProUGUI language in languages)
+        {
+          language.text = german[counter];
+          counter++;
+        }
     }
   }
 
