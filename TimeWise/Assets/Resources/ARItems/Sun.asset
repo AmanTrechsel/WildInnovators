@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95180ff07306e94c9d8ca839d8af0a8, type: 3}
   m_Name: Sun
   m_EditorClassIdentifier: 
-  name: Plant
-  prefab: {fileID: 2323285770462172675, guid: 22e40cda46a47ba42b2d3610b6703700, type: 3}
+  name: Sun
+  prefab: {fileID: 3648040413146847791, guid: 8f53fc7b43b25194e90a9f75efd72624, type: 3}
   offsetPosition: {x: 0, y: 0, z: 0}
   offsetRotation: {x: 0, y: 0, z: 0}
   offsetScale: {x: 1, y: 1, z: 1}
