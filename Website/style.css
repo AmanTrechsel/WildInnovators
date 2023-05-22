@@ -72,3 +72,9 @@ header > img{
     background-repeat: no-repeat;
     height: 1800px;
 }
+
+#text{
+    margin-left: 125px;
+    position: relative;
+    top: 800px;
+}
