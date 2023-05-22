@@ -27,38 +27,40 @@ public class SettingsManager : MonoBehaviour
   // Switches the language dependent on the index, using terms in the Unity inspector
   public void SetLanguage(int index)
   {
-    if(index == 0)
+    int counter = 0;
+    switch(index)
     {
+      case 0:
         title.text = "Taal";
-        int counter = 0;
         foreach(TextMeshProUGUI language in languages)
         {
           language.text = dutch[counter];
           counter++;
         }
-    }
-    else if(index == 1)
-    {
+        counter = 0;
+        break;
+      case 1:
         title.text = "Language";
-        int counter = 0;
         foreach(TextMeshProUGUI language in languages)
         {
           language.text = english[counter];
           counter++;
         }
-    }
-    else if(index == 2)
-    {
+        counter = 0;
+        break;
+      case 2:
         title.text = "Sprache";
-        int counter = 0;
         foreach(TextMeshProUGUI language in languages)
         {
           language.text = german[counter];
           counter++;
         }
+        counter = 0;
+        break;
     }
   }
 
+  // For the permission setting
   [SerializeField]
   private Button button;
 
@@ -68,7 +70,6 @@ public class SettingsManager : MonoBehaviour
   [SerializeField]
   private Sprite toggleOn;
 
-  // For the permission setting
   public void SwitchPermission()
   {
     if(button.image.sprite == toggleOn)
