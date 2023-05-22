@@ -7,16 +7,24 @@ using TMPro;
 public class SettingsManager : MonoBehaviour
 {
 
-  public TextMeshProUGUI title;
-  // public TextMeshProUGUI dutch;
-  // public TextMeshProUGUI english;
-  // public TextMeshProUGUI german;
+  // For the language setting
+  // Defining variables
+  [SerializeField]
+  private TextMeshProUGUI title;
 
-  public TextMeshProUGUI[] languages;
-  public string[] dutch;
-  public string[] english;
-  public string[] german;
+  [SerializeField]
+  private TextMeshProUGUI[] languages;
 
+  [SerializeField]
+  private string[] dutch;
+
+  [SerializeField]
+  private string[] english;
+
+  [SerializeField]
+  private string[] german;
+
+  // Switches the language dependent on the index, using terms in the Unity inspector
   public void SetLanguage(int index)
   {
     if(index == 0)
@@ -48,6 +56,28 @@ public class SettingsManager : MonoBehaviour
           language.text = german[counter];
           counter++;
         }
+    }
+  }
+
+  [SerializeField]
+  private Button button;
+
+  [SerializeField]
+  private Sprite toggleOff;
+
+  [SerializeField]
+  private Sprite toggleOn;
+
+  // For the permission setting
+  public void SwitchPermission()
+  {
+    if(button.image.sprite == toggleOn)
+    {
+      button.image.sprite = toggleOff;
+    }
+    else if(button.image.sprite == toggleOff)
+    {
+      button.image.sprite = toggleOn;
     }
   }
 
