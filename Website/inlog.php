@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        // Check sign in
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +26,39 @@
                 </ul>
             </nav>
         </header>
+        <div id="content">
+            <?php
+                if (isset($_GET['register']))
+                {
+            ?>
+            <h1>Registreren</h1>
+            <form method="POST" action="#">
+                <label for="username">Gebruikersnaam</label>
+                <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
+                <label for="password">Wachtwoord</label>
+                <input type="text" id="password" name="password" placeholder="Wachtwoord..." required>
+                <input type="submit" value="Login">
+            </form>
+            <?php
+                }
+                else
+                {
+            ?>
+            <form method="POST" action="#">
+                <label for="username">Gebruikersnaam</label>
+                <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
+                <label for="password">Wachtwoord</label>
+                <input type="text" id="password" name="password" placeholder="Wachtwoord..." required>
+                <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
+                <input type="submit" value="Login">
+            </form>
+            <form method="GET" action="#register">
+                <input type="submit" name="register" value="Registreren">
+            </form>
+            <?php
+                }
+            ?>
+        </div>
     </div>
 </body>
 </html>
