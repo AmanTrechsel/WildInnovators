@@ -27,7 +27,7 @@ header{
     height: 55.95vh;
 }
 
-nav > ul{
+header > nav > ul{
     display: flex;
     list-style: none;
     gap: 2vw;
@@ -36,6 +36,16 @@ nav > ul{
     top: -10.9vh;
     font-size: 1em;
     max-width: 25vw;
+}
+
+footer{
+    grid-column: 2/6;
+    background-image: url("../images/footer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 15.3vw 16vh;
+    height: 55.95vh;
+    margin-top: -30vh;
 }
 
 a{
@@ -60,6 +70,27 @@ header > img{
     height: 15vh;
     width: 7vw;
 }
+
+footer > img{
+    position: relative;
+    right: -67.5vw;
+    top: 36.4vh;
+    height: 15vh;
+    width: 7vw;
+}
+
+footer > nav > ul{
+    display: flex;
+    list-style: none;
+    gap: 5vw;
+    position: relative;
+    left: 43.7vw;
+    top: 24.9vh;
+    font-size: 1em;
+    color:#F9F9F9;
+    max-width: 25vw;
+}
+
 /* ----Home Pagina---- */
 #timeWiseLogo > img{
     grid-column: 3/5;
@@ -115,6 +146,8 @@ header > img{
     top: -80vh;
     left: 8.5vw;
     max-width: 40vw;
+    margin-top: 10vh;
+    margin-bottom: -100vh;
 }
 
 #aboutUs > h1{
@@ -141,7 +174,6 @@ header > img{
     width: auto;
     height: 25vh;
 }
-
 
 
 
