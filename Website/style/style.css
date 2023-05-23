@@ -10,6 +10,7 @@ body{
     padding: 0;
     font-family: bruno Ace; 
     font-size: 1.3em;
+    max-width: 125vw;
 }
 
 #mainContainer{
@@ -31,8 +32,8 @@ nav > ul{
     list-style: none;
     gap: 2vw;
     position: relative;
-    left: 10.7vw;
-    top: -10.4vh;
+    left: 8.7vw;
+    top: -10.9vh;
     font-size: 1em;
     max-width: 25vw;
 }
@@ -54,7 +55,7 @@ main{
 
 header > img{
     position: relative;
-    left: 4.7vw;
+    left: 3.7vw;
     top: 1.4vh;
     height: 15vh;
     width: 7vw;
@@ -67,6 +68,10 @@ header > img{
     left: 15vw;
     height: 74.5vh;
     width: 36.6;
+}
+
+#HomeText{
+    color:#00E0FF;
 }
 
 #aboutTimeWise{
@@ -97,13 +102,46 @@ header > img{
 }
 
 #aboutTimeWise > img{
-    grid-column: 3/5;
     position: relative;
-    top: 50vh;
+    top: 10vh;
     left: 70vw;
     height: 74.5vh;
-    width: 36.6;
+    width: auto;
 }
+
+#aboutUs{
+    grid-column: 1/6;
+    position: relative;
+    top: -80vh;
+    left: 8.5vw;
+    max-width: 40vw;
+}
+
+#aboutUs > h1{
+    color:#0F0F0F;
+}
+
+#aboutUs > p{
+    max-width: 40vw;
+    color:#0F0F0F;
+}
+
+#aboutUs > img{
+    position: relative;
+    top: -40vh;
+    left: 48vw;
+    height: 40vh;
+    width: auto;
+}
+
+#aboutUs > #arrow{
+    position: absolute;
+    top: -8vh;
+    left: 36.5vw;
+    width: auto;
+    height: 25vh;
+}
+
 
 
 
