@@ -37,7 +37,7 @@ nav > ul{
 }
 
 a{
-    color: white;
+    color: #F9F9F9;
     text-decoration: none;
 }
 
@@ -83,7 +83,7 @@ header > img{
     top: 80vh;
     left: 8.5vw;
     max-width: 25vw;
-    color:#F9F9F9
+    color:#F9F9F9;
 }
 
 #aboutTimeWise > p{
@@ -92,5 +92,5 @@ header > img{
     left: 8.5vw;
     max-width: 41.8vw;
     line-height: 1.5em;
-    color:#F9F9F9
+    color:#F9F9F9;
 }
