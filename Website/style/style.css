@@ -83,7 +83,7 @@ header > img{
     position: relative;
     top: 80vh;
     left: 8.5vw;
-    max-width: 25vw;
+    max-width: 35vw;
     color:#F9F9F9;
 }
 
@@ -96,6 +96,14 @@ header > img{
     color:#F9F9F9;
 }
 
+#aboutTimeWise > img{
+    grid-column: 3/5;
+    position: relative;
+    top: 50vh;
+    left: 70vw;
+    height: 74.5vh;
+    width: 36.6;
+}
 
 
 
@@ -145,5 +153,6 @@ header > img{
     top: -50.5vh;
     left: 15vw;
     height: 74.5vh;
-    width: 36.6;
+    width: 36.6vw;
+    max-width:30vw;
 }
