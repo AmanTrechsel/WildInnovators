@@ -58,12 +58,12 @@ header > img{
     height: 15vh;
     width: 7vw;
 }
-
+/* ----Home Pagina---- */
 #timeWiseLogo > img{
     grid-column: 3/5;
     position: relative;
     top: -24.5vh;
-    left: 5vw;
+    left: 15vw;
     height: 74.5vh;
     width: 36.6;
 }
@@ -94,3 +94,47 @@ header > img{
     line-height: 1.5em;
     color:#F9F9F9;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----Handleiding Pagina---- */
