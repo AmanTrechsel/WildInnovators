@@ -9,6 +9,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: bruno Ace; 
+    font-size: 1.3em;
 }
 
 #mainContainer{
@@ -138,3 +139,11 @@ header > img{
 
 
 /* ----Handleiding Pagina---- */
+#frontPageApp{
+    grid-column: 3/5;
+    position: relative;
+    top: -50.5vh;
+    left: 15vw;
+    height: 74.5vh;
+    width: 36.6;
+}
