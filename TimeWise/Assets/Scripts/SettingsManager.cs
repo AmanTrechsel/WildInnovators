@@ -3,63 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization.Settings;
 
 public class SettingsManager : MonoBehaviour
 {
-
-  // For the language setting
-  // Defining variables
-  [SerializeField]
-  private TextMeshProUGUI title;
-
-  [SerializeField]
-  private TextMeshProUGUI[] languages;
-
-  [SerializeField]
-  private string[] dutch;
-
-  [SerializeField]
-  private string[] english;
-
-  [SerializeField]
-  private string[] german;
-
-  // Switches the language dependent on the index, using terms in the Unity inspector
-  public void SetLanguage(int index)
-  {
-    int counter = 0;
-    switch(index)
-    {
-      case 0:
-        title.text = "Taal";
-        foreach(TextMeshProUGUI language in languages)
-        {
-          language.text = dutch[counter];
-          counter++;
-        }
-        counter = 0;
-        break;
-      case 1:
-        title.text = "Language";
-        foreach(TextMeshProUGUI language in languages)
-        {
-          language.text = english[counter];
-          counter++;
-        }
-        counter = 0;
-        break;
-      case 2:
-        title.text = "Sprache";
-        foreach(TextMeshProUGUI language in languages)
-        {
-          language.text = german[counter];
-          counter++;
-        }
-        counter = 0;
-        break;
-    }
-  }
-
   // For the permission setting
   [SerializeField]
   private Button button;
@@ -80,6 +27,17 @@ public class SettingsManager : MonoBehaviour
     {
       button.image.sprite = toggleOn;
     }
+  }
+
+  public void ChangeLanguage(int ID)
+  {
+    StartCoroutine(SetLanguage(ID));
+  }
+
+  IEnumerator SetLanguage(int index)
+  {
+    yield return LocalizationSettings.InitializationOperation;
+    LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
   }
 
 }

@@ -286,23 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4684d3480e4f540812b964cfc02f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1227629199}
-  languages:
-  - {fileID: 1791629683}
-  - {fileID: 138952617}
-  - {fileID: 1481907158}
-  dutch:
-  - Nederlands
-  - Engels
-  - Duits
-  english:
-  - Dutch
-  - English
-  - German
-  german:
-  - "Niederl\xE4ndisch"
-  - Englisch
-  - Deutsch
   button: {fileID: 74030463}
   toggleOff: {fileID: 21300000, guid: 8148c6b9da2e5684cbd4f3444a41f99f, type: 3}
   toggleOn: {fileID: 21300000, guid: 641280dc7af18224080c090f213bf5ab, type: 3}
@@ -2567,7 +2550,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 138180701}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetLanguage
+        m_MethodName: ChangeLanguage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2836,7 +2819,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 138180701}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetLanguage
+        m_MethodName: ChangeLanguage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5121,7 +5104,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 138180701}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: SetLanguage
+        m_MethodName: ChangeLanguage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5532,7 +5515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1991124338
 RectTransform:
   m_ObjectHideFlags: 0
