@@ -1,8 +1,59 @@
 <?php
     session_start();
+    require_once 'constants.php';
+
+    $errors = [];
+
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         // Check sign in
+        $username = filter_input(INPUT_POST, "username");
+        $password = filter_input(INPUT_POST, "password");
+
+        try
+        {
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+
+            try
+            {
+                if (isset($_GET['register']))
+                {
+                    $stmt = $dbHandler->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password);");
+                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
+                    $stmt->bindParam("password", password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
+                    $stmt->execute();
+
+                    $_SESSION['username'] = $username;
+                    header("Location: index.php");
+                }
+                else
+                {
+                    $stmt = $dbHandler->prepare("SELECT * FROM `users` WHERE `username` = :username");
+                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
+                    $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
+                    $stmt->execute();
+                    $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
+                    {
+                      $_SESSION['username'] = $username;
+                      header("Location: index.php");
+                    }
+                    else
+                    {
+                      $errors[] = "Username or password is incorrect!";
+                    }
+                }
+            }
+            catch (Exception $ex)
+            {
+                $errors[] = $ex->getMessage();
+            }
+        }
+        catch (Exception $ex)
+        {
+            $errors[] = $ex->getMessage();
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -28,6 +79,10 @@
         </header>
         <div id="content">
             <?php
+                foreach ($errors as $error)
+                {
+                    echo "<p>".$error."</p>";
+                }
                 if (isset($_GET['register']))
                 {
             ?>
@@ -36,7 +91,7 @@
                 <label for="username">Gebruikersnaam</label>
                 <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
                 <label for="password">Wachtwoord</label>
-                <input type="text" id="password" name="password" placeholder="Wachtwoord..." required>
+                <input type="password" id="password" name="password" placeholder="Wachtwoord..." required>
                 <input type="submit" value="Login">
             </form>
             <?php
@@ -48,7 +103,7 @@
                 <label for="username">Gebruikersnaam</label>
                 <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
                 <label for="password">Wachtwoord</label>
-                <input type="text" id="password" name="password" placeholder="Wachtwoord..." required>
+                <input type="password" id="password" name="password" placeholder="Wachtwoord..." required>
                 <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
                 <input type="submit" value="Login">
             </form>
