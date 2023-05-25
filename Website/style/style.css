@@ -44,8 +44,8 @@ footer{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 15.3vw 17.2vh;
-    height: 55.95vh;
-    margin-top: -30vh;
+    height: 54vh;
+    margin-top: -35vh;
 }
 
 a{
@@ -102,7 +102,7 @@ footer > nav > ul{
     top: -24.5vh;
     left: 15vw;
     height: 74.5vh;
-    width: 36.6;
+    width: 36.6vw;
 }
 
 #aboutTimeWise{
@@ -179,43 +179,6 @@ footer > nav > ul{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ----Handleiding Pagina---- */
 #frontPageApp{
     grid-column: 3/5;
@@ -230,10 +193,9 @@ footer > nav > ul{
 #quote{
     grid-column: 1/6;
     position: relative;
-    top: -15vh;
-    right: 29.6vw;
-    max-width: 25vw;
-    width: 90%;  
+    top: -30vh;
+    right: 1vw;
+    max-width: 25vw; 
 }
 
 #downloaden{
