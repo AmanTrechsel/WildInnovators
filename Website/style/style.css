@@ -147,7 +147,7 @@ footer > nav > ul{
     left: 8.5vw;
     max-width: 40vw;
     margin-top: 10vh;
-    margin-bottom: -100vh;
+    margin-bottom: -90vh;
 }
 
 #aboutUs > h1{
@@ -194,7 +194,7 @@ footer > nav > ul{
     grid-column: 1/6;
     position: relative;
     top: -30vh;
-    right: 1vw;
+    right: 0.915vw;
     max-width: 25vw; 
 }
 
