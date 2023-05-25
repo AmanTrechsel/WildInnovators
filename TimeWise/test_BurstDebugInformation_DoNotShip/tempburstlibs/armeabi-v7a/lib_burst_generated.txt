@@ -129,6 +129,10 @@ Library: C:\Users\amant\Documents\GitHub\WildInnovators\TimeWise\Temp\StagingAre
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
+--compilation-defines=PACKAGE_UGUI
+--compilation-defines=MODULE_AUDIO
+--compilation-defines=PACKAGE_TMP
+--compilation-defines=ENABLE_PROPERTY_VARIANTS
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --compilation-defines=ENABLE_ASYNC_ASSETBUNDLE_UWR
 --compilation-defines=UNITY_ANALYTICS

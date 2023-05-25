@@ -84,7 +84,7 @@ public class ARCursor : MonoBehaviour
     UpdateCursor();
 
     // When the AR Object is no longer visible, try to reposition it.
-    if ((!ARMeshVisible() || ShouldRecenter()) && arPlacedCorrectly)
+    if (true)//(!ARMeshVisible() || ShouldRecenter()) && arPlacedCorrectly)
     {
       RepositionARObject();
     }
@@ -93,28 +93,23 @@ public class ARCursor : MonoBehaviour
     if (arObject != null) { arObject.SetActive(arPlacedCorrectly); }
   }
 
-  // This script checks your current AR plane for possible placement positions and repositions the AR Object accordingly
+  // This script checks the position of an ARCard and repositions the AR Object accordingly
   private void RepositionARObject()
   {
-    List<ARRaycastHit> hits = new List<ARRaycastHit>();
-    raycastManager.Raycast(transform.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
-    if (hits.Count > 0)
+    if (subjectSet)
     {
-      if (subjectSet)
+      for (int i = 0; i < arRepositionObjects.Count; i++)
       {
-        for (int i = 0; i < arRepositionObjects.Count; i++)
-        {
-          GameObject repositionObject = arRepositionObjects[i];
-          Vector3 rotationOffset = arRepositionOffsets[i][1];
-          repositionObject.transform.position = transform.position + arRepositionOffsets[i][0];
-          repositionObject.transform.rotation = transform.rotation * Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
-        }
+        GameObject repositionObject = arRepositionObjects[i];
+        Vector3 rotationOffset = arRepositionOffsets[i][1];
+        repositionObject.transform.position = transform.position + arRepositionOffsets[i][0];
+        repositionObject.transform.rotation = transform.rotation * Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
       }
-      else
-      {
-        arObject.transform.position = transform.position;
-        arObject.transform.rotation = transform.rotation;
-      }
+    }
+    else
+    {
+      arObject.transform.position = transform.position;
+      arObject.transform.rotation = transform.rotation;
     }
   }
 
@@ -122,6 +117,7 @@ public class ARCursor : MonoBehaviour
   // If there is none found it will set the 'arPlacedCorrectly' variable to false
   private void UpdateCursor()
   {
+    return;
     Vector2 screenPosition = ARManager.Instance.arCamera.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
     raycastManager.Raycast(screenPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);

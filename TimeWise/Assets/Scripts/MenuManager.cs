@@ -16,5 +16,10 @@ public class MenuManager : MonoBehaviour
   public void GoToARScene()
   {
     SceneManager.LoadScene("AR");
+
+    foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
+    {
+      AppManager.Instance.unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
+    }
   }
 }
