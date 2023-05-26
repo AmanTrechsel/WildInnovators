@@ -9,8 +9,9 @@
         margin: 0vw;
         padding: 0vw;
         font-family: bruno Ace; 
-        font-size: 1.3vw    ;
+        font-size: 1.3vw;
         max-width: 125vw;
+        background-color: #F9F9F9;
     }
     
     #mainContainer{
