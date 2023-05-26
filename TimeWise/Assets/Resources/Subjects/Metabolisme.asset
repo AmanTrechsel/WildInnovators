@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 2731bdefe7e51a26f12445ec807a5535870c1333
   id: 4
   name: Metabolisme
+  buttonGraphic: {fileID: 21300000, guid: 9949bc8e62f61404dac5e9b2d6bec1c5, type: 3}
+  infoContent: '- Anabolisme'
   items:
   - {fileID: 11400000, guid: 6fd38b6237424e64ca9027830af8cde0, type: 2}
   - {fileID: 11400000, guid: d8720a2aa2fbed94fa585e5c78e31ef6, type: 2}

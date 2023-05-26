@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: a11c01f306758484d9291547172bbb6e, type: 2}
-  m_MaxNumberOfMovingImages: 0
+  m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 3702329411472961000, guid: 9e455cb1076db5d4ebacae140aeb9c5d, type: 3}
 --- !u!1 &320325044
 GameObject:

@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   name: Voortplanting
+  buttonGraphic: {fileID: 21300000, guid: e2faa63a133c8c7419a93e96c3bbb434, type: 3}
+  infoContent: '- Bij
+
+    - Geranium'
   items:
   - {fileID: 11400000, guid: 7193c1b9cd901364faf9c4aa0bdcc360, type: 2}

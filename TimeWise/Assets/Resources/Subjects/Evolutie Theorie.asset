@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   name: Evolutie Theorie
+  buttonGraphic: {fileID: 21300000, guid: b02b6c796844360438ade753891fd815, type: 3}
+  infoContent: '- Vogel
+
+    - Schedel'
   items:
   - {fileID: 11400000, guid: 2c1f3f7e20a221a40a4372dcacdc0687, type: 2}
   - {fileID: 11400000, guid: cd2edd77dbb56cb4895efba5bd6a57e2, type: 2}
