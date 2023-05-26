@@ -211,14 +211,42 @@ footer > nav > ul{
     margin: 10px;
 }
 
+.loginprompt > h1{
+    font-weight: normal;
+}
+
 .field{
     border: 2px solid #F06500;
     border-radius: 12px;
 }
 
+.loginprompt input[type=text]{
+    border: 4px solid #F06500;
+    border-radius: 10px;
+    width: 35vh;
+    height: 5vh;
+    font-size: 0.8em;
+    font-family: Bruno Ace;
+}
+
+input[type="password"]{
+  border: 4px solid #F06500;
+  border-radius: 10px;
+  width: 35vh;
+  height: 5vh;
+  font-size: 0.8em;
+  font-family: Bruno Ace;
+}
+
 .button{
-    border: 5px solid #F06500;
-    border-radius: 12px;
+    border: 8px solid #F06500;
+    border-radius: 35px;
     flex-wrap: nowrap;
     flex-direction: row;
+    width: 15vh;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.9em;
 }
+

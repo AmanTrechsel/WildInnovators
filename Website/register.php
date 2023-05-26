@@ -13,9 +13,9 @@
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
-                    <li><a id="HomeText" href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="handleiding.html">Handleiding</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a id="NavText" href="#">Login</a></li>
                 </ul>
             </nav>
         </header>
