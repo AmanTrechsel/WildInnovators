@@ -87,7 +87,7 @@
                 {
             ?>
             <h1>Registreren</h1>
-            <form method="POST" action="#">
+            <form id ="register" method="POST" action="#">
                 <label for="username">Gebruikersnaam</label>
                 <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
                 <label for="password">Wachtwoord</label>
@@ -99,16 +99,22 @@
                 else
                 {
             ?>
-            <form method="POST" action="#">
-                <label for="username">Gebruikersnaam</label>
-                <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
-                <label for="password">Wachtwoord</label>
-                <input type="password" id="password" name="password" placeholder="Wachtwoord..." required>
-                <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
-                <input type="submit" value="Login">
+            <form id ="login" method="POST" action="#">
+                <div class="loginprompt">
+                    <label for="username">Gebruikersnaam</label>
+                    <input class="field" type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
+                </div>
+                <div class="loginprompt">
+                    <label for="password">Wachtwoord</label>
+                    <input class="field" type="password" id="password" name="password" placeholder="Wachtwoord..." required>
+                </div>
+                <div class="loginprompt">
+                    <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
+                    <input class="button" type="submit" value="Login">   
+                </div>
             </form>
             <form method="GET" action="#register">
-                <input type="submit" name="register" value="Registreren">
+                <input class="button" type="submit" name="register" value="Registreren">                    
             </form>
             <?php
                 }
