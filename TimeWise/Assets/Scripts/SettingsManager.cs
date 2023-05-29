@@ -20,8 +20,8 @@ public class SettingsManager : MonoBehaviour
   }
 
   // For saving data in the cloud
-  private bool permission = true;
-  private int languageIndex;
+  public bool permission = true;
+  public int languageIndex;
 
   public void SaveData()
   {

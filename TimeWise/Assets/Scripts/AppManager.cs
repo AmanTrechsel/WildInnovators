@@ -40,6 +40,7 @@ public class AppManager : MonoBehaviour
   public GameObject arDisplayObject;
   public Subject arSubject;
   public List<int> unlockedEncyclopediaPages = new List<int>();
+  public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Called once at the start of the app
   private void Awake()
