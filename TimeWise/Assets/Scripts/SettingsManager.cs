@@ -8,6 +8,16 @@ using System.IO;
 
 public class SettingsManager : MonoBehaviour
 {
+  // Singleton
+  public static SettingsManager Instance;
+
+  private void Awake()
+  {
+    if(Instance == null)
+    {
+      Instance = this;
+    }
+  }
 
   // For saving data in the cloud
   private bool permission = true;
@@ -77,6 +87,18 @@ public class SettingsManager : MonoBehaviour
   {
     yield return LocalizationSettings.InitializationOperation;
     LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+  }
+
+  // For the location setting
+  public GameObject inputField;
+  public string location = "TimeWise";
+
+  public void ChangeLocation()
+  {
+    location = inputField.GetComponent<TMP_InputField>().text;
+    Debug.Log(location);
+    // With this location variable the path-variable in ARManager.cs needs to be changed
+    // Plus it needs some checks and also needs to be set to a default value "TimeWise"
   }
 
 }
