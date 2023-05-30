@@ -75,6 +75,7 @@ public class AppManager : MonoBehaviour
   // Basic method for loading a scene
   public void LoadScene(string sceneName)
   {
+    previousScene = SceneManager.GetActiveScene().name;
     SceneManager.LoadScene(sceneName);
   }
 

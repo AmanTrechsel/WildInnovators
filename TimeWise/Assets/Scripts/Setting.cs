@@ -7,6 +7,5 @@ public class Setting : ScriptableObject
   public uint id;
   public string name;
   public Sprite buttonGraphic;
-  public string title;
   public GameObject content;
 }
