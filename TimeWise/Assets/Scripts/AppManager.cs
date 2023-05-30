@@ -25,6 +25,9 @@ public class AppManager : MonoBehaviour
   [HideInInspector]
   public List<int> selectedSubjects;
 
+  // Whether the user has agreed to understanding the warning
+  public bool warningAgreed;
+
   // Singleton
   public static AppManager Instance;
 
@@ -88,11 +91,41 @@ public class AppManager : MonoBehaviour
       // Check if back button is pressed
       if (Input.GetKey(KeyCode.Escape))
       {
-        if (previousScene != null)
+        string sceneToLoad = "";
+        switch (SceneManager.GetActiveScene().name)
         {
-          AppManager.Instance.LoadScene(previousScene);
+          case "CourseSelect":
+            break;
+          case "Selection":
+            sceneToLoad = "CourseSelect";
+            break;
+          case "SelectionSearch":
+            sceneToLoad = "Selection";
+            break;
+          case "ARWarning":
+            sceneToLoad = "Selection";
+            break;
+          case "AR":
+            sceneToLoad = "Selection";
+            break;
+          case "Encyclopedia":
+            sceneToLoad = previousScene;
+            break;
+          case "Settings":
+            sceneToLoad = previousScene;
+            break;
+        }
+
+        if (sceneToLoad != "")
+        {
+          AppManager.Instance.LoadScene(sceneToLoad);
           return;
         }
+        //if (previousScene != null)
+        //{
+        //  AppManager.Instance.LoadScene(previousScene);
+        //  return;
+        //}
       }
     }
   }
