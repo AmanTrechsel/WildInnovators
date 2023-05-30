@@ -28,6 +28,7 @@ header{
     height: 55.95vh;
     display: flex;
     justify-content: left;
+    z-index: 1;
 }
 
 header > nav > ul{
@@ -46,12 +47,11 @@ footer{
     background-repeat: no-repeat;
     background-position: 15.3vw 17.2vh;
     height: 54vh;
-    margin-top: -17.7vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row-reverse;
-    z-index:-1;
+    z-index:1;
 }
 
 a{
@@ -86,11 +86,11 @@ footer  > img{
 footer > nav > ul{
     display: flex;
     list-style: none;
-    gap: 5vw;
+    gap: 2vw;
     font-size: 1vw;
     color: #F9F9F9;
     max-width: 5vw;
-    margin-left: 40vw ;
+    margin-left: 40vw;
     margin-top: 21vh;
 }
 
@@ -202,6 +202,7 @@ nav{
 #content{
     grid-column: 2/4;
     margin-top: -30vh;
+    z-index: 2;
 }
 
 
@@ -282,4 +283,24 @@ input[type="password"]{
     font-family: Bruno Ace;
     font-weight: bold;
     font-size: 0.9em;
+}
+
+
+/* ----Privacy Policy Page---- */
+#privacyPolicy{
+    grid-column: 2/4;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+    margin-top: -25vh;
+}
+
+#privacyPolicy a{
+    color:#0F0F0F
+}
+
+#privacyPolicy a:hover{
+    color: #00E0FF;
 }
