@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
   {
     if(SettingsManager.Instance.permission == true)
     {
-      SceneManager.LoadScene("AR");
+      SceneManager.LoadScene("ARWarning");
 
       foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
       {
