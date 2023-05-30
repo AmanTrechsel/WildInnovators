@@ -71,9 +71,9 @@
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
-                    <li><a id="HomeText" href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="handleiding.html">Handleiding</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a id="NavText" href="#">Login</a></li>
                 </ul>
             </nav>
         </header>
@@ -86,34 +86,57 @@
                 if (isset($_GET['register']))
                 {
             ?>
-            <h1>Registreren</h1>
-            <form method="POST" action="#">
-                <label for="username">Gebruikersnaam</label>
-                <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
-                <label for="password">Wachtwoord</label>
-                <input type="password" id="password" name="password" placeholder="Wachtwoord..." required>
-                <input type="submit" value="Login">
+            <form id ="register" method="POST" action="#">
+                <div class="loginprompt">
+                    <h1>Registreren</h1>
+                </div>
+                <div class="loginprompt">
+                    <label for="username">Gebruikersnaam</label>
+                    <input type="text" id="username" name="username" placeholder="Mijn gebruikersnaam..." required>
+                </div>
+                <div class="loginprompt">
+                    <label for="password">Wachtwoord</label>
+                    <input type="password" id="password" name="password" placeholder="Mijn wachtwoord..." required>
+                </div>
+                <div class="loginprompt">
+                    <input class="button" type="submit" value="Login">
+                </div>  
             </form>
             <?php
                 }
                 else
                 {
             ?>
-            <form method="POST" action="#">
-                <label for="username">Gebruikersnaam</label>
-                <input type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
-                <label for="password">Wachtwoord</label>
-                <input type="password" id="password" name="password" placeholder="Wachtwoord..." required>
-                <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
-                <input type="submit" value="Login">
+            <form id ="login" method="POST" action="#">
+                <div class="loginprompt">
+                    <label for="username">Gebruikersnaam</label>
+                    <input class="field" type="text" id="username" name="username" placeholder="Gebruikersnaam..." required>
+                </div>
+                <div class="loginprompt">
+                    <label for="password">Wachtwoord</label>
+                    <input class="field" type="password" id="password" name="password" placeholder="Wachtwoord..." required>
+                </div>
+                <div class="loginprompt">
+                    <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
+                    <input class="button" type="submit" value="Login">   
+                </div>
             </form>
             <form method="GET" action="#register">
-                <input type="submit" name="register" value="Registreren">
+                <input class="button" type="submit" name="register" value="Registreren">                    
             </form>
             <?php
                 }
             ?>
         </div>
+        <footer>
+            <img src="./images/LogoGroepjeWhite.png">
+            <nav>
+                <ul>
+                    <li>Copyright</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+        </footer>
     </div>
 </body>
 </html>

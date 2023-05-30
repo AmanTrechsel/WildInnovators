@@ -3,14 +3,15 @@
     src: url("../fonts/Bruno_Ace/BrunoAce-Regular.ttf");
 }
 
-
-
 body{
     margin: 0vw;
     padding: 0vw;
     font-family: bruno Ace; 
-    font-size: 1.3em;
+    font-size: 1.3vw    ;
     max-width: 125vw;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
 }
 
 #mainContainer{
@@ -23,19 +24,19 @@ header{
     background-image: url("../images/header.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: -18.9vw -41.75vh;
+    background-position: -18.9vw -71.75vh;
     height: 55.95vh;
+    display: flex;
+    justify-content: left;
 }
 
 header > nav > ul{
     display: flex;
     list-style: none;
     gap: 2vw;
-    position: relative;
-    left: 8.7vw;
-    top: -10.9vh;
-    font-size: 1em;
+    font-size: 1.3vw;
     max-width: 25vw;
+    margin-top: 7vh;    
 }
 
 footer{
@@ -45,7 +46,12 @@ footer{
     background-repeat: no-repeat;
     background-position: 15.3vw 17.2vh;
     height: 54vh;
-    margin-top: -35vh;
+    margin-top: -17.7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    z-index:-1;
 }
 
 a{
@@ -64,150 +70,216 @@ main{
 }
 
 header > img{
-    position: relative;
-    left: 3.7vw;
-    top: 1.4vh;
     height: 15vh;
     width: 7vw;
+    margin-top: 1vh;
+    margin-left: 4vw;
 }
 
-footer > img{
-    position: relative;
-    right: -67.5vw;
-    top: 37.4vh;
+footer  > img{
     height: 15vh;
     width: 7vw;
+    margin-top: 39vh;
+    margin-left: 15vw;
 }
 
 footer > nav > ul{
     display: flex;
     list-style: none;
     gap: 5vw;
-    position: relative;
-    left: 43.7vw;
-    top: 25.9vh;
-    font-size: 1em;
-    color:#F9F9F9;
-    max-width: 25vw;
+    font-size: 1vw;
+    color: #F9F9F9;
+    max-width: 5vw;
+    margin-left: 40vw ;
+    margin-top: 21vh;
 }
 
+nav{
+    max-height: 2vw;
+}
+
+
 #NavText{
-    color:#00E0FF;
+    color: #00E0FF;
 }
 
 /* ----Home Pagina---- */
 #timeWiseLogo > img{
     grid-column: 3/5;
-    position: relative;
-    top: -24.5vh;
-    left: 15vw;
     height: 74.5vh;
     width: 36.6vw;
+    margin-left: 10vw;
+    margin-top: -21vh;
 }
 
 #aboutTimeWise{
     grid-column: 1/6;
-    position: relative;
-    top: -35vh;
     background-image: url("../images/middlePart.png");
-    background-size:contain;
+    background-size: contain;
     background-repeat: no-repeat;
     height: 251.75vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
-#aboutTimeWise > h1{
-    position: relative;
-    top: 80vh;
-    left: 8.5vw;
+#aboutTimeWise > #aboutTimeWisetext{
     max-width: 35vw;
-    color:#F9F9F9;
-}
-
-#aboutTimeWise > p{
-    position: relative;
-    top: 85vh;
-    left: 8.5vw;
-    max-width: 41.8vw;
-    line-height: 1.5em;
-    color:#F9F9F9;
+    color: #F9F9F9;
+    margin-right:20vw;
+    margin-left:-10vw;
+    margin-top: -50vh;
 }
 
 #aboutTimeWise > img{
-    position: relative;
-    top: 10vh;
-    left: 70vw;
     height: 74.5vh;
     width: auto;
+    margin-top: -80vh;
 }
 
 #aboutUs{
     grid-column: 1/6;
-    position: relative;
-    top: -80vh;
-    left: 8.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    margin-top: -75vh;
+}
+
+#aboutUs > #aboutUstext{
+    color: #0F0F0F;
     max-width: 40vw;
-    margin-top: 10vh;
-    margin-bottom: -90vh;
 }
 
-#aboutUs > h1{
-    color:#0F0F0F;
-}
-
-#aboutUs > p{
-    max-width: 40vw;
-    color:#0F0F0F;
-}
-
-#aboutUs > img{
-    position: relative;
-    top: -40vh;
-    left: 48vw;
-    height: 40vh;
-    width: auto;
+#aboutUs > #aboutUstext > p{
+    color: #0F0F0F;
+    max-width: 35vw;
 }
 
 #aboutUs > #arrow{
-    position: absolute;
-    top: -8vh;
-    left: 36.5vw;
     width: auto;
     height: 25vh;
 }
 
-
+#aboutUs > img{
+    height: 40vh;
+    width: auto;
+}
 
 
 
 /* ----Handleiding Pagina---- */
 #frontPageApp{
-    grid-column: 3/5;
-    position: relative;
-    top: -50.5vh;
-    left: 15vw;
+    grid-column: 4/5;
     height: 74.5vh;
     width: 36.6vw;
-    max-width:30vw;
+    max-width: 30vw;
+    margin-top: -40vh;
+    margin-bottom: 10vh;
 }
 
 #quote{
     grid-column: 1/6;
-    position: relative;
-    top: -30vh;
-    right: 0.915vw;
-    max-width: 25vw; 
+}
+
+#quote > img{
+    max-width: 99.24vw;
 }
 
 #downloaden{
-    grid-column: 1/3;
-    margin-left: 8.36vw;
-    position: relative;
-    top: -20vh;
+    grid-column: 1/4;
+    margin-left: 10vw;
     max-width: 30vw;
 }
 
-#googleLogo{
-    position: relative;
-    top: -20vh;
-    left: 9vw;
+#googleLogo > img{
+    margin-right:10vw;
+}
+
+/* ----Login page---- */
+#content{
+    grid-column: 2/4;
+    margin-top: -30vh;
+}
+
+
+
+#login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 125vw;
+}
+
+.loginprompt{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1vw;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.loginprompt > h1{
+    font-weight: normal;
+}
+
+.field{
+    border: 2px solid #F06500;
+    border-radius: 12px;
+}
+
+.loginprompt > input[type=text]{
+    border: 4px solid #F06500;
+    border-radius: 10px;
+    width: 35vh;
+    height: 5vh;
+    font-size: 0.8em;
+    font-family: Bruno Ace;
+}
+
+input[type="password"]{
+  border: 4px solid #F06500;
+  border-radius: 10px;
+  width: 35vh;
+  height: 5vh;
+  font-size: 0.8em;
+  font-family: Bruno Ace;
+}
+
+.loginbuttons .button{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: auto;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.loginbuttons{
+    display: flex;
+    gap: 1vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50vw;;
+}
+
+.loginprompt > #forgotpass{
+    color:#017BFD;
+    font-size: 1vw;
+    border-bottom: 2px solid #017BFD;
+    margin-right:3vw;
+}
+
+.loginprompt .button{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: auto;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.9em;
 }
