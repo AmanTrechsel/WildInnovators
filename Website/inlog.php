@@ -115,15 +115,16 @@
                 <div class="loginprompt">
                     <label for="password">Wachtwoord</label>
                     <input class="field" type="password" id="password" name="password" placeholder="Wachtwoord..." required>
-                </div>
-                <div class="loginprompt">
                     <a href="#" id="forgotpass">Wachtwoord vergeten?</a>
-                    <input class="button" type="submit" value="Login">   
                 </div>
-            </form>
-            <form method="GET" action="#register">
-                <input class="button" type="submit" name="register" value="Registreren">                    
-            </form>
+                <div class="loginbuttons">
+                    <input class="button" type="submit" value="Login">   
+
+                    </form>
+                    <form  id="login" method="GET" action="#register">
+                        <input class="button" type="submit" name="register" value="Registreren">                    
+                    </form>
+                </div>
             <?php
                 }
             ?>
