@@ -2327,6 +2327,7 @@ MonoBehaviour:
   animals: []
   menuAnimal: {fileID: 0}
   selectedSubjects: 
+  warningAgreed: 0
   selectedPeriod: 0
   selectedCourse: {fileID: 0}
   arDisplayObject: {fileID: 4923647540941727446, guid: d54ebab4591188f478b723cc2765bb90, type: 3}
@@ -2366,7 +2367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1122303005
 MonoBehaviour:
   m_ObjectHideFlags: 0
