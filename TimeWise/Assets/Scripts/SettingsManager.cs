@@ -55,12 +55,8 @@ public class SettingsManager : MonoBehaviour
   // For the permission setting
   [SerializeField]
   private Button button;
-
   [SerializeField]
-  private Sprite toggleOff;
-
-  [SerializeField]
-  private Sprite toggleOn;
+  private Sprite toggleOff, toggleOn;
 
   public void SwitchPermission()
   {
@@ -105,6 +101,34 @@ public class SettingsManager : MonoBehaviour
   public void OpenPrivacyPolicy()
   {
     AppManager.Instance.OpenURL("https://timewise.serverict.nl/policy.html");
+  }
+
+  // Pop-up settings
+  [SerializeField]
+  private GameObject popup, settingContent;
+  [SerializeField]
+  private Transform content;
+  [SerializeField]
+  private Vector3 backgroundOffset;
+
+  public void ShowSetting(Setting setting, Vector3 settingButtonPosition)
+  {
+    popup.transform.position = settingButtonPosition + backgroundOffset;
+    Vector3 contentOffset = backgroundOffset + new Vector3(0.0f, 50.0f, 0.0f);
+    settingContent = setting.content;
+    GameObject popUpContent = Instantiate(settingContent) as GameObject;
+    popUpContent.transform.SetParent(content);
+    content.GetChild(0).position = settingButtonPosition + contentOffset;
+    popup.SetActive(true);
+  }
+
+  public void HideSetting()
+  {
+    popup.SetActive(false);
+    foreach(Transform child in content)
+    {
+      GameObject.Destroy(child.gameObject);
+    }
   }
 
 }

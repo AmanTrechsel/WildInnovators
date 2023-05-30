@@ -17,4 +17,9 @@ public class SettingSelectionButton : MonoBehaviour
     buttonImage.sprite = _setting.buttonGraphic;
     buttonName.text = _setting.name;
   }
+
+  public void ShowSetting()
+  {
+    SettingsManager.Instance.ShowSetting(_setting, transform.position);
+  }
 }
