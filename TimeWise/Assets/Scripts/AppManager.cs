@@ -198,21 +198,28 @@ public class AppManager : MonoBehaviour
     return number.ToString(number >= 10 ? "0.#" : "0.##") + suffix;
   }
 
-  // Function for the settingsbutton
+  // Method for the settingsbutton
   public void GoToSettings()
   {
     SceneManager.LoadScene("Settings");
   }
 
-  // Function for getting to the Encyclopedia
+  // Method for getting to the Encyclopedia
   public void GoToEncyclopedia()
   {
     SceneManager.LoadScene("Encyclopedia");
   }
 
-  // Function for going to the home page
+  // Method for going to the home page
   public void GoToHome()
   {
     SceneManager.LoadScene("CourseSelect");
   }
+
+  // Method to open URLs
+  public void OpenURL(string url)
+  {
+    Application.OpenURL(url);
+  }
+
 }

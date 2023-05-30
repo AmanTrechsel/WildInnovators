@@ -101,4 +101,10 @@ public class SettingsManager : MonoBehaviour
     // Plus it needs some checks and also needs to be set to a default value "TimeWise"
   }
 
+  // Method for the privacy policy
+  public void OpenPrivacyPolicy()
+  {
+    AppManager.Instance.OpenURL("https://timewise.serverict.nl/policy.html");
+  }
+
 }
