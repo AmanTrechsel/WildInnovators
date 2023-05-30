@@ -11,6 +11,7 @@ public class ResourceManager : MonoBehaviour
   public List<Subject> subjects = new List<Subject>();
   public List<Course> courses = new List<Course>();
   public List<EncyclopediaPage> encyclopediaPages = new List<EncyclopediaPage>();
+  public List<Setting> settings = new List<Setting>();
 
   // Called once at the start of the app
   private void Awake()
@@ -27,6 +28,7 @@ public class ResourceManager : MonoBehaviour
     subjects.AddRange(Resources.LoadAll<Subject>("Subjects"));
     courses.AddRange(Resources.LoadAll<Course>("Courses"));
     encyclopediaPages.AddRange(Resources.LoadAll<EncyclopediaPage>("EncyclopediaPages"));
+    settings.AddRange(Resources.LoadAll<Setting>("Settings"));
   }
 
   // Returns a subject from its id
