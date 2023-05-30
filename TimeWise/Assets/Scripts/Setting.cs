@@ -8,6 +8,5 @@ public class Setting : ScriptableObject
   public string name;
   public Sprite buttonGraphic;
   public string title;
-  public List<ARItem> items;
   public GameObject content;
 }
