@@ -29,6 +29,7 @@ public class EncyclopediaManager : MonoBehaviour
   private void Awake()
   {
     if (Instance == null) { Instance = this; }
+    else if (Instance != this) { }//Destroy(gameObject); }
     unlockCount.text = $"{AppManager.Instance.unlockedEncyclopediaPages.Count}/{ResourceManager.Instance.encyclopediaPages.Count}";
     subjectName.text = $"{AppManager.Instance.arSubject.name}";
     foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))

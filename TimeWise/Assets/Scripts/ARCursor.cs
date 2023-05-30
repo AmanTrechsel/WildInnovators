@@ -91,6 +91,12 @@ public class ARCursor : MonoBehaviour
 
     // Only show the AR Object if it is placed correctly
     if (arObject != null) { arObject.SetActive(arPlacedCorrectly); }
+
+    // Hide AR Objects during calibration
+    foreach (GameObject arRepositionObject in arRepositionObjects)
+    {
+      arRepositionObject.SetActive(!ARManager.Instance.calibrating);
+    }
   }
 
   // This script checks the position of an ARCard and repositions the AR Object accordingly

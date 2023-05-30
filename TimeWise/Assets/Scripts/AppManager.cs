@@ -47,6 +47,7 @@ public class AppManager : MonoBehaviour
   {
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
+    else if (Instance != this) { }//Destroy(gameObject); }
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);

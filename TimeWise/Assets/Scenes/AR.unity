@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 472880808}
   - component: {fileID: 472880810}
   - component: {fileID: 472880809}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ARCardMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1746,7 +1746,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 64
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1919,7 +1919,7 @@ GameObject:
   - component: {fileID: 646905710}
   - component: {fileID: 646905712}
   - component: {fileID: 646905711}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ARCardMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}

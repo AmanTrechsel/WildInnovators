@@ -13,6 +13,7 @@ public class ARManager : MonoBehaviour
   public GameObject nameTagPrefab;
   public Vector3 trackedImagePosition = Vector3.zero;
   public bool trackedImageVisible = false;
+  public bool calibrating;
   [SerializeField]
   private GameObject arCursor;
   [SerializeField]
@@ -24,6 +25,7 @@ public class ARManager : MonoBehaviour
   private void Awake()
   {
     if (Instance == null) { Instance = this; }
+    else if (Instance != this) { }//Destroy(gameObject); }
 
     HideCalibration();
   }
@@ -68,6 +70,7 @@ public class ARManager : MonoBehaviour
 
   public void ShowCalibration()
   {
+    calibrating = true;
     calibrationMask.SetActive(false);
     calibrationLayout.SetActive(true);
     noCalibrationLayout.SetActive(false);
@@ -75,6 +78,7 @@ public class ARManager : MonoBehaviour
 
   public void HideCalibration()
   {
+    calibrating = false;
     calibrationMask.SetActive(false);
     calibrationLayout.SetActive(false);
     noCalibrationLayout.SetActive(true);
@@ -106,6 +110,7 @@ public class ARManager : MonoBehaviour
       mutableLibrary.ScheduleAddImageWithValidationJob(calibrationData, "calibration data", 0.5f);
     }
     AppManager.Instance.calibrationData.Add(calibrationData);
+    HideCalibration();
   }
 
   public void TakePicture()

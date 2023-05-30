@@ -24,6 +24,7 @@ public class MenuManager : MonoBehaviour
   {
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
+    else if (Instance != this) { }//Destroy(gameObject); }
 
     courseName.text = AppManager.Instance.selectedCourse.name;
 
