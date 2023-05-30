@@ -41,6 +41,7 @@ public class AppManager : MonoBehaviour
   public Subject arSubject;
   public List<int> unlockedEncyclopediaPages = new List<int>();
   public List<Texture2D> calibrationData = new List<Texture2D>();
+  private string previousScene;
 
   // Called once at the start of the app
   private void Awake()
@@ -80,7 +81,19 @@ public class AppManager : MonoBehaviour
   // Updates every frame
   private void Update()
   {
-    
+    // Check if the app is opened on an Android
+    if (Application.platform == RuntimePlatform.Android)
+    {
+      // Check if back button is pressed
+      if (Input.GetKey(KeyCode.Escape))
+      {
+        if (previousScene != null)
+        {
+          AppManager.Instance.LoadScene(previousScene);
+          return;
+        }
+      }
+    }
   }
 
   // Change the currently selected animal
@@ -122,6 +135,7 @@ public class AppManager : MonoBehaviour
   // Change the current scene
   public void ChangeScene(string newScene)
   {
+    previousScene = SceneManager.GetActiveScene().name;
     SceneManager.LoadScene(newScene);
     if (newScene == "Menu")
     {

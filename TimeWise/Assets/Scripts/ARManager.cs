@@ -88,6 +88,7 @@ public class ARManager : MonoBehaviour
   {
     Texture2D calibrationData = Screenshot(arCamera);
     calibrationMask.SetActive(true);
+    
     Texture2D calibrationImageMask = Screenshot(screenCamera);
     calibrationMask.SetActive(false);
 
@@ -102,7 +103,7 @@ public class ARManager : MonoBehaviour
       }
     }
 
-    if (!(ARSession.state == ARSessionState.SessionInitializing || ARSession.state == ARSessionState.SessionTracking)) { return; }
+    //if (!(ARSession.state == ARSessionState.SessionInitializing || ARSession.state == ARSessionState.SessionTracking)) { return; }
 
     var library = imageTracking.CreateRuntimeLibrary();
     if (library is MutableRuntimeReferenceImageLibrary mutableLibrary)
