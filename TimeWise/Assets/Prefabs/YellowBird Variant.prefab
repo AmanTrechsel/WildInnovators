@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7808045578305494692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.30173
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.30173
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.30173
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.416836
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.205315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7114522
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7027346
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.294
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7684189436960674295, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7684189436960674295, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf68a2897bfccc640b930e774555d04b, type: 2}
+    - target: {fileID: 919132149155446097, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+      propertyPath: m_Name
+      value: YellowBird Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+--- !u!1 &4838856924398799913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5801530592687320435, guid: 3db4c6cab100d3544ac8d5838d5ae1a0, type: 3}
+  m_PrefabInstance: {fileID: 7808045578305494692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1182827476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838856924398799913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.169799, y: 6.1096015, z: 9.169003}
+  m_Center: {x: 0.62770003, y: 0.0018999624, z: 4.594001}

@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048143398e592eb4c93b8657e2f4624e, type: 3}
   m_Name: Oceaanbodem
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   name: Oceaanbodem
+  buttonGraphic: {fileID: 21300000, guid: f1f4f7fe45d2d844fbf75ca1d1063df0, type: 3}
+  infoContent: '- Walvissen
+
+    - Algen
+
+    - Plankton'
   items:
   - {fileID: 11400000, guid: 25eab745f847a2f499bfbe1aa1157cb5, type: 2}
   - {fileID: 11400000, guid: 9d9de0fcc688ec94eb4171b5753f85ff, type: 2}

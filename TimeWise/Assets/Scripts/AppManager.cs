@@ -35,9 +35,12 @@ public class AppManager : MonoBehaviour
   private Slider periodSlider;
   [HideInInspector]
   public float selectedPeriod;
+  [HideInInspector]
+  public Course selectedCourse;
   public GameObject arDisplayObject;
   public Subject arSubject;
   public List<int> unlockedEncyclopediaPages = new List<int>();
+  public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Called once at the start of the app
   private void Awake()
@@ -56,6 +59,21 @@ public class AppManager : MonoBehaviour
       AddMenuAnimals();
       subjectFilters = new List<Toggle>() { subjectFilterBiology, subjectFilterGeography, subjectFilterHistory };
     }
+  }
+
+  // Gets the Android storage path (https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
+  public string GetAndroidExternalStoragePath()
+  {
+    if (Application.platform != RuntimePlatform.Android) { return Application.persistentDataPath; }
+    var jc = new AndroidJavaClass("android.os.Environment");
+    var path = jc.CallStatic<AndroidJavaObject>("getExternalStoragePublicDirectory", jc.GetStatic<string>("DIRECTORY_DCIM")).Call<string>("getAbsolutePath");
+    return path;
+  }
+
+  // Basic method for loading a scene
+  public void LoadScene(string sceneName)
+  {
+    SceneManager.LoadScene(sceneName);
   }
 
   // Updates every frame
@@ -177,5 +195,23 @@ public class AppManager : MonoBehaviour
     }
 
     return number.ToString(number >= 10 ? "0.#" : "0.##") + suffix;
+  }
+
+  // Function for the settingsbutton
+  public void GoToSettings()
+  {
+    SceneManager.LoadScene("Settings");
+  }
+
+  // Function for getting to the Encyclopedia
+  public void GoToEncyclopedia()
+  {
+    SceneManager.LoadScene("Encyclopedia");
+  }
+
+  // Function for going to the home page
+  public void GoToHome()
+  {
+    SceneManager.LoadScene("CourseSelect");
   }
 }

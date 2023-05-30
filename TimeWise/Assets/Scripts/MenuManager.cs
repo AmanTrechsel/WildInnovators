@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -6,25 +7,72 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-  // Gets the index of the child within the parent object "MenuButtons".
-  public void GetIndex()
+  // Singleton
+  public static MenuManager Instance;
+
+  [SerializeField]
+  private Vector3 infoOffset;
+  [SerializeField]
+  private GameObject info, subjectButtonPrefab;
+  [SerializeField]
+  private Transform subjectButtonContent, infoContent;
+  [SerializeField]
+  private TextMeshProUGUI subjectName, subjectContent, courseName;
+
+  // Called once at the start of the app
+  private void Awake()
   {
-      int index = transform.GetSiblingIndex();
-      AppManager.Instance.arSubject = ResourceManager.Instance.GetSubjectByID(index);
-      Debug.Log(index);
+    // Assign this instance as the singleton
+    if (Instance == null) { Instance = this; }
+
+    courseName.text = AppManager.Instance.selectedCourse.name;
+
+    HideInfoBox();
+
+    foreach (Subject _subject in AppManager.Instance.selectedCourse.subjects)
+    {
+      GameObject subjectButton = Instantiate(subjectButtonPrefab) as GameObject;
+      subjectButton.GetComponent<SubjectSelectionButton>().SetSubject(_subject);
+      subjectButton.transform.SetParent(subjectButtonContent);
+    }
+  }
+
+  // Method to select the subject
+  public void SetSubjectByIndex(int index)
+  {
+    AppManager.Instance.arSubject = ResourceManager.Instance.GetSubjectByID(index);
   }
 
   // Switches to the ARScene, which will contain the subject selected at the function above here.
   public void GoToARScene()
   {
+    if(SettingsManager.Instance.permission == true)
+    {
       SceneManager.LoadScene("AR");
-      Debug.Log(AppManager.Instance.arSubject);
+
+      foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
+      {
+        AppManager.Instance.unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
+      }
+    }
+    else
+    {
+      Debug.Log("Er is geen toestemming gegeven om de camera te gebruiken");
+      // Needs to be changed to something in the UI instead of a console message
+    }
   }
 
-  
-  // Function for the settingsbutton
-  public void GoToSettings()
+  // Shows the info box, fills in the data for the info and repositions it.
+  public void ShowInfoBox(Subject subject, Vector3 subjectButtonPosition)
   {
-    SceneManager.LoadScene("Settings");
+    subjectName.text = subject.name;
+    subjectContent.text = subject.infoContent;
+    infoContent.position = subjectButtonPosition + infoOffset;
+    info.SetActive(true);
+  }
+
+  public void HideInfoBox()
+  {
+    info.SetActive(false);
   }
 }

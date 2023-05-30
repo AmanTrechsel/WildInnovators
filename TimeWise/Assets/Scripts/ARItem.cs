@@ -5,8 +5,8 @@ public class ARItem : ScriptableObject
 {
   public string name;
   public GameObject prefab;
-  public Vector3 offsetPosition;
-  public Vector3 offsetRotation;
-  public Vector3 offsetScale;
+  public Vector3 offsetPosition = Vector3.zero;
+  public Vector3 offsetRotation = Vector3.zero;
+  public Vector3 offsetScale = new Vector3(1f,1f,1f);
   public bool recenter;
 }

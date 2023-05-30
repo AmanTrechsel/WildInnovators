@@ -9,6 +9,7 @@ public class ResourceManager : MonoBehaviour
   // Lists containing all resources found in the Assets/Resources folder
   public List<ARItem> arItems = new List<ARItem>();
   public List<Subject> subjects = new List<Subject>();
+  public List<Course> courses = new List<Course>();
   public List<EncyclopediaPage> encyclopediaPages = new List<EncyclopediaPage>();
 
   // Called once at the start of the app
@@ -23,6 +24,7 @@ public class ResourceManager : MonoBehaviour
     // Load and store found resources
     arItems.AddRange(Resources.LoadAll<ARItem>("ARItems"));
     subjects.AddRange(Resources.LoadAll<Subject>("Subjects"));
+    courses.AddRange(Resources.LoadAll<Course>("Courses"));
     encyclopediaPages.AddRange(Resources.LoadAll<EncyclopediaPage>("EncyclopediaPages"));
   }
 

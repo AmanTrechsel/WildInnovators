@@ -6,5 +6,8 @@ public class Subject : ScriptableObject
 {
   public uint id;
   public string name;
+  public Sprite buttonGraphic;
+  [TextArea]
+  public string infoContent;
   public List<ARItem> items;
 }

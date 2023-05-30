@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ARReference
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4921661183778100763
+  m_GuidHigh: 8313537726097438093
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4969312128742581787
+      m_GuidHigh: 9433096434847948728
+    m_SerializedTextureGuid:
+      m_GuidLow: 5423695891195907724
+      m_GuidHigh: 15330376021492251065
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: ARCard
+    m_Texture: {fileID: 2800000, guid: 547a4e8cd6ad4b44b939368ac46fc0d4, type: 3}
