@@ -47,20 +47,7 @@ public class MenuManager : MonoBehaviour
   // Switches to the ARScene, which will contain the subject selected at the function above here.
   public void GoToARScene()
   {
-    if(SettingsManager.Instance.permission == true)
-    {
-      SceneManager.LoadScene("ARWarning");
-
-      foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
-      {
-        AppManager.Instance.unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
-      }
-    }
-    else
-    {
-      Debug.Log("Er is geen toestemming gegeven om de camera te gebruiken");
-      // Needs to be changed to something in the UI instead of a console message
-    }
+    AppManager.Instance.GoToARScene();
   }
 
   // Shows the info box, fills in the data for the info and repositions it.

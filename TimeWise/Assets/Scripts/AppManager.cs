@@ -130,6 +130,24 @@ public class AppManager : MonoBehaviour
     }
   }
 
+  public void GoToARScene()
+  {
+    if(SettingsManager.Instance.permission == true)
+    {
+      LoadScene("ARWarning");
+
+      foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(arSubject))
+      {
+        unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
+      }
+    }
+    else
+    {
+      Debug.Log("Er is geen toestemming gegeven om de camera te gebruiken");
+      // Needs to be changed to something in the UI instead of a console message
+    }
+  }
+
   // Change the currently selected animal
   public void SelectAnimal(int index)
   {

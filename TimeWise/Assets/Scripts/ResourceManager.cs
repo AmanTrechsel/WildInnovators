@@ -48,6 +48,52 @@ public class ResourceManager : MonoBehaviour
     return null;
   }
 
+  // Returns a course from its id
+  public Course GetCourseByID(int id)
+  {
+    // Iterate through all courses
+    foreach (Course course in courses)
+    {
+      // Check if this course's id is the same as the given id
+      if (course.id == (uint)id)
+      {
+        // Return this course if it has the given id
+        return course;
+      }
+    }
+    // None with this id were found
+    return null;
+  }
+
+  public Course FindCourseContainingSubject(Subject subject)
+  {
+    foreach (Course course in courses)
+    {
+      if (course.subjects.Contains(subject))
+      {
+        return course;
+      }
+    }
+    return null;
+  }
+
+  // Returns an encyclopedia page from its id
+  public EncyclopediaPage GetEncyclopediaPageByID(int id)
+  {
+    // Iterate through all encyclopedia pages
+    foreach (EncyclopediaPage encyclopediaPage in encyclopediaPages)
+    {
+      // Check if this encyclopedia page's id is the same as the given id
+      if (encyclopediaPage.id == (uint)id)
+      {
+        // Return this encyclopedia page if it has the given id
+        return encyclopediaPage;
+      }
+    }
+    // None with this id were found
+    return null;
+  }
+
   // Returns a list of all Encyclopedia Pages that the subject's topic covers
   public List<EncyclopediaPage> GetEncyclopediaPagesBySubject(Subject subject)
   {

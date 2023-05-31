@@ -3,13 +3,19 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
+// This script acts as an in engine editor for ARItems
 public class ARItemEditorWindow : EditorWindow
 {
+  // A list containing all ARItems
   private List<ARItem> arItemObjects = new List<ARItem>();
+  // Currently selected ARItem
   private ARItem selectedARItem;
+  // The index for the selected ARItem
   private int selectedARItemIndex;
+  // A vector2 containing the current position of scrolling
   private Vector2 scrollPos;
 
+  // Method for showing the window in the custom tab
   [MenuItem("Custom/ARItem Editor")]
   public static void ShowWindow()
   {
