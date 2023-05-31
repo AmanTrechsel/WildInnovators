@@ -28,6 +28,10 @@ public class AppManager : MonoBehaviour
   // Whether the user has agreed to understanding the warning
   public bool warningAgreed;
 
+  // For saving data in the cloud
+  public bool permission = true;
+  public int languageIndex;
+
   // Singleton
   public static AppManager Instance;
 
@@ -66,7 +70,7 @@ public class AppManager : MonoBehaviour
     }
   }
 
-  // Gets the Android storage path (https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
+  // Gets the Android storage path (source: https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
   public string GetAndroidExternalStoragePath()
   {
     if (Application.platform != RuntimePlatform.Android) { return Application.persistentDataPath; }
@@ -130,9 +134,10 @@ public class AppManager : MonoBehaviour
     }
   }
 
+  // Send the user to the AR Scene based on parameters
   public void GoToARScene()
   {
-    if(SettingsManager.Instance.permission == true)
+    if(AppManager.Instance.permission == true)
     {
       LoadScene("ARWarning");
 

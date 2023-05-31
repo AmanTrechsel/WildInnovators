@@ -11,6 +11,8 @@ public class SettingsManager : MonoBehaviour
   // Singleton
   public static SettingsManager Instance;
 
+  private string saveFile = "time.wise";
+
   private void Awake()
   {
     if(Instance == null)
@@ -19,27 +21,23 @@ public class SettingsManager : MonoBehaviour
     }
   }
 
-  // For saving data in the cloud
-  public bool permission = true;
-  public int languageIndex;
-
   public void SaveData()
   {
     SettingsData data = new SettingsData();
-    data.permission = permission;
-    data.languageIndex = languageIndex;
+    data.permission = AppManager.Instance.permission;
+    data.languageIndex = AppManager.Instance.languageIndex;
     
     string json = JsonUtility.ToJson(data);
-    File.WriteAllText(Application.dataPath+"/DataFile.json", json);   // Path might need to be changed, because this needs to be uploaded to the cloud.
+    File.WriteAllText(Application.dataPath + "/" + saveFile, json);   // Path might need to be changed, because this needs to be uploaded to the cloud.
   }
 
   public void LoadData()
   {
-    string json = File.ReadAllText(Application.dataPath+"/DataFile.json");  // Path then also needs to be changed here.
+    string json = File.ReadAllText(Application.dataPath + "/" + saveFile);  // Path then also needs to be changed here.
     SettingsData data = JsonUtility.FromJson<SettingsData>(json);
 
-    permission = data.permission;
-    languageIndex = data.languageIndex;
+    AppManager.Instance.permission = data.permission;
+    AppManager.Instance.languageIndex = data.languageIndex;
   }
 
   // Probably want the settings to load from the homescreen so this probably needs to happen in AppManager.cs.
@@ -63,12 +61,12 @@ public class SettingsManager : MonoBehaviour
     if(button.image.sprite == toggleOn)
     {
       button.image.sprite = toggleOff;
-      permission = false;
+      AppManager.Instance.permission = false;
     }
     else if(button.image.sprite == toggleOff)
     {
       button.image.sprite = toggleOn;
-      permission = true;
+      AppManager.Instance.permission = true;
     }
   }
 
@@ -76,7 +74,7 @@ public class SettingsManager : MonoBehaviour
   public void ChangeLanguage(int ID)
   {
     StartCoroutine(SetLanguage(ID));
-    languageIndex = ID;
+    AppManager.Instance.languageIndex = ID;
   }
 
   IEnumerator SetLanguage(int index)
