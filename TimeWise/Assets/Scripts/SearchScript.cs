@@ -4,14 +4,15 @@ using TMPro;
 public class SearchScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ContentHolder;
+    private GameObject ContentHolder, SearchBar;
+    [SerializeField]
     private GameObject[] CourseSelection;
-    private GameObject SearchBar;
+    [SerializeField]
     private int TotalCourseSelection;
-    // Start is called before the first frame update
+
     void Start()
     {
-        TotalCourseSelection = CourseSelection.transform.ChildCount;
+        TotalCourseSelection = CourseSelection[0].transform.childCount;
 
         CourseSelection = new GameObject[TotalCourseSelection];
 
@@ -19,11 +20,5 @@ public class SearchScript : MonoBehaviour
         {
             CourseSelection[i] = ContentHolder.transform.GetChild(i).gameObject;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
