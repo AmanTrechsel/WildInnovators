@@ -2191,6 +2191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357c79cc651766e4c9b33f3bf27132c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ContentHolder: {fileID: 1744338379}
+  SearchBar: {fileID: 1122303004}
+  CourseSelection: []
+  TotalCourseSelection: 0
 --- !u!4 &947851936
 Transform:
   m_ObjectHideFlags: 0
