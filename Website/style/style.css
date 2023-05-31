@@ -4,14 +4,11 @@
 }
 
 body{
-    margin: 0vw;
-    padding: 0vw;
+    margin: 0;
+    padding: 0;
     font-family: bruno Ace; 
     font-size: 1.3vw    ;
     max-width: 125vw;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
 }
 
 #mainContainer{
@@ -36,7 +33,7 @@ header > nav > ul{
     list-style: none;
     gap: 2vw;
     font-size: 1.3vw;
-    max-width: 25vw;
+    max-width: 30vw;
     margin-top: 7vh;    
 }
 
@@ -46,7 +43,7 @@ footer{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 15.3vw 17.2vh;
-    height: 54vh;
+    height: 53vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +76,7 @@ header > img{
 footer  > img{
     height: 15vh;
     width: 7vw;
-    margin-top: 39vh;
+    margin-top: 38vh;
     margin-left: 15vw;
 }
 
@@ -185,7 +182,7 @@ nav{
 }
 
 #quote > img{
-    max-width: 99.24vw;
+    max-width: 100%;
 }
 
 #downloaden{
@@ -303,4 +300,52 @@ input[type="password"]{
 
 #privacyPolicy a:hover{
     color: #00E0FF;
+}
+
+/* ----Dashboard---- */
+#welkom{
+    grid-column: 3/5;
+    height: 74.5vh;
+    margin-top: -40vh;
+    margin-bottom: 10vh;
+}
+
+#quotes{
+    grid-column: 1/6;
+    margin-top: -45vh;
+    margin-left: 44vw;
+    text-align: center;
+    font-size: 2.5vw;
+    transform: rotate(8deg);
+    z-index: -1;
+    max-width:50vw;
+}
+
+.buttonLogo{
+    width: auto;
+    height:20vh;
+    margin-bottom: -14vh;
+}
+
+.buttonDashboard{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 20vw;
+    height: 8vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10vw;
+}
+
+#group{
+    padding-bottom: 15vh;
+}
+
+#dashboardHeader nav{
+    margin-left: -2vw;
+}
+
+#dashboardHeader {
+    margin-left: -2vw;
 }
