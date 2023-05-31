@@ -18,14 +18,14 @@ public class SettingSelectionManager : MonoBehaviour
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
 
-    // Iterate through all courses found in ResourceManager
+    // Iterate through all settings found in ResourceManager
     foreach (Setting setting in ResourceManager.Instance.settings)
     {
-      // Create a new course button based on the given prefab
+      // Create a new setting button based on the given prefab
       GameObject createdSettingButton = Instantiate(settingSelectionButtonPrefab) as GameObject;
-      // Set the current course to the button
+      // Set the current setting to the button
       createdSettingButton.GetComponent<SettingSelectionButton>().SetSetting(setting);
-      // Add the created course button to the content list
+      // Add the created setting button to the content list
       createdSettingButton.transform.SetParent(settingContent);
     }
   }
