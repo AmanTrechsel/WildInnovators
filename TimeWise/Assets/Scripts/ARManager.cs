@@ -123,10 +123,16 @@ public class ARManager : MonoBehaviour
     // Take a screenshot of the AR Camera
     Texture2D calibrationData = Screenshot(arCamera);
     calibrationMask.SetActive(true);
+
+    // Enable the screen camera
+    screenCamera.enabled = true;
     
     // Take a screenshot of the screen camera
     Texture2D calibrationImageMask = Screenshot(screenCamera);
     calibrationMask.SetActive(false);
+
+    // Disable the screen camera
+    screenCamera.enabled = false;
 
     // Loop through the pixels of the calibration data and set the pixels to clear if the pixel is black in the calibration image mask
     for (int x = 0; x < Screen.width; x++)
