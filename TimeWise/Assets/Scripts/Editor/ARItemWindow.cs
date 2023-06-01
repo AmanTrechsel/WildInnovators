@@ -119,6 +119,7 @@ public class ARItemEditorWindow : EditorWindow
     }
   }
 
+  // Create a new ARItem
   private void CreateNewARItem()
   {
     string folderPath = "Assets/Resources/ARItems";
@@ -140,10 +141,13 @@ public class ARItemEditorWindow : EditorWindow
     selectedARItem = newARItem;
   }
 
+  // Delete the selected ARItem
   private void DeleteSelectedARItem()
   {
+    // Check if there is a selected ARItem
     if (selectedARItem != null)
     {
+      // Delete the selected ARItem
       string assetPath = AssetDatabase.GetAssetPath(selectedARItem);
       AssetDatabase.DeleteAsset(assetPath);
       arItemObjects.Remove(selectedARItem);
@@ -152,11 +156,15 @@ public class ARItemEditorWindow : EditorWindow
     }
   }
 
+  // Save the selected ARItem
   private void SaveSelectedARItem()
   {
+    // Check if there is a selected ARItem
     if (selectedARItem != null)
     {
+      // Mark the selected ARItem as dirty
       EditorUtility.SetDirty(selectedARItem);
+      // Save the selected ARItem
       AssetDatabase.SaveAssets();
     }
   }

@@ -65,15 +65,20 @@ public class ResourceManager : MonoBehaviour
     return null;
   }
 
+  // Returns a course from its subject
   public Course FindCourseContainingSubject(Subject subject)
   {
+    // Iterate through all courses
     foreach (Course course in courses)
     {
+      // Check if this course contains the given subject
       if (course.subjects.Contains(subject))
       {
+        // Return this course if it contains the given subject
         return course;
       }
     }
+    // None with this subject were found
     return null;
   }
 

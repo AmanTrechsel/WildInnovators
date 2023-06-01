@@ -5,12 +5,16 @@ using TMPro;
 
 public class SearchScript : MonoBehaviour
 {
+  // The input field for the search bar
   [SerializeField]
   private TMP_InputField searchBar;
+  // The content list for the search items
   [SerializeField]
   private Transform content;
+  // The prefab for the search items
   [SerializeField]
   private GameObject searchItemPrefab;
+  // The titles for the different search types
   [SerializeField]
   private GameObject courseTitle, subjectTitle, settingTitle, encyclopediaTitle;
 
@@ -19,8 +23,11 @@ public class SearchScript : MonoBehaviour
   private Dictionary<string, GameObject> searchSubjectItems = new Dictionary<string, GameObject>();
   private Dictionary<string, GameObject> searchSettingItems = new Dictionary<string, GameObject>();
   private Dictionary<string, GameObject> searchEncyclopediaItems = new Dictionary<string, GameObject>();
+
+  // The number of items found for each searchable element
   private int coursesFound, subjectsFound, settingsFound, encyclopediaFound;
 
+  // Called once at the start of the app
   void Awake()
   {
     // Add title to the bottom of content
@@ -92,6 +99,7 @@ public class SearchScript : MonoBehaviour
     }
   }
 
+  // This is the function that is called when the search button is pressed
   public void ChangeSearch()
   {
     // Get the search entry value from the search bar
@@ -182,8 +190,10 @@ public class SearchScript : MonoBehaviour
     encyclopediaTitle.SetActive(encyclopediaFound > 0);
   }
 
+  // This function checks if the search term is within the term
   private bool CheckSearch(string term, string searchTerm)
   {
+    // Check if the search term is within the term
     return searchTerm.ToLower() == term.Substring(0,searchTerm.Length).ToLower();
   }
 }

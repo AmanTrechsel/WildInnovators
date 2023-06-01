@@ -7,8 +7,10 @@ public class CourseSelectionManager : MonoBehaviour
   // Singleton
   public static CourseSelectionManager Instance;
 
+  // The course selection button prefab
   [SerializeField]
   private GameObject courseSelectionButtonPrefab;
+  // The course content transform
   [SerializeField]
   private Transform courseContent;
 

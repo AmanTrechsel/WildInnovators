@@ -7,8 +7,10 @@ public class SettingSelectionManager : MonoBehaviour
   // Singleton
   public static SettingSelectionManager Instance;
 
+  // The prefab for the setting selection button
   [SerializeField]
   private GameObject settingSelectionButtonPrefab;
+  // Transform for the setting content
   [SerializeField]
   private Transform settingContent;
 

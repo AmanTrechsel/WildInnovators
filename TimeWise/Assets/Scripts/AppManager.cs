@@ -7,47 +7,25 @@ using TMPro;
 
 public class AppManager : MonoBehaviour
 {
-  // A list of all animals that can be shown in the AR
-  [SerializeField]
-  private List<Animal> animals;
-
-  // Element group holding all Menu Animals
-  private GameObject menuAnimalElementGroup;
-
-  // Menu field for the animals in the menu
-  [SerializeField]
-  private GameObject menuAnimal;
-
-  // Index of the currently selected animal
-  private int selectedAnimal;
-
-  // A list of all selected subject indexes
-  [HideInInspector]
-  public List<int> selectedSubjects;
-
   // Whether the user has agreed to understanding the warning
   public bool warningAgreed;
 
-  // For saving data in the cloud
+  // Data to be saved
   public bool permission = true;
   public int languageIndex;
+  public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Singleton
   public static AppManager Instance;
 
-  // Period data
-  private Toggle subjectFilterBiology, subjectFilterGeography, subjectFilterHistory;
-  private List<Toggle> subjectFilters;
-  private TextMeshProUGUI periodSliderValue;
-  private Slider periodSlider;
-  [HideInInspector]
-  public float selectedPeriod;
+  // The currently selected course
   [HideInInspector]
   public Course selectedCourse;
-  public GameObject arDisplayObject;
+  // The currently selected subject
   public Subject arSubject;
+  // All encyclopedia pages that have been unlocked
   public List<int> unlockedEncyclopediaPages = new List<int>();
-  public List<Texture2D> calibrationData = new List<Texture2D>();
+  // Scene that was active before the current one
   private string previousScene;
 
   // Called once at the start of the app
@@ -59,15 +37,6 @@ public class AppManager : MonoBehaviour
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
-
-    // Setup scene based elements
-    if (SceneManager.GetActiveScene().name == "Menu")
-    {
-      FindSceneVariables();
-      UpdatePeriod();
-      AddMenuAnimals();
-      subjectFilters = new List<Toggle>() { subjectFilterBiology, subjectFilterGeography, subjectFilterHistory };
-    }
   }
 
   // Gets the Android storage path (source: https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
@@ -153,96 +122,11 @@ public class AppManager : MonoBehaviour
     }
   }
 
-  // Change the currently selected animal
-  public void SelectAnimal(int index)
-  {
-    selectedAnimal = index;
-  }
-
-  // Change the currently selected period
-  public void SelectPeriod(float index)
-  {
-    selectedPeriod = index;
-    UpdatePeriod();
-  }
-
-  // Update period data
-  private void UpdatePeriod()
-  {
-    selectedPeriod = periodSlider.value * 1000;
-    if (selectedPeriod < -5000) { selectedPeriod *= (Mathf.Floor(Mathf.Abs(periodSlider.value)/5)*10); }
-    string periodString = LargeNumberToDisplayString(selectedPeriod);
-    periodSliderValue.text = (selectedPeriod > 0) ? $"{periodString} na Christus" : (selectedPeriod == 0) ? $"{periodString}" : $"{LargeNumberToDisplayString(Mathf.Abs(selectedPeriod))} voor Christus";
-  }
-
-  // Update subject filter data
-  public void UpdateSelectedSubjects(int subject)
-  {
-    bool toggleValue = subjectFilters[subject].isOn;
-    if (toggleValue)
-    {
-      if (!selectedSubjects.Contains(subject)) { selectedSubjects.Add(subject); }
-    }
-    else
-    {
-      if (selectedSubjects.Contains(subject)) { selectedSubjects.Remove(subject); }
-    }
-  }
-
   // Change the current scene
   public void ChangeScene(string newScene)
   {
     previousScene = SceneManager.GetActiveScene().name;
     SceneManager.LoadScene(newScene);
-    if (newScene == "Menu")
-    {
-      FindSceneVariables();
-      AddMenuAnimals();
-    }
-    else
-    {
-      ResetSceneVariables();
-    }
-  }
-
-  // Add all menu animals to the element group
-  private void AddMenuAnimals()
-  {
-    int i = 0;
-    foreach (Animal animal in animals)
-    {
-      GameObject newMenuAnimal = Instantiate(menuAnimal, Vector3.zero, Quaternion.identity) as GameObject;
-      AnimalMenuManager menuManager = newMenuAnimal.GetComponent<AnimalMenuManager>();
-      menuManager.myIndex = i;
-      menuManager.displayImage = animal.displayImage;
-      menuManager.displayName = animal.name;
-      menuManager.visiblePeriod = animal.period;
-      menuManager.subject = (int)animal.subject;
-      newMenuAnimal.transform.SetParent(menuAnimalElementGroup.transform, false);
-      i++;
-    }
-  }
-
-  // Set all period variables based on the game objects found in the scene
-  private void FindSceneVariables()
-  {
-    menuAnimalElementGroup = GameObject.Find("AnimalContent");
-    periodSliderValue = GameObject.Find("PeriodValue").GetComponent<TextMeshProUGUI>();
-    periodSlider = GameObject.Find("PeriodSlider").GetComponent<Slider>();
-    subjectFilterBiology = GameObject.Find("BiologyToggle").GetComponent<Toggle>();
-    subjectFilterGeography = GameObject.Find("GeographyToggle").GetComponent<Toggle>();
-    subjectFilterHistory = GameObject.Find("HistoryToggle").GetComponent<Toggle>();
-  }
-
-  // Reset all period variables
-  private void ResetSceneVariables()
-  {
-    menuAnimalElementGroup = null;
-    periodSliderValue = null;
-    periodSlider = null;
-    subjectFilterBiology = null;
-    subjectFilterGeography = null;
-    subjectFilterHistory = null;
   }
 
   // Convert a larger number into a normal format
