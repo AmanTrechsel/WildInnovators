@@ -21,6 +21,7 @@ public class SettingsManager : MonoBehaviour
     }
   }
 
+  // Method for saving the settings on a local file
   public void SaveData()
   {
     SettingsData data = new SettingsData();
@@ -28,9 +29,10 @@ public class SettingsManager : MonoBehaviour
     data.languageIndex = AppManager.Instance.languageIndex;
     
     string json = JsonUtility.ToJson(data);
-    File.WriteAllText(Application.dataPath + "/" + saveFile, json);   // Path might need to be changed, because this needs to be uploaded to the cloud.
+    File.WriteAllText(Application.dataPath + "/" + saveFile, json);   // Path might need to be changed.
   }
 
+  // Method for loading the settings from a local file
   public void LoadData()
   {
     string json = File.ReadAllText(Application.dataPath + "/" + saveFile);  // Path then also needs to be changed here.
@@ -50,13 +52,8 @@ public class SettingsManager : MonoBehaviour
 
 
 
-  // For the permission setting
-  [SerializeField]
-  private Button button;
-  [SerializeField]
-  private Sprite toggleOff, toggleOn;
-
-  public void SwitchPermission()
+  // For the permission setting. The parameters are given through the seperate PermissionManager.cs script
+  public void SwitchPermission(Button button, Sprite toggleOff, Sprite toggleOn)
   {
     if(button.image.sprite == toggleOn)
     {
@@ -70,7 +67,7 @@ public class SettingsManager : MonoBehaviour
     }
   }
 
-  // For the language setting
+  // For the language setting. The parameter is given through the seperate LanguageManager.cs script
   public void ChangeLanguage(int ID)
   {
     StartCoroutine(SetLanguage(ID));
@@ -95,13 +92,13 @@ public class SettingsManager : MonoBehaviour
     // Plus it needs some checks and also needs to be set to a default value "TimeWise"
   }
 
-  // Method for the privacy policy
+  // Method for the privacy policy button
   public void OpenPrivacyPolicy()
   {
     AppManager.Instance.OpenURL("https://timewise.serverict.nl/policy.html");
   }
 
-  // Pop-up settings
+  // Pop-up settings. Makes the setting-overlay pop up when the setting is pressed.
   [SerializeField]
   private GameObject popup, settingContent;
   [SerializeField]
@@ -109,6 +106,7 @@ public class SettingsManager : MonoBehaviour
   [SerializeField]
   private Vector3 backgroundOffset;
 
+  // Method which shows the pop-up overlay of the selected setting
   public void ShowSetting(Setting setting, Vector3 settingButtonPosition)
   {
     popup.transform.position = settingButtonPosition + backgroundOffset;
@@ -120,6 +118,7 @@ public class SettingsManager : MonoBehaviour
     popup.SetActive(true);
   }
 
+  // Method to close the setting-overlay pop-up
   public void HideSetting()
   {
     popup.SetActive(false);
