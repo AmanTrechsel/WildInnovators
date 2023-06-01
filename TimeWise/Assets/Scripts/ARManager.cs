@@ -121,7 +121,7 @@ public class ARManager : MonoBehaviour
     // Get directory for picture
     System.DateTime dt = System.DateTime.Now;
     dt = dt.Add(System.TimeSpan.FromSeconds(180));
-    string path = $"{AppManager.Instance.GetAndroidExternalStoragePath()}/Timewise";
+    string path = $"{AppManager.Instance.GetAndroidExternalStoragePath()}/{SettingsManager.Instance.GetLocationName()}";
     string filename = $"{dt.ToString().Replace(":", "_").Replace(" ", "_").Replace("/", "_")}.png";
 
     // Create path if it doesn't exist yet

@@ -81,15 +81,20 @@ public class SettingsManager : MonoBehaviour
   }
 
   // For the location setting
-  public GameObject inputField;
-  public string location = "TimeWise";
+  private string locationName = "Timewise";
 
-  public void ChangeLocation()
+  public void ChangeLocation(GameObject inputField, string location)
   {
-    location = inputField.GetComponent<TMP_InputField>().text;
-    Debug.Log(location);
-    // With this location variable the path-variable in ARManager.cs needs to be changed
-    // Plus it needs some checks and also needs to be set to a default value "TimeWise"
+    if(inputField.GetComponent<TMP_InputField>().text != location)
+    {
+      location = inputField.GetComponent<TMP_InputField>().text;
+      locationName = location;
+    }
+  }
+
+  public string GetLocationName()
+  {
+    return locationName;
   }
 
   // Method for the privacy policy button

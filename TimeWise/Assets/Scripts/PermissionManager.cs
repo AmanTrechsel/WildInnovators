@@ -10,7 +10,7 @@ public class PermissionManager : MonoBehaviour
   [SerializeField]
   private Sprite toggleOff, toggleOn;
 
-  // Calls the SwitchPermission method in SettingsManager.cs. This script is only used in the prefab.
+  // Calls the SwitchPermission method in SettingsManager.cs.
   public void SwitchPerms()
   {
     SettingsManager.Instance.SwitchPermission(button, toggleOff, toggleOn);
