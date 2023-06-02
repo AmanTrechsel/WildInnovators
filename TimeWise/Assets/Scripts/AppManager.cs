@@ -18,6 +18,10 @@ public class AppManager : MonoBehaviour
   // Singleton
   public static AppManager Instance;
 
+  // App Canvas that is static throughout the app
+  [SerializeField]
+  private GameObject appCanvas;
+
   // The currently selected course
   [HideInInspector]
   public Course selectedCourse;
@@ -33,7 +37,7 @@ public class AppManager : MonoBehaviour
   {
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
-    else if (Instance != this) { }//Destroy(gameObject); }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
@@ -51,8 +55,13 @@ public class AppManager : MonoBehaviour
   // Basic method for loading a scene
   public void LoadScene(string sceneName)
   {
+    // Set the previous scene to the current scene
     previousScene = SceneManager.GetActiveScene().name;
+    // Swap the scene
     SceneManager.LoadScene(sceneName);
+    // Show or hide the AppCanvas based on the scene being loaded
+    if (sceneName == "ARWarning") { appCanvas.SetActive(false); }
+    else { appCanvas.SetActive(true); }
   }
 
   // Updates every frame
@@ -91,7 +100,7 @@ public class AppManager : MonoBehaviour
 
         if (sceneToLoad != "")
         {
-          AppManager.Instance.LoadScene(sceneToLoad);
+          LoadScene(sceneToLoad);
           return;
         }
         //if (previousScene != null)
@@ -125,8 +134,7 @@ public class AppManager : MonoBehaviour
   // Change the current scene
   public void ChangeScene(string newScene)
   {
-    previousScene = SceneManager.GetActiveScene().name;
-    SceneManager.LoadScene(newScene);
+    LoadScene(newScene);
   }
 
   // Convert a larger number into a normal format
@@ -156,19 +164,19 @@ public class AppManager : MonoBehaviour
   // Method for the settingsbutton
   public void GoToSettings()
   {
-    SceneManager.LoadScene("Settings");
+    LoadScene("Settings");
   }
 
   // Method for getting to the Encyclopedia
   public void GoToEncyclopedia()
   {
-    SceneManager.LoadScene("Encyclopedia");
+    LoadScene("Encyclopedia");
   }
 
   // Method for going to the home page
   public void GoToHome()
   {
-    SceneManager.LoadScene("CourseSelect");
+    LoadScene("CourseSelect");
   }
 
   // Method to open URLs

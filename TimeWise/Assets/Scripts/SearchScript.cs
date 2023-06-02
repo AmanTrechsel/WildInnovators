@@ -97,6 +97,9 @@ public class SearchScript : MonoBehaviour
         searchEncyclopediaItems.Add(encyclopediaPage.displayName, pageToAdd);
       }
     }
+
+    // Reset the search term at start
+    ChangeSearch();
   }
 
   // This is the function that is called when the search button is pressed

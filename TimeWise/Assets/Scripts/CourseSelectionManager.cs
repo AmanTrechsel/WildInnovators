@@ -19,7 +19,7 @@ public class CourseSelectionManager : MonoBehaviour
   {
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
-    else if (Instance != this) { }//Destroy(gameObject); }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Iterate through all courses found in ResourceManager
     foreach (Course course in ResourceManager.Instance.courses)

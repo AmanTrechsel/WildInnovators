@@ -7,9 +7,12 @@ public class SearchButton : MonoBehaviour
   // The text field for the button name
   [SerializeField]
   private TextMeshProUGUI buttonName;
-  // The image for the button
+  // The images for the button
   [SerializeField]
-  private Image buttonImage;
+  private Image buttonImage, leftSideImage, rightSideImage;
+  // Defaults for buttons
+  [SerializeField]
+  private Sprite defaultSettingImage, defaultEncyclopediaImage;
 
   // An enum for the button type
   public enum ButtonType {
@@ -27,6 +30,10 @@ public class SearchButton : MonoBehaviour
   // Set the button to a course
   public void SetCourse(Course course)
   {
+    // Disable the left and right side images
+    leftSideImage.gameObject.SetActive(false);
+    rightSideImage.gameObject.SetActive(false);
+
     // Set the button image, name and id
     buttonImage.sprite = course.buttonGraphic;
     buttonName.text = course.name;
@@ -39,6 +46,10 @@ public class SearchButton : MonoBehaviour
   // Set the button to a subject
   public void SetSubject(Subject subject)
   {
+    // Disable the left and right side images
+    leftSideImage.gameObject.SetActive(false);
+    rightSideImage.gameObject.SetActive(false);
+
     // Set the button image, name and id
     buttonImage.sprite = subject.buttonGraphic;
     buttonName.text = subject.name;
@@ -51,8 +62,12 @@ public class SearchButton : MonoBehaviour
   // Set the button to a setting
   public void SetSetting(Setting setting)
   {
-    // Set the button image, name and id
-    buttonImage.sprite = setting.buttonGraphic;
+    // Disable the left side images
+    leftSideImage.gameObject.SetActive(false);
+
+    // Set the button images, name and id
+    rightSideImage.sprite = setting.buttonGraphic;
+    buttonImage.sprite = defaultSettingImage;
     buttonName.text = setting.name;
     id = (int)setting.id;
 
@@ -63,12 +78,15 @@ public class SearchButton : MonoBehaviour
   // Set the button to an encyclopedia page
   public void SetPage(EncyclopediaPage page)
   {
+    // Disable the right side image
+    rightSideImage.gameObject.SetActive(false);
+
     // Check if the page is unlocked
     if (AppManager.Instance.unlockedEncyclopediaPages.Contains((int)page.id))
     {
-      // Set the button image and name to the page
+      // Set the button images and name to the page
       buttonName.text = page.displayName;
-      buttonImage.sprite = page.displayImage;
+      leftSideImage.sprite = page.displayImage;
     }
     else
     {
@@ -77,8 +95,9 @@ public class SearchButton : MonoBehaviour
       buttonImage.enabled = false;
     }
 
-    // Set the button id
+    // Set the button id and image
     id = (int)page.id;
+    buttonImage.sprite = defaultEncyclopediaImage;
 
     // Set the button type
     buttonType = ButtonType.Encyclopedia;

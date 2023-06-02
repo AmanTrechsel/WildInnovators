@@ -39,7 +39,7 @@ public class ARManager : MonoBehaviour
   {
     // Check if the instance exists and if not, set it to this
     if (Instance == null) { Instance = this; }
-    else if (Instance != this) { }//Destroy(gameObject); }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Hide the calibration layout
     HideCalibration();

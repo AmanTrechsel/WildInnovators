@@ -41,7 +41,7 @@ public class EncyclopediaManager : MonoBehaviour
   {
     // Assign this instance as the singleton
     if (Instance == null) { Instance = this; }
-    else if (Instance != this) { }//Destroy(gameObject); }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Set the unlock count and subject name
     unlockCount.text = $"{AppManager.Instance.unlockedEncyclopediaPages.Count}/{ResourceManager.Instance.encyclopediaPages.Count}";
