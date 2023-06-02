@@ -1,8 +1,12 @@
 using System.IO;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using Firebase.Storage;
+using Firebase.Extensions;
+using System.Threading.Tasks;
 
 public class ModelUploader : MonoBehaviour
 {
@@ -18,40 +22,73 @@ public class ModelUploader : MonoBehaviour
       {
         string filePath = pickedFiles;
 
-        // Start file upload
-        StartCoroutine(UploadFile(filePath));
+        // Upload file to FireBase
+        UploadFile(filePath);
+
+        // Create model
+        NativeFilePicker.ExportFile(filePath);
+        InstantiateModel(filePath);
       }
     }, fileTypes);
   }
 
-  IEnumerator UploadFile(string filePath)
+  void UploadFile(string path)
   {
-    WWWForm form = new WWWForm();
-    byte[] fileData = System.IO.File.ReadAllBytes(filePath);
-    form.AddBinaryData("file", fileData, Path.GetFileName(filePath));
+    FirebaseStorage storage = FirebaseStorage.DefaultInstance;
 
-    using (UnityWebRequest www = UnityWebRequest.Post("https://timewise.serverict.nl/inlog.php", form))
+    // Create a root reference
+    StorageReference storageRef = storage.RootReference;
+
+    // Create a reference to the file you want to upload
+    StorageReference riversRef = storageRef.Child("images/rivers.jpg");
+
+    // Upload the file to the path "images/rivers.jpg"
+    riversRef.PutFileAsync(path).ContinueWith((Task<StorageMetadata> task) =>
     {
-      yield return www;
-
-      if (string.IsNullOrEmpty(www.error))
+      if (task.IsFaulted || task.IsCanceled)
       {
-        string uploadedPath = www.downloadHandler.text;
-        // Handle the response from the server
-        Debug.Log("File upload successful! " + uploadedPath);
-        // Instantiate and display the model
-        InstantiateModel(uploadedPath);
+        Debug.Log(task.Exception.ToString());
+        // Uh-oh, an error occurred!
       }
       else
       {
-        Debug.LogError("File upload error: " + www.error);
+        // Metadata contains file metadata such as size, content-type, and download URL.
+        StorageMetadata metadata = task.Result;
+        string md5Hash = metadata.Md5Hash;
+        Debug.Log("Finished uploading...");
+        Debug.Log("md5 hash = " + md5Hash);
       }
-    }
+    });
+  }
+
+  void DownloadFile(string filename)
+  {
+    FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+
+    // Create a reference with an initial file path and name
+    StorageReference pathReference = storage.GetReference("images/stars.jpg");
+
+    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+    const long maxAllowedSize = 1 * 1024 * 1024;
+    pathReference.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task =>
+    {
+      if (task.IsFaulted || task.IsCanceled)
+      {
+        Debug.LogException(task.Exception);
+        // Uh-oh, an error occurred!
+      }
+      else
+      {
+        byte[] fileContents = task.Result;
+        Debug.Log("Finished downloading!");
+      }
+    });
   }
 
   void InstantiateModel(string modelPath)
   {
+    Debug.Log(modelPath);
     // Load the model into Unity
-    GameObject model = Instantiate(Resources.Load<GameObject>(modelPath));
+    //GameObject model = (GameObject)Instantiate(File.Open(modelPath), Vector3.zero, Quaternion.identity);
   }
 }
