@@ -21,6 +21,12 @@ public class AppManager : MonoBehaviour
   // App Canvas that is static throughout the app
   [SerializeField]
   private GameObject appCanvas;
+  // Search button
+  [SerializeField]
+  private GameObject searchButton;
+  // Load bar
+  [SerializeField]
+  private Image loadBar;
 
   // The currently selected course
   [HideInInspector]
@@ -58,10 +64,34 @@ public class AppManager : MonoBehaviour
     // Set the previous scene to the current scene
     previousScene = SceneManager.GetActiveScene().name;
     // Swap the scene
-    SceneManager.LoadScene(sceneName);
+    StartCoroutine(LoadSceneAsync(sceneName));
+  }
+
+  // Load the scene asynchronously
+  private IEnumerator LoadSceneAsync(string sceneName)
+  {
+    // The Application loads the Scene in the background as the current Scene runs.
+    AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+    // Wait until the asynchronous scene fully loads
+    while (!asyncLoad.isDone)
+    {
+      // Update load bar based on loading progress
+      loadBar.fillAmount = asyncLoad.progress;
+      yield return null;
+    }
+
+    // The scene has successfully loaded
+
     // Show or hide the AppCanvas based on the scene being loaded
     if (sceneName == "ARWarning") { appCanvas.SetActive(false); }
     else { appCanvas.SetActive(true); }
+    // Show or hide the SearchButton based on the scene being loaded
+    if (sceneName == "CourseSelect" || sceneName == "Selection") { searchButton.SetActive(true); }
+    else { searchButton.SetActive(false); }
+
+    // Hide the load bar
+    loadBar.fillAmount = 0f;
   }
 
   // Updates every frame
