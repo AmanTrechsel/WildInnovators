@@ -11,8 +11,10 @@ public class SettingsManager : MonoBehaviour
   // Singleton
   public static SettingsManager Instance;
 
+  // Name of the save file in which data will de saved
   private string saveFile = "time.wise";
 
+  // Assign this instance as the singleton
   private void Awake()
   {
     if(Instance == null)
@@ -80,7 +82,7 @@ public class SettingsManager : MonoBehaviour
     LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
   }
 
-  // For the location setting
+  // For the location setting. The parameters are given through the seperate LocationManager.cs script
   private string locationName = "Timewise";
 
   public void ChangeLocation(GameObject inputField, string location)
@@ -92,6 +94,7 @@ public class SettingsManager : MonoBehaviour
     }
   }
 
+  // Getter for the inputfield
   public string GetLocationName()
   {
     return locationName;
@@ -115,6 +118,7 @@ public class SettingsManager : MonoBehaviour
   public void ShowSetting(Setting setting, Vector3 settingButtonPosition)
   {
     popup.transform.position = settingButtonPosition + backgroundOffset;
+    
     Vector3 contentOffset = backgroundOffset + new Vector3(0.0f, 50.0f, 0.0f);
     settingContent = setting.content;
     GameObject popUpContent = Instantiate(settingContent) as GameObject;
