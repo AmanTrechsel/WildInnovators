@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3708984, g: 0.37837017, b: 0.35722524, a: 1}
+  m_IndirectSpecularColor: {r: 0.3708985, g: 0.3783704, b: 0.35722548, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -680,11 +680,11 @@ MonoBehaviour:
   m_Content: {fileID: 1744338380}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 0
+  m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 2040513031}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -975,6 +975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchBar: {fileID: 1122303005}
   content: {fileID: 1744338380}
+  contentRect: {fileID: 1744338380}
+  contentLayoutGroup: {fileID: 1744338381}
   searchItemPrefab: {fileID: 9136078689964325518, guid: 378ae58e4e6564d4dada1b6d46732268, type: 3}
   courseTitle: {fileID: 387826581}
   subjectTitle: {fileID: 1378847117}

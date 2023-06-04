@@ -12,6 +12,20 @@ public class PermissionManager : MonoBehaviour
   [SerializeField]
   private Sprite toggleOff, toggleOn;
 
+  // Called once at the start of the script
+  private void Awake()
+  {
+    // Set the button's sprite to the correct one
+    if(AppManager.Instance.permission)
+    {
+      button.image.sprite = toggleOn;
+    }
+    else
+    {
+      button.image.sprite = toggleOff;
+    }
+  }
+
   // Calls the SwitchPermission method in SettingsManager.cs.
   public void SwitchPerms()
   {

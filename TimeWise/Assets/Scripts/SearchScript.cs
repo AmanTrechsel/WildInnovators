@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SearchScript : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class SearchScript : MonoBehaviour
   // The content list for the search items
   [SerializeField]
   private Transform content;
+  // Rect transform for the content
+  [SerializeField]
+  private RectTransform contentRect;
+  // Vertical layout group for the content
+  [SerializeField]
+  private VerticalLayoutGroup contentLayoutGroup;
   // The prefab for the search items
   [SerializeField]
   private GameObject searchItemPrefab;
@@ -191,6 +198,25 @@ public class SearchScript : MonoBehaviour
     subjectTitle.SetActive(subjectsFound > 0);
     settingTitle.SetActive(settingsFound > 0);
     encyclopediaTitle.SetActive(encyclopediaFound > 0);
+
+    // Setup the content's height with the padding
+    float contentHeight = contentLayoutGroup.padding.top + contentLayoutGroup.padding.bottom;
+
+    // Update the content's height to be the sum of all the items' heights
+    foreach (RectTransform child in content)
+    {
+      // Check if the child is active
+      if (!child.gameObject.activeSelf) { continue; }
+
+      // Add the height of the child along with the padding multiplied by its scale to the content's height
+      contentHeight += (child.sizeDelta.y + contentLayoutGroup.spacing);
+    }
+
+    // 60% multiplier to the content's height
+    contentHeight *= 0.6f;
+
+    // Set the content's height to contentHeight
+    contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, contentHeight);
   }
 
   // This function checks if the search term is within the term

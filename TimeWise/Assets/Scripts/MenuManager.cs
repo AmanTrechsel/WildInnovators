@@ -16,12 +16,21 @@ public class MenuManager : MonoBehaviour
   // The info box and subject button prefab
   [SerializeField]
   private GameObject info, subjectButtonPrefab;
+  // The content rect transform
+  [SerializeField]
+  private RectTransform contentRect;
+  // Layout group for the content
+  [SerializeField]
+  private VerticalLayoutGroup contentLayoutGroup;
   // The content transforms for the subject buttons and info box
   [SerializeField]
   private Transform subjectButtonContent, infoContent;
   // The text fields for the subject name, subject content and course name
   [SerializeField]
   private TextMeshProUGUI subjectName, subjectContent, courseName;
+  // Encyclopedia unlock count text field
+  [SerializeField]
+  private TextMeshProUGUI encyclopediaUnlockCount;
 
   // Called once at the start of the app
   private void Awake()
@@ -44,6 +53,25 @@ public class MenuManager : MonoBehaviour
       subjectButton.GetComponent<SubjectSelectionButton>().SetSubject(_subject);
       subjectButton.transform.SetParent(subjectButtonContent);
     }
+
+    // Setup the content's height with the padding
+    float contentHeight = contentLayoutGroup.padding.top + contentLayoutGroup.padding.bottom;
+
+    // Update the content's height to be the sum of all the items' heights
+    foreach (RectTransform child in subjectButtonContent)
+    {
+      // Add the height of the child along with the padding multiplied by its scale to the content's height
+      contentHeight += (child.sizeDelta.y + contentLayoutGroup.spacing) * child.localScale.y;
+    }
+
+    // 130% multiplier to the content's height
+    contentHeight *= 1.3f;
+
+    // Set the content's height to contentHeight
+    contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, contentHeight);
+
+    // Set the encyclopedia unlock count
+    encyclopediaUnlockCount.text = AppManager.Instance.GetEncyclopediaUnlockText();
   }
 
   // Method to select the subject
@@ -77,5 +105,12 @@ public class MenuManager : MonoBehaviour
   {
     // Hide the info box
     info.SetActive(false);
+  }
+
+  // Basic method for opening the encyclopedia
+  public void OpenEncyclopedia()
+  {
+    // Open the encyclopedia
+    AppManager.Instance.GoToEncyclopedia();
   }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Android;
 using TMPro;
 using UnityEngine.Localization.Settings;
 using System.IO;
@@ -12,6 +13,7 @@ public class SettingsManager : MonoBehaviour
   public static SettingsManager Instance;
 
   // Name of the save file in which data will de saved
+  // .json isn't the most secure format, might want to change it to a binary file or something like that.
   private string saveFile = "time.wise";
 
   // Assign this instance as the singleton
@@ -21,6 +23,9 @@ public class SettingsManager : MonoBehaviour
     {
       Instance = this;
     }
+
+    // Load the settings from the local file
+    LoadData();
   }
 
   // Method for saving the settings on a local file
@@ -44,19 +49,10 @@ public class SettingsManager : MonoBehaviour
     AppManager.Instance.languageIndex = data.languageIndex;
   }
 
-  // Probably want the settings to load from the homescreen so this probably needs to happen in AppManager.cs.
-  void awake()
-  {
-    LoadData();
-  }
-
-  // Also .json isn't the most secure format, might want to change it to a binary file or something like that.
-
-
-
-  // For the permission setting. The parameters are given through the seperate PermissionManager.cs script
+  // For the permission setting. The parameters are given through the separate PermissionManager.cs script
   public void SwitchPermission(Button button, Sprite toggleOff, Sprite toggleOn)
   {
+    // Check the current state of the button and switch it accordingly
     if(button.image.sprite == toggleOn)
     {
       button.image.sprite = toggleOff;
@@ -64,12 +60,26 @@ public class SettingsManager : MonoBehaviour
     }
     else if(button.image.sprite == toggleOff)
     {
+      // If the permission is not yet given, ask for it
+      if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+      {
+        // The permission is asked for
+        Permission.RequestUserPermission(Permission.Camera);
+
+        // If the permission is still not given, return
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+        {
+          return;
+        }
+      }
+
+      // Actually switch the permission
       button.image.sprite = toggleOn;
       AppManager.Instance.permission = true;
     }
   }
 
-  // For the language setting. The parameter is given through the seperate LanguageManager.cs script
+  // For the language setting. The parameter is given through the separate LanguageManager.cs script
   public void ChangeLanguage(int ID)
   {
     StartCoroutine(SetLanguage(ID));
@@ -82,7 +92,7 @@ public class SettingsManager : MonoBehaviour
     LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
   }
 
-  // For the location setting. The parameters are given through the seperate LocationManager.cs script
+  // For the location setting. The parameters are given through the separate LocationManager.cs script
   private string locationName = "Timewise";
 
   public void ChangeLocation(GameObject inputField, string location)

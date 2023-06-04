@@ -15,6 +15,12 @@ public class EncyclopediaManager : MonoBehaviour
   // The subject name text
   [SerializeField]
   private TextMeshProUGUI subjectName;
+    // The content rect transform
+  [SerializeField]
+  private RectTransform contentRect;
+  // Layout group for the content
+  [SerializeField]
+  private VerticalLayoutGroup contentLayoutGroup;
   // The encyclopedia page content transform
   [SerializeField]
   private Transform encyclopediaPageContent;
@@ -44,7 +50,7 @@ public class EncyclopediaManager : MonoBehaviour
     else if (Instance != this) { Destroy(gameObject); }
 
     // Set the unlock count and subject name
-    unlockCount.text = $"{AppManager.Instance.unlockedEncyclopediaPages.Count}/{ResourceManager.Instance.encyclopediaPages.Count}";
+    unlockCount.text = AppManager.Instance.GetEncyclopediaUnlockText();
     subjectName.text = $"{AppManager.Instance.arSubject.name}";
 
     // Iterate through all encyclopedia pages found in ResourceManager of the current subject
@@ -55,6 +61,22 @@ public class EncyclopediaManager : MonoBehaviour
       pageToAdd.GetComponent<EncyclopediaPageButton>().SetPage(encyclopediaPage);
       pageToAdd.transform.SetParent(encyclopediaPageContent);
     }
+
+    // Setup the content's height with the padding
+    float contentHeight = contentLayoutGroup.padding.top + contentLayoutGroup.padding.bottom;
+
+    // Update the content's height to be the sum of all the items' heights
+    foreach (RectTransform child in encyclopediaPageContent)
+    {
+      // Add the height of the child along with the padding multiplied by its scale to the content's height
+      contentHeight += (child.sizeDelta.y + contentLayoutGroup.spacing) * child.localScale.y;
+    }
+
+    // 10% multiplier to the content's height
+    contentHeight *= 0.1f;
+
+    // Set the content's height to contentHeight
+    contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, contentHeight);
   }
 
   // Show the encyclopedia page

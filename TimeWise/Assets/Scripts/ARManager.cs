@@ -1,10 +1,8 @@
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 public class ARManager : MonoBehaviour
 {
@@ -33,6 +31,12 @@ public class ARManager : MonoBehaviour
   // Layouts for calibration and mask
   [SerializeField]
   private GameObject calibrationLayout, noCalibrationLayout, calibrationMask;
+  // Current subject name text field
+  [SerializeField]
+  private TextMeshProUGUI currentSubjectName;
+  // Encyclopedia unlock count text field
+  [SerializeField]
+  private TextMeshProUGUI encyclopediaUnlockCount;
 
   // Called when the script instance is being loaded
   private void Awake()
@@ -43,6 +47,12 @@ public class ARManager : MonoBehaviour
 
     // Hide the calibration layout
     HideCalibration();
+
+    // Set the current subject name
+    currentSubjectName.text = AppManager.Instance.arSubject.name;
+
+    // Set the encyclopedia unlock count
+    encyclopediaUnlockCount.text = AppManager.Instance.GetEncyclopediaUnlockText();
   }
 
   // Update is called once per frame
@@ -112,6 +122,13 @@ public class ARManager : MonoBehaviour
     calibrationMask.SetActive(false);
     calibrationLayout.SetActive(false);
     noCalibrationLayout.SetActive(true);
+  }
+
+  // Basic method for opening the encyclopedia
+  public void OpenEncyclopedia()
+  {
+    // Open the encyclopedia
+    AppManager.Instance.GoToEncyclopedia();
   }
 
   // Add the calibration data to the AR Session

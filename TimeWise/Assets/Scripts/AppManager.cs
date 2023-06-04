@@ -24,6 +24,9 @@ public class AppManager : MonoBehaviour
   // Search button
   [SerializeField]
   private GameObject searchButton;
+  // No permission popup
+  [SerializeField]
+  private GameObject noPermissionPopup;
   // Load bar
   [SerializeField]
   private Image loadBar;
@@ -47,6 +50,9 @@ public class AppManager : MonoBehaviour
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
+
+    // Ensure the no permission popup is hidden
+    HideNoPermissionPopup();
   }
 
   // Gets the Android storage path (source: https://stackoverflow.com/questions/60475027/unity-android-save-screenshot-in-gallery)
@@ -65,6 +71,12 @@ public class AppManager : MonoBehaviour
     previousScene = SceneManager.GetActiveScene().name;
     // Swap the scene
     StartCoroutine(LoadSceneAsync(sceneName));
+  }
+
+  // Returns a string of the number of encyclopedia pages unlocked
+  public string GetEncyclopediaUnlockText()
+  {
+    return $"{AppManager.Instance.unlockedEncyclopediaPages.Count}/{ResourceManager.Instance.encyclopediaPages.Count}";
   }
 
   // Load the scene asynchronously
@@ -103,7 +115,18 @@ public class AppManager : MonoBehaviour
       // Check if back button is pressed
       if (Input.GetKey(KeyCode.Escape))
       {
+        // Check if the no permission popup is active
+        if (noPermissionPopup.activeSelf)
+        {
+          // Hide the no permission popup and return
+          CloseNoPermissionPopup();
+          return;
+        }
+
+        // Set the scene to load to an empty string
         string sceneToLoad = "";
+
+        // Check which scene is currently active and set the scene to load accordingly
         switch (SceneManager.GetActiveScene().name)
         {
           case "CourseSelect":
@@ -128,6 +151,7 @@ public class AppManager : MonoBehaviour
             break;
         }
 
+        // Check if the scene to load is not empty and load it
         if (sceneToLoad != "")
         {
           LoadScene(sceneToLoad);
@@ -140,6 +164,25 @@ public class AppManager : MonoBehaviour
         //}
       }
     }
+  }
+
+  // Show the no permission popup
+  private void ShowNoPermissionPopup()
+  {
+    noPermissionPopup.SetActive(true);
+  }
+
+  // Hide the no permission popup
+  private void HideNoPermissionPopup()
+  {
+    noPermissionPopup.SetActive(false);
+  }
+
+  // Method for the no permission popup
+  public void CloseNoPermissionPopup()
+  {
+    HideNoPermissionPopup();
+    LoadScene("Settings");
   }
 
   // Send the user to the AR Scene based on parameters
@@ -156,8 +199,7 @@ public class AppManager : MonoBehaviour
     }
     else
     {
-      Debug.Log("Er is geen toestemming gegeven om de camera te gebruiken");
-      // Needs to be changed to something in the UI instead of a console message
+      ShowNoPermissionPopup();
     }
   }
 
