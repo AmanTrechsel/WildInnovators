@@ -105,6 +105,7 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
+-define:UNITY_PRO_LICENSE
 -define:ENABLE_CUSTOM_RENDER_TEXTURE
 -define:ENABLE_DIRECTOR
 -define:ENABLE_LOCALIZATION
@@ -132,6 +133,8 @@
 -r:"Assets/Firebase/Plugins/Firebase.Storage.dll"
 -r:"Assets/Firebase/Plugins/Firebase.TaskExtension.dll"
 -r:"Assets/Firebase/Plugins/Google.MiniJson.dll"
+-r:"Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll"
+-r:"Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.23f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.23f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.23f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -366,8 +369,36 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/ModelUploader.cs"
+"Assets/OBJImport/CharWordReader.cs"
+"Assets/OBJImport/MTLLoader.cs"
+"Assets/OBJImport/OBJLoader.cs"
+"Assets/OBJImport/OBJLoaderHelper.cs"
+"Assets/OBJImport/OBJObjectBuilder.cs"
+"Assets/OBJImport/Samples/ObjFromFile.cs"
+"Assets/OBJImport/Samples/ObjFromStream.cs"
+"Assets/OBJImport/StringExtensions.cs"
+"Assets/OBJImport/TextureLoader/BinaryExtensions.cs"
+"Assets/OBJImport/TextureLoader/BMPLoader.cs"
+"Assets/OBJImport/TextureLoader/ColorExtensions.cs"
+"Assets/OBJImport/TextureLoader/DDSLoader.cs"
+"Assets/OBJImport/TextureLoader/ImageLoader.cs"
+"Assets/OBJImport/TextureLoader/ImageLoaderHelper.cs"
+"Assets/OBJImport/TextureLoader/ImageUtils.cs"
+"Assets/OBJImport/TextureLoader/TGALoader.cs"
+"Assets/Scripts/OpenFile.cs"
 "Assets/Scripts/UnityPackageHelper.cs"
+"Assets/StandaloneFileBrowser/IStandaloneFileBrowser.cs"
+"Assets/StandaloneFileBrowser/Sample/BasicSample.cs"
+"Assets/StandaloneFileBrowser/Sample/CanvasSampleOpenFileImage.cs"
+"Assets/StandaloneFileBrowser/Sample/CanvasSampleOpenFileText.cs"
+"Assets/StandaloneFileBrowser/Sample/CanvasSampleOpenFileTextMultiple.cs"
+"Assets/StandaloneFileBrowser/Sample/CanvasSampleSaveFileImage.cs"
+"Assets/StandaloneFileBrowser/Sample/CanvasSampleSaveFileText.cs"
+"Assets/StandaloneFileBrowser/StandaloneFileBrowser.cs"
+"Assets/StandaloneFileBrowser/StandaloneFileBrowserEditor.cs"
+"Assets/StandaloneFileBrowser/StandaloneFileBrowserLinux.cs"
+"Assets/StandaloneFileBrowser/StandaloneFileBrowserMac.cs"
+"Assets/StandaloneFileBrowser/StandaloneFileBrowserWindows.cs"
 -langversion:9.0
 
 /deterministic

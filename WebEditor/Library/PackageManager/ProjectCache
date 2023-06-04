@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638212929740323118
-    m_Hash: 2223295532
+      ticks: 638212234228601467
+    m_Hash: 3537940347
   m_LockFileStatus:
     m_FilePath: C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638212929740373314
-    m_Hash: 2077878383
+      ticks: 638212234523873214
+    m_Hash: 3522790692
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -3083,10 +3083,12 @@ m_ResolvedPackages:
     - 1.2.1
     - 1.2.2
     - 1.2.3
+    - 1.2.4
     compatible:
     - 1.2.2
     - 1.2.3
-    verified: 1.2.3
+    - 1.2.4
+    verified: 1.2.4
   dependencies:
   - name: com.unity.test-framework
     version: 1.0.16
@@ -3143,7 +3145,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: 
   description: A framework for making any serializable field a setting, complete
     with a pre-built settings interface.
   status: 0
