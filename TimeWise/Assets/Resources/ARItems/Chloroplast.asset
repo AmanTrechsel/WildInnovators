@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 3386113112921686614, guid: f5818b8a8d41b6f4b88120fe221ad117, type: 3}
   offsetPosition: {x: 3.5, y: 0, z: 2.5}
   offsetRotation: {x: -48, y: -65, z: -53}
-  offsetScale: {x: 150, y: 150, z: 150}
+  offsetScale: {x: 130, y: 130, z: 130}
   recenter: 0
