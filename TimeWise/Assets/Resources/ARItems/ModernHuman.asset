@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Modern Human
   prefab: {fileID: 1240727904869976802, guid: a1d79fbe18361094bbbfc35fca6f744b, type: 3}
-  offsetPosition: {x: 0.4, y: 0, z: -0.25}
+  offsetPosition: {x: 4.5, y: 0, z: 0}
   offsetRotation: {x: 0, y: -90, z: 0}
   offsetScale: {x: 0.01, y: 0.01, z: 0.01}
   recenter: 0
