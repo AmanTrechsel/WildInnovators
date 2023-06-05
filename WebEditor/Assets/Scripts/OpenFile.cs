@@ -77,6 +77,10 @@ public class OpenFile : MonoBehaviour
       model.transform.localScale = new Vector3(-1, 1, 1); // set the position of parent model. Reverse X to show properly 
       FitOnScreen();
       DoublicateFaces();
+
+      // Remove old model and add new model to ModelEditor
+      ModelEditor.instance.RemoveModel();
+      ModelEditor.instance.model = model;
     }
   }
 
