@@ -15,6 +15,11 @@ public class MoveOvertime : MonoBehaviour
   private void Update()
   {
     // Move and rotate the object over time
+    MoveObject(moveSpeed, rotationSpeed);
+  }
+
+  public void MoveObject(Vector3 moveSpeed, Vector3 rotationSpeed)
+  {
     transform.Translate(moveSpeed * Time.deltaTime);
     transform.Rotate(rotationSpeed * Time.deltaTime);
   }
