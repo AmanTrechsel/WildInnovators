@@ -5,148 +5,97 @@ using UnityEngine.XR.ARFoundation;
 
 public class ARCursor : MonoBehaviour
 {
+  // Holds the ARRaycastManager, which is used to find the AR plane
   [SerializeField]
   private ARRaycastManager raycastManager;
-
-  private GameObject arObject;
-  private Renderer arMesh;
+  // Objects that may need to be repositioned
   private List<GameObject> arRepositionObjects;
+  // Meshes that may need to be repositioned
   private List<Renderer> arRepositionMeshes;
+  // Offsets for the repositioned objects
   private List<List<Vector3>> arRepositionOffsets;
-  private bool arPlacedCorrectly;
-  private bool subjectSet;
 
   private void Start()
   {
-    
-    if (AppManager.Instance.arSubject == null)
+    // Initialize lists for repositionable objects
+    arRepositionObjects = new List<GameObject>();
+    arRepositionMeshes = new List<Renderer>();
+    arRepositionOffsets = new List<List<Vector3>>();
+    // Iterate through the AR Items and add them to the scene
+    foreach (ARItem arItem in AppManager.Instance.arSubject.items)
     {
-      // Create the AR Object based on the object set in the App Manager
-      arObject = Instantiate(AppManager.Instance.arDisplayObject, transform.position, transform.rotation) as GameObject;
-
-      // Get its mesh renderer
-      arMesh = arObject.GetComponentInChildren<Renderer>();
-
-      subjectSet = false;
-    }
-    else
-    {
-      arRepositionObjects = new List<GameObject>();
-      arRepositionMeshes = new List<Renderer>();
-      arRepositionOffsets = new List<List<Vector3>>();
-      foreach (ARItem arItem in AppManager.Instance.arSubject.items)
+      // Instantiate the AR Object
+      GameObject arObjectToAdd = Instantiate(arItem.prefab,
+                                              transform.position + arItem.offsetPosition,
+                                              transform.rotation * Quaternion.Euler(arItem.offsetRotation.x, arItem.offsetRotation.y, arItem.offsetRotation.z)
+                                              ) as GameObject;
+      // Apply the offset scale
+      arObjectToAdd.transform.localScale = arItem.offsetScale;
+      // Add the AR Object's meshes to the reposition list
+      Renderer[] arObjectMeshes = arObjectToAdd.GetComponentsInChildren<Renderer>();
+      // Initialize the mesh extent list
+      List<float> meshExtent = new List<float>();
+      // Iterate through the meshes and add their extents to the list
+      foreach (Renderer arMesh in arObjectMeshes)
       {
-        GameObject arObjectToAdd = Instantiate(arItem.prefab,
-                                               transform.position + arItem.offsetPosition,
-                                               transform.rotation * Quaternion.Euler(arItem.offsetRotation.x, arItem.offsetRotation.y, arItem.offsetRotation.z)
-                                               ) as GameObject;
-        arObjectToAdd.transform.localScale = arItem.offsetScale;
-        Renderer[] arObjectMeshes = arObjectToAdd.GetComponentsInChildren<Renderer>();
-        List<float> meshExtent = new List<float>();
-        foreach (Renderer arMesh in arObjectMeshes)
-        {
-          meshExtent.Add(arMesh.bounds.extents.z);
-        }
-        if (arItem.recenter)
-        {
-          arRepositionObjects.Add(arObjectToAdd);
-          arRepositionMeshes.Add(arObjectMeshes[0]);
-          List<Vector3> arObjectOffsets = new List<Vector3>();
-          arObjectOffsets.Add(arItem.offsetPosition);
-          arObjectOffsets.Add(arItem.offsetRotation);
-          //arObjectOffsets.Add(arItem.offsetScale);
-          arRepositionOffsets.Add(arObjectOffsets);
-        }
-
-        // Add the nametag to the object
-        if (arObjectMeshes.Length > 0)
-        {
-          GameObject nameTag = Instantiate(ARManager.Instance.nameTagPrefab) as GameObject;
-          nameTag.GetComponent<NameTagManager>().SetupNametag(ARManager.Instance.arCamera, arItem.name);
-          nameTag.transform.SetParent(arObjectToAdd.transform);
-          //nameTag.transform.localScale = arItem.offsetScale;
-          float topPosition = ((Mathf.Max(meshExtent.ToArray()) * arObjectToAdd.transform.localScale.z) + arObjectToAdd.transform.position.z) / 2f;
-          topPosition = 0.1f; // Debug
-          nameTag.transform.localPosition = new Vector3(0f, topPosition, 0f);
-        }
-        
+        meshExtent.Add(arMesh.bounds.extents.z);
+      }
+      // Check if the object needs to be recentered
+      if (arItem.recenter)
+      {
+        // Add the object to the reposition lists
+        arRepositionObjects.Add(arObjectToAdd);
+        arRepositionMeshes.Add(arObjectMeshes[0]);
+        List<Vector3> arObjectOffsets = new List<Vector3>();
+        arObjectOffsets.Add(arItem.offsetPosition);
+        arObjectOffsets.Add(arItem.offsetRotation);
+        arRepositionOffsets.Add(arObjectOffsets);
       }
 
-      subjectSet = true;
+      // Add the nametag to the object
+      if (arObjectMeshes.Length > 0)
+      {
+        // Instantiate the nametag
+        GameObject nameTag = Instantiate(ARManager.Instance.nameTagPrefab) as GameObject;
+        // Setup the nametag
+        nameTag.GetComponent<NameTagManager>().SetupNametag(ARManager.Instance.arCamera, arItem.name);
+        nameTag.transform.SetParent(arObjectToAdd.transform);
+        // Calculate the top position of the object
+        float topPosition = ((Mathf.Max(meshExtent.ToArray()) * arObjectToAdd.transform.localScale.z) + arObjectToAdd.transform.position.z) / 2f;
+        topPosition = 0.1f; // Debug
+        // Set the nametag position
+        nameTag.transform.localPosition = new Vector3(0f, topPosition, 0f);
+      }
     }
 
+    // Reposition AR Objects
     RepositionARObject();
   }
 
   private void Update()
   {
-    // Cursor update
-    UpdateCursor();
+    // Reposition AR Objects
+    RepositionARObject();
 
-    // When the AR Object is no longer visible, try to reposition it.
-    if (true)//(!ARMeshVisible() || ShouldRecenter()) && arPlacedCorrectly)
+    // Hide AR Objects during calibration
+    foreach (GameObject arRepositionObject in arRepositionObjects)
     {
-      RepositionARObject();
+      // Hide the object if calibration is active
+      arRepositionObject.SetActive(!ARManager.Instance.calibrating);
     }
-
-    // Only show the AR Object if it is placed correctly
-    if (arObject != null) { arObject.SetActive(arPlacedCorrectly); }
   }
 
   // This script checks the position of an ARCard and repositions the AR Object accordingly
   private void RepositionARObject()
   {
-    if (subjectSet)
+    // Iterate through the repositionable objects
+    for (int i = 0; i < arRepositionObjects.Count; i++)
     {
-      for (int i = 0; i < arRepositionObjects.Count; i++)
-      {
-        GameObject repositionObject = arRepositionObjects[i];
-        Vector3 rotationOffset = arRepositionOffsets[i][1];
-        repositionObject.transform.position = transform.position + arRepositionOffsets[i][0];
-        repositionObject.transform.rotation = transform.rotation * Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
-      }
+      // Reposition the object
+      GameObject repositionObject = arRepositionObjects[i];
+      Vector3 rotationOffset = arRepositionOffsets[i][1];
+      repositionObject.transform.position = transform.position + arRepositionOffsets[i][0];
+      repositionObject.transform.rotation = transform.rotation * Quaternion.Euler(rotationOffset.x, rotationOffset.y, rotationOffset.z);
     }
-    else
-    {
-      arObject.transform.position = transform.position;
-      arObject.transform.rotation = transform.rotation;
-    }
-  }
-
-  // This script simply places a cursor on the center of the screen, which is used to reposition the AR Object
-  // If there is none found it will set the 'arPlacedCorrectly' variable to false
-  private void UpdateCursor()
-  {
-    return;
-    Vector2 screenPosition = ARManager.Instance.arCamera.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
-    List<ARRaycastHit> hits = new List<ARRaycastHit>();
-    raycastManager.Raycast(screenPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes);
-
-    if (hits.Count > 0)
-    {
-      arPlacedCorrectly = true;
-      transform.position = hits[hits.Count-1].pose.position;
-      transform.rotation = hits[hits.Count-1].pose.rotation;
-    }
-    else
-    {
-      arPlacedCorrectly = false;
-    }
-  }
-
-  private bool ShouldRecenter()
-  {
-    if (arRepositionMeshes == null) { return false; }
-    foreach (Renderer renderer in arRepositionMeshes)
-    {
-      if (!renderer.isVisible) { return true; }
-    }
-    return false;
-  }
-
-  private bool ARMeshVisible()
-  {
-    if (arMesh == null) { return true; }
-    return arMesh.isVisible;
   }
 }
