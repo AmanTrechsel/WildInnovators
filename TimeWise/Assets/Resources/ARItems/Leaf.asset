@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Leaf
   prefab: {fileID: 6964908123104015588, guid: 95cb627ec4606ca42a68bfe23eb58d52, type: 3}
-  offsetPosition: {x: 3, y: 0, z: 2.5}
-  offsetRotation: {x: 0, y: -16, z: -5}
+  offsetPosition: {x: 45.8, y: 0, z: -8.8}
+  offsetRotation: {x: 0, y: -16.5, z: -5.4}
   offsetScale: {x: 150, y: 150, z: 150}
   recenter: 0
