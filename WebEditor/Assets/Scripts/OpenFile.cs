@@ -40,10 +40,21 @@ public class OpenFile : MonoBehaviour
     UploadFile(gameObject.name, "OnFileUpload", ".obj", false);
   }
 
+  public void OnClickOpenTexture()
+  {
+    UploadFile(gameObject.name, "OnTextureUpload", ".png", false);
+  }
+
   // Called from browser
   public void OnFileUpload(string url)
   {
-    StartCoroutine(OutputRoutineOpen(url));
+    StartCoroutine(OutputRoutineOpenModel(url));
+  }
+
+  // Called from browser
+  public void OnTextureUpload(string url)
+  {
+    StartCoroutine(OutputRoutineOpenTexture(url));
   }
 #else
   // Standalone platforms & editor
@@ -52,12 +63,21 @@ public class OpenFile : MonoBehaviour
     string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "obj", false);
     if (paths.Length > 0)
     {
-      StartCoroutine(OutputRoutineOpen(new System.Uri(paths[0]).AbsoluteUri));
+      StartCoroutine(OutputRoutineOpenModel(new System.Uri(paths[0]).AbsoluteUri));
+    }
+  }
+
+  public void OnClickOpenTexture()
+  {
+    string[] paths = StandaloneFileBrowser.OpenFilePanel("Open File", "", "png", false);
+    if (paths.Length > 0)
+    {
+      StartCoroutine(OutputRoutineOpenTexture(new System.Uri(paths[0]).AbsoluteUri));
     }
   }
 #endif
 
-  private IEnumerator OutputRoutineOpen(string url)
+  private IEnumerator OutputRoutineOpenModel(string url)
   {
     UnityWebRequest www = UnityWebRequest.Get(url);
     yield return www.SendWebRequest();
@@ -75,12 +95,30 @@ public class OpenFile : MonoBehaviour
       }
       model = new OBJLoader().Load(textStream);
       model.transform.localScale = new Vector3(-1, 1, 1); // set the position of parent model. Reverse X to show properly 
-      FitOnScreen();
       DoublicateFaces();
 
       // Remove old model and add new model to ModelEditor
       ModelEditor.instance.RemoveModel();
       ModelEditor.instance.model = model;
+    }
+  }
+
+  private IEnumerator OutputRoutineOpenTexture(string url)
+  {
+    UnityWebRequest www = UnityWebRequest.Get(url);
+    yield return www.SendWebRequest();
+    if (www.result != UnityWebRequest.Result.Success)
+    {
+      Debug.Log("WWW ERROR: " + www.error);
+    }
+    else
+    {
+      //Load Texture
+      Texture2D texture = new Texture2D(2, 2);
+      texture.LoadImage(Encoding.UTF8.GetBytes(www.downloadHandler.text));
+      texture.Apply();
+
+      ModelEditor.instance.uploadedTextures.Add(texture);
     }
   }
 

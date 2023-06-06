@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class NumberInputModify : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class NumberInputModify : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
   // Reference to the input field that will be modified
   [SerializeField]
@@ -21,18 +21,29 @@ public class NumberInputModify : MonoBehaviour, IPointerDownHandler, IPointerUpH
   {
     // Stop dragging
     isPressed = false;
-
-    CursorManager.instance.SetCursor(0);
   }
 
   // Called when the mouse button is pressed
   void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
   {
-    CursorManager.instance.SetCursor(2);
     // Start dragging
     isPressed = true;
     // Store the position of the mouse
     previousMousePosition = eventData.position;
+  }
+
+  // Called when the mouse is over the object
+  public void OnPointerEnter(PointerEventData eventData)
+  {
+    // Set the cursor to the input cursor
+    CursorManager.instance.SetCursor(2);
+  }
+
+  // Called when the mouse exits the object
+  public void OnPointerExit(PointerEventData eventData)
+  {
+    // Set the cursor to the default cursor
+    CursorManager.instance.SetCursor(0);
   }
 
   // Update is called once per frame
@@ -53,15 +64,9 @@ public class NumberInputModify : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
       // Set the input field value
       inputField.text = value.ToString();
-    }
 
-    if (isPressed && Input.GetMouseButton(0))
-    {
+      // Set the cursor to the resize cursor
       CursorManager.instance.SetCursor(3);
-    }
-    else
-    {
-      CursorManager.instance.SetCursor(0);
     }
   }
 }
