@@ -1,6 +1,6 @@
 <?php
-    $dbhost = "";
-    $dbname = "";
-    $dbuser = "";
-    $dbpassword = "";
+    $dbhost = "timewise.mysql.database.azure.com";
+    $dbname = "timewise";
+    $dbuser = "WildInnovators";
+    $dbpassword = "TimeWise1";
 ?>

@@ -7,8 +7,8 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         // Check sign in
-        $groupsName = filter_input(INPUT_POST, "groupsName");
-        
+        $username = filter_input(INPUT_POST, "username");
+        $password = filter_input(INPUT_POST, "password");
 
         try
         {
@@ -24,7 +24,6 @@
                     $stmt->execute();
 
                     $_SESSION['username'] = $username;
-                    header("Location: dashboard.php");
                 }
                 else
                 {
@@ -36,12 +35,11 @@
 
                     if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
                     {
-                      $_SESSION['username'] = $username;
-                      header("Location: dashboard.php");
+                    $_SESSION['username'] = $username;
                     }
                     else
                     {
-                      $errors[] = "Username or password is incorrect!";
+                    $errors[] = "Username or password is incorrect!";
                     }
                 }
             }
@@ -55,8 +53,7 @@
             $errors[] = $ex->getMessage();
         }
     }
-?>  
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,34 +76,29 @@
             </nav>
         </header>
         <main>
-            <div id="createGroup">
-                <div class="loginprompt">
-                    <h1>Group creëren</h1>
-                </div>
-                    <form method="POST" action="dashboard.php">
-                <div class="loginprompt">
-                    <h4>Groepsnaam</h4>
-                </div>
-                <div class="loginprompt">
-                    <p><input type="text" name="groupsName" placeholder="Mijn groepsnaam..."></p>
-                </div>
-                <div class="loginprompt">
-                    <h4>Onderdelen</h4>
-                </div>
-                <div class="loginprompt">
-                    <p><input type="checkbox" id="lesson1" name="lesson1" value="lesson1">
-                    <label for="lesson1">Placeholder</label></p>
-                    <p><input type="checkbox" id="lesson2" name="lesson2" value="lesson2">
-                    <label for="lesson2">Placeholder</label></p>
-                    <p><input type="checkbox" id="lesson3" name="lesson3" value="lesson3">
-                    <label for="lesson3">Placholder</label></p>
-                </div>
-                <div class="loginprompt">
-                    <input type="submit" name="createGroup" value="Creëer">
-                </div>
-                </form>
-            </div>
+            <h1>TimeWise: de kennis op je device</h1>
+            <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
+        <div id="timeWiseLogo">
+            <img src="./images/AppLogoPNG.png" alt="TimeWise">  
+        </div>
+        <div id="aboutTimeWise">
+            <div id="aboutTimeWisetext">
+                <h1>Voor het onderwijs</h1>
+                <p>TimeWise is een interactieve app voor in het onderwijs. Waarbij er gebruik wordt gemaakt van augumented reality.
+                    Waardoor wij verschillende objecten in de echte wereld kunnen plaatsen, zodat leren effectiever, leuker en een leerzame proces word.</p>
+            </div>
+            <img src="./images/App1.png" alt="Voorbeeld App">
+        </div>
+        <div id="aboutUs">
+            <div id="aboutUstext">
+                <h1>Wij zijn Wild Innovators</h1>
+                <p>Hallo, wij zijn eerste jaars ICT studenten aan het NHL-Stenden in Emmen. Ons is gevraagd om een innovatief product te realiseren.</p>
+                <p>Ons product ‘TimeWise’ is een augumented reality app voor in het onderwijs.</p>
+            </div>
+            <img id="arrow" src="./images/Arrow.png" alt="Pijl">
+            <img src="./images/GroupPhoto.png" alt="Groeps Foto">
+        </div>
         <footer>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>

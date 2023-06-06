@@ -9,6 +9,7 @@
         // Check sign in
         $username = filter_input(INPUT_POST, "username");
         $password = filter_input(INPUT_POST, "password");
+        $hash = password_hash($password, PASSWORD_BCRYPT);
 
         try
         {
@@ -18,17 +19,17 @@
             {
                 if (isset($_GET['register']))
                 {
-                    $stmt = $dbHandler->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password);");
+                    $stmt = $dbHandler->prepare("INSERT INTO `accounts` (`name`, `password`) VALUES (:username, :password);");
                     $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                    $stmt->bindParam("password", password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
+                    $stmt->bindParam("password", $hash, PDO::PARAM_STR);
                     $stmt->execute();
 
                     $_SESSION['username'] = $username;
-                    header("Location: index.php");
+                    header("Location: dashboard.php");
                 }
                 else
                 {
-                    $stmt = $dbHandler->prepare("SELECT * FROM `users` WHERE `username` = :username");
+                    $stmt = $dbHandler->prepare("SELECT * FROM `accounts` WHERE `name` = :username");
                     $stmt->bindParam("username", $username, PDO::PARAM_STR);
                     $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
                     $stmt->execute();
@@ -37,7 +38,7 @@
                     if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
                     {
                       $_SESSION['username'] = $username;
-                      header("Location: index.php");
+                      header("Location: dashboard.php");
                     }
                     else
                     {
@@ -55,7 +56,7 @@
             $errors[] = $ex->getMessage();
         }
     }
-?>
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>

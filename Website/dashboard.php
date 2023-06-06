@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,19 +25,19 @@
         <main>
             <div id="group">
                 <img class="buttonLogo" src="images/Group.png">
-                <form  id="login" method="GET" action="#r">
+                <form  id="login" method="GET" action="group.php">
                     <input class="buttonDashboard" type="submit" name="register" value="Creëer een groep">                    
                 </form>
             </div>
             <div id="les">
                 <img class="buttonLogo" src="images/Create.png">
-                <form  id="login" method="GET" action="#">
+                <form  id="login" method="GET" action="lesson.php">
                     <input class="buttonDashboard" type="submit" name="register" value="Creëer je eigen les">                    
                 </form>
             </div>
         </main>
         <div id="welkom">
-            <h1>Welkom {Username}</h1>
+            <h1>Welkom <?php echo $_SESSION['username']; ?></h1>
         </div>
         <div id="quotes">
             <p>Lorum Ipsum Dolor Sit Amet Consectetur Adipiscing Elit</p>

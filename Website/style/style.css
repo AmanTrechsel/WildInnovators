@@ -310,7 +310,7 @@ input[type="password"]{
     margin-bottom: 10vh;
 }
 
-#quoteContainer{
+#quotes{
     grid-column: 1/6;
     margin-top: -45vh;
     margin-left: 44vw;
@@ -319,7 +319,6 @@ input[type="password"]{
     transform: rotate(8deg);
     z-index: -1;
     max-width:50vw;
-    color:#0F0F0F;
 }
 
 .buttonLogo{
@@ -349,4 +348,11 @@ input[type="password"]{
 
 #dashboardHeader {
     margin-left: -2vw;
+}
+
+
+/* ----Creating group---- */
+#createGroup{
+    grid-column: 2/4;
+    
 }
