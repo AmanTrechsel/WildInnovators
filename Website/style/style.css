@@ -352,7 +352,9 @@ input[type="password"]{
 
 
 /* ----Creating group---- */
-#createGroup{
+#groupForm{
     grid-column: 2/4;
-    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
