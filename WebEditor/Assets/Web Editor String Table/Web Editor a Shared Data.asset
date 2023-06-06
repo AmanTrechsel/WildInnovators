@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Web Editor a Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Web Editor a
+  m_TableCollectionNameGuidString: 9e378f3093ec5f74da9a6b3d60822825
+  m_Entries:
+  - m_Id: 12503199744
+    m_Key: Edit Material
+    m_Metadata:
+      m_Items: []
+  - m_Id: 229688455168
+    m_Key: Color
+    m_Metadata:
+      m_Items: []
+  - m_Id: 284453482496
+    m_Key: Random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 366292742144
+    m_Key: Position
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420881608704
+    m_Key: Rotation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 502620205056
+    m_Key: Scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 612515164160
+    m_Key: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 675136122880
+    m_Key: Upload Image
+    m_Metadata:
+      m_Items: []
+  - m_Id: 807097315328
+    m_Key: Upload Model
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1010198097920
+    m_Key: Edit Model
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1369066942464
+    m_Key: Enter Name
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8377714703139340312
+  references:
+    version: 2
+    RefIds:
+    - rid: 8377714703139340312
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1686059493320

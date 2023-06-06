@@ -359,6 +359,7 @@
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.collab-proxy@2.0.3/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.collab-proxy@2.0.3/Lib/Editor/PlasticSCM/unityplastic.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.1.0/Runtime/Newtonsoft.Json.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.testtools.codecoverage@1.2.2/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.visualscripting@1.8.0/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.visualscripting@1.8.0/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
