@@ -24,15 +24,11 @@ public class ClickObject : MonoBehaviour
             {
                 if(hit.transform != null)
                 {
-                    PrintName(hit.transform.gameObject);
+                    // [GameObject].SetActive(true);
                 }
             }
         }
     }
     
-    void PrintName(GameObject ball)
-    {
-        print(ball.name);
-    }
-
+    // setActive is going to be used here
 }
