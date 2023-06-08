@@ -34,19 +34,21 @@ public class SettingsManager : MonoBehaviour
     SettingsData data = new SettingsData();
     data.permission = AppManager.Instance.permission;
     data.languageIndex = AppManager.Instance.languageIndex;
+    data.location = AppManager.Instance.location;
     
     string json = JsonUtility.ToJson(data);
-    File.WriteAllText(Application.dataPath + "/" + saveFile, json);   // Path might need to be changed.
+    File.WriteAllText(Application.dataPath + "/" + saveFile, json);
   }
 
   // Method for loading the settings from a local file
   public void LoadData()
   {
-    string json = File.ReadAllText(Application.dataPath + "/" + saveFile);  // Path then also needs to be changed here.
+    string json = File.ReadAllText(Application.dataPath + "/" + saveFile);
     SettingsData data = JsonUtility.FromJson<SettingsData>(json);
 
     AppManager.Instance.permission = data.permission;
     AppManager.Instance.languageIndex = data.languageIndex;
+    AppManager.Instance.location = data.location;
   }
 
   // For the permission setting. The parameters are given through the separate PermissionManager.cs script
@@ -99,8 +101,14 @@ public class SettingsManager : MonoBehaviour
   {
     if(inputField.GetComponent<TMP_InputField>().text != location)
     {
+      if(inputField.GetComponent<TMP_InputField>().text == "")
+      {
+        inputField.GetComponent<TMP_InputField>().text = "Timewise";
+      }
+      
       location = inputField.GetComponent<TMP_InputField>().text;
       locationName = location;
+      AppManager.Instance.location = locationName;
     }
   }
 

@@ -13,6 +13,7 @@ public class AppManager : MonoBehaviour
   // Data to be saved
   public bool permission = true;
   public int languageIndex;
+  public string location;
   public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Singleton

@@ -7,4 +7,6 @@ public class SettingsData
   public bool permission;
   // Which language the user has selected
   public int languageIndex;
+  // The location of the images
+  public string location;
 }

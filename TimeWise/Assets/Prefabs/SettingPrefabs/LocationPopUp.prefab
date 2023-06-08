@@ -508,6 +508,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4930446002577730117}
     m_Modifications:
+    - target: {fileID: 6571387108826330734, guid: 52af67c20ef41c44abb5d4d47b0fb1b9, type: 3}
+      propertyPath: m_text
+      value: Timewise
+      objectReference: {fileID: 0}
     - target: {fileID: 6571387109211480606, guid: 52af67c20ef41c44abb5d4d47b0fb1b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
