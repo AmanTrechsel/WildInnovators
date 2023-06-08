@@ -1,59 +1,4 @@
-<?php
-    session_start();
-    require_once 'constants.php';
-
-    $errors = [];
-
-    if ($_SERVER['REQUEST_METHOD'] == "POST")
-    {
-        // Check sign in
-        $username = filter_input(INPUT_POST, "username");
-        $password = filter_input(INPUT_POST, "password");
-
-        try
-        {
-            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
-
-            try
-            {
-                if (isset($_GET['register']))
-                {
-                    $stmt = $dbHandler->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password);");
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                    $stmt->bindParam("password", password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
-                    $stmt->execute();
-
-                    $_SESSION['username'] = $username;
-                }
-                else
-                {
-                    $stmt = $dbHandler->prepare("SELECT * FROM `users` WHERE `username` = :username");
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                    $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
-                    $stmt->execute();
-                    $stmt->fetch(PDO::FETCH_ASSOC);
-
-                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
-                    {
-                    $_SESSION['username'] = $username;
-                    }
-                    else
-                    {
-                    $errors[] = "Username or password is incorrect!";
-                    }
-                }
-            }
-            catch (Exception $ex)
-            {
-                $errors[] = $ex->getMessage();
-            }
-        }
-        catch (Exception $ex)
-        {
-            $errors[] = $ex->getMessage();
-        }
-    }
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +24,13 @@
             <h1>TimeWise: de kennis op je device</h1>
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
+        <div class="popup">
+            <button class="closeButton">&times;</button>
+            <h2>Contact gegevens</h2>
+            <p>Telefoonnummer: 06123456789</p>
+            <p>Adres: PostbodeLaan 168 Emmen</p>
+            <p>Postcode: 8901 NH Emmen</p>
+        </div>
         <div id="timeWiseLogo">
             <img src="./images/AppLogoPNG.png" alt="TimeWise">  
         </div>
@@ -104,7 +56,7 @@
             <nav>
                 <ul>
                     <li>Copyright</li>
-                    <li>Contact</li>
+                    <li><button id="openPopup">Contact</button></li>
                     <li><a href="policy.html">Policy</a></li>
                 </ul>
             </nav>

@@ -9,40 +9,20 @@
         // Check sign in
         $groupsName = filter_input(INPUT_POST, "groupsName");
         
-
         try
         {
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
 
             try
             {
-                if (isset($_GET['register']))
-                {
-                    $stmt = $dbHandler->prepare("INSERT INTO `users` (`username`, `password`) VALUES (:username, :password);");
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                    $stmt->bindParam("password", password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
-                    $stmt->execute();
+                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`) VALUES (:groupsName);");
+                $stmt->bindParam("groupsName", $groupsName, PDO::PARAM_STR);
+                $stmt->execute();
 
-                    $_SESSION['username'] = $username;
-                    header("Location: dashboard.php");
-                }
-                else
-                {
-                    $stmt = $dbHandler->prepare("SELECT * FROM `users` WHERE `username` = :username");
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                    $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
-                    $stmt->execute();
-                    $stmt->fetch(PDO::FETCH_ASSOC);
-
-                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
-                    {
-                      $_SESSION['username'] = $username;
-                      header("Location: dashboard.php");
-                    }
-                    else
-                    {
-                      $errors[] = "Username or password is incorrect!";
-                    }
+                if ($stmt->rowCount() > 0) {
+                    echo "hello";
+                } else {
+                    echo "no";
                 }
             }
             catch (Exception $ex)
@@ -83,7 +63,7 @@
                 <div class="loginprompt">
                     <h1>Group creëren</h1>
                 </div>
-                    <form method="POST" action="dashboard.php">
+                    <form method="POST" action="group.php">
                 <div class="loginprompt">
                     <h4>Groepsnaam</h4>
                 </div>
