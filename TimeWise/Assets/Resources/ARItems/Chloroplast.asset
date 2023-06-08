@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Chloroplast
   prefab: {fileID: 3386113112921686614, guid: f5818b8a8d41b6f4b88120fe221ad117, type: 3}
-  offsetPosition: {x: 64.7, y: 0, z: 74.3}
+  offsetPosition: {x: -200, y: 0, z: 400}
   offsetRotation: {x: -49.8, y: -64.4, z: -53.4}
-  offsetScale: {x: 130, y: 130, z: 130}
+  offsetScale: {x: 50, y: 50, z: 50}
   recenter: 0
