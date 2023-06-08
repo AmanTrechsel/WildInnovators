@@ -159,6 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.WildInnovators.TimeWise
+    Standalone: com.Wild-Innovators.TimeWise
   buildNumber:
     Standalone: 0
     iPhone: 0
