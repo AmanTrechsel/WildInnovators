@@ -4,7 +4,8 @@ using TMPro;
 
 public class ColorPickerControl : MonoBehaviour
 {
-  public float currentHue, currentSaturation, currentValue;
+  [SerializeField]
+  private MaterialEditor materialEditor;
   [SerializeField]
   private RawImage hueImage, satValImage, outputImage;
   [SerializeField]
@@ -14,8 +15,9 @@ public class ColorPickerControl : MonoBehaviour
   [SerializeField]
   private TMP_InputField hexInputField;
   [SerializeField]
-  SVImageControl sv;
+  private SVImageControl sv;
   private Texture2D hueTexture, svTexture, outputTexture;
+  private float currentHue, currentSaturation, currentValue;
 
   private void Start()
   {
@@ -81,6 +83,20 @@ public class ColorPickerControl : MonoBehaviour
     outputImage.texture = outputTexture;
   }
 
+  public void SetColor(Color newColor)
+  {
+    float hue;
+    float saturation;
+    float value;
+    Color.RGBToHSV(newColor, out hue, out saturation, out value);
+
+    currentHue = hue;
+    currentSaturation = saturation;
+    currentValue = value;
+
+    UpdateOutputImage();
+  }
+
   public Color CurrentColor()
   {
     return Color.HSVToRGB(currentHue, currentSaturation, currentValue);
@@ -98,6 +114,8 @@ public class ColorPickerControl : MonoBehaviour
     outputTexture.Apply();
 
     hexInputField.text = ColorUtility.ToHtmlStringRGB(currentColor);
+
+    materialEditor.SetColor(currentColor);
   }
 
   public void SetSV(float s, float v)

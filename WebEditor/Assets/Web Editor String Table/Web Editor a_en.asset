@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 229688455168
-    m_Localized: Color
+    m_Localized: Texture
     m_Metadata:
       m_Items: []
   - m_Id: 284453482496
@@ -60,6 +60,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1369066942464
     m_Localized: Enter name...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 696081004343296
+    m_Localized: Color
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721370308653056
+    m_Localized: Opacity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721552039456768
+    m_Localized: Metallic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721864527687680
+    m_Localized: Smoothness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 732979605254144
+    m_Localized: Materials
+    m_Metadata:
+      m_Items: []
+  - m_Id: 735611694592000
+    m_Localized: Save
     m_Metadata:
       m_Items: []
   references:

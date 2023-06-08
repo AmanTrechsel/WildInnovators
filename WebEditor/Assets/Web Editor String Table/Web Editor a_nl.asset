@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 229688455168
-    m_Localized: Kleur
+    m_Localized: Textuur
     m_Metadata:
       m_Items: []
   - m_Id: 284453482496
@@ -60,6 +60,30 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1369066942464
     m_Localized: Vul naam in...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 696081004343296
+    m_Localized: Kleur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721370308653056
+    m_Localized: Ondoorzichtigheid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721552039456768
+    m_Localized: Metaalachtig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 721864527687680
+    m_Localized: Gladheid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 732979605254144
+    m_Localized: Materialen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 735611694592000
+    m_Localized: Opslaan
     m_Metadata:
       m_Items: []
   references:

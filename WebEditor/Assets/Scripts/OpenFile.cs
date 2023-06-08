@@ -18,6 +18,10 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.IO;
 using System.Text;
 using System.Collections;
@@ -97,15 +101,14 @@ public class OpenFile : MonoBehaviour
       model.transform.localScale = new Vector3(-1, 1, 1); // set the position of parent model. Reverse X to show properly 
       DoublicateFaces();
 
-      // Remove old model and add new model to ModelEditor
-      ModelEditor.instance.RemoveModel();
-      ModelEditor.instance.model = model;
+      // Add new model to ModelEditor
+      ModelEditor.instance.AddModel(model);
     }
   }
 
   private IEnumerator OutputRoutineOpenTexture(string url)
   {
-    UnityWebRequest www = UnityWebRequest.Get(url);
+    UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
     yield return www.SendWebRequest();
     if (www.result != UnityWebRequest.Result.Success)
     {
@@ -114,11 +117,10 @@ public class OpenFile : MonoBehaviour
     else
     {
       //Load Texture
-      Texture2D texture = new Texture2D(2, 2);
-      texture.LoadImage(Encoding.UTF8.GetBytes(www.downloadHandler.text));
-      texture.Apply();
+      var texture = DownloadHandlerTexture.GetContent(www);
+      texture.name = Path.GetFileNameWithoutExtension(url);
 
-      ModelEditor.instance.uploadedTextures.Add(texture);
+      ModelEditor.instance.AddUploadedImage(texture);
     }
   }
 
