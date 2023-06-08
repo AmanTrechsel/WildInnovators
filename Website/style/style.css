@@ -113,6 +113,10 @@ nav{
     margin-top: -21vh;
 }
 
+#buttonHomePage{
+    grid-column: 2/5;
+}
+
 #aboutTimeWise{
     grid-column: 1/7;
     background-image: url("../images/middlePart.png");
@@ -364,7 +368,7 @@ input[type="password"]{
     margin-bottom: 10vh;
 }
 
-#quotes{
+#quoteContainer{
     grid-column: 1/7;
     margin-top: -45vh;
     margin-left: 44vw;
@@ -373,6 +377,7 @@ input[type="password"]{
     transform: rotate(8deg);
     z-index: -1;
     max-width:50vw;
+    color:#0F0F0F;
 }
 
 .buttonLogo{

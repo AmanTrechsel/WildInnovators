@@ -25,6 +25,7 @@
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
         <div class="popup">
+            <script src="./scripts/popup.js"></script>
             <button class="closeButton">&times;</button>
             <h2>Contact gegevens</h2>
             <p>Telefoonnummer: 06123456789</p>

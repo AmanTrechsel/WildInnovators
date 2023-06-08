@@ -40,7 +40,7 @@
             <h1>Welkom <?php echo $_SESSION['username']; ?></h1>
         </div>
         <div id="quotes">
-            <p>Lorum Ipsum Dolor Sit Amet Consectetur Adipiscing Elit</p>
+            <script src="scripts/quotes.js"></script>
         </div>
         <div id="quote">
             <img src="./images/balk.png" alt="quote">
