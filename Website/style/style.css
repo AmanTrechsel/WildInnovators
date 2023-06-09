@@ -424,9 +424,20 @@ input[type="password"]{
 
 
 /* ----Creating group---- */
-#groupForm{
+#createGroup{
     grid-column: 3/5;
     display: flex;
     flex-direction: column;
     text-align: center;
+
+}
+
+#createButton{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 12vw;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
 }
