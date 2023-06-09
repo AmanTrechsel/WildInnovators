@@ -60,7 +60,7 @@
             <nav>
                 <ul>
                     <li><a id="NavText" href="#">Home</a></li>
-                    <li><a href="handleiding.html">Handleiding</a></li>
+                    <li><a href="handleiding.php">Handleiding</a></li>
                     <li><a href="inlog.php">Login</a></li>
                 </ul>
             </nav>
@@ -81,12 +81,12 @@
                     <h4>Onderdelen</h4>
                 </div>
                 <div class="loginprompt">
-                    <input type="checkbox" id="lesson1" name="lesson1" value="lesson1">
-                    <label for="lesson1">Placeholder</label></p>
-                    <input type="checkbox" id="lesson2" name="lesson2" value="lesson2">
-                    <label for="lesson2">Placeholder</label></p>
-                    <input type="checkbox" id="lesson3" name="lesson3" value="lesson3">
-                    <label for="lesson3">Placholder</label></p>
+                    <input type="checkbox" id="biology" name="biology" value="biology">
+                    <label for="biology">Biologie</label></p>
+                    <input type="checkbox" id="geography" name="geography" value="geography">
+                    <label for="geography">Aardrijkskunde</label></p>
+                    <input type="checkbox" id="history" name="history" value="history">
+                    <label for="history">Geschiedenis</label></p>
                 </div>
                 <div class="loginprompt">
                     <input type="submit" name="createGroup" value="Creëer">
