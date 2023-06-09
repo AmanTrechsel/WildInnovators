@@ -1,3 +1,34 @@
+<?php
+    session_start();
+    require_once 'constants.php';
+
+    $errors = [];
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        // Check sign in
+
+        try
+        {
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+
+            try
+            {
+                $stmt = $dbHandler->prepare("INSERT INTO  `` (``, ``, ``) VALUES (:, :, :);");
+                $stmt->execute();
+            }
+            catch (Exception $ex)
+            {
+                $errors[] = $ex->getMessage();
+            }
+        }
+        catch (Exception $ex)
+        {
+            $errors[] = $ex->getMessage();
+        }
+    }
+?>  
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +68,20 @@
             </div>
             <div class="loginprompt">
                 <div>
-                    <input type="checkbox" id="biology" name="subject[]" value="biology">
-                    <label for="biology">Biologie</label></p>
-                    <input type="checkbox" id="geography" name="subject[]" value="geography">
-                    <label for="geography">Aardrijkskunde</label></p>
-                    <input type="checkbox" id="history" name="subject[]" value="history">
-                    <label for="history">Geschiedenis</label></p>
+                    <label for="groups">Kies een groep:</label>
+                    <select name="groups" id="groups">
+                        <?php
+                            $stmt = $dbHandler->prepare("SELECT * FROM `groups` WHERE `username` = :username");
+                            $stmt->bindParam("username", $username, PDO::PARAM_STR);
+                            $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
+                            $stmt->execute();
+                            $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach(){
+                                echo '<option value=""></option>'
+                            }
+                        ?>
+                    </select>
                 </div>
             </div>
             <div class="loginprompt">
