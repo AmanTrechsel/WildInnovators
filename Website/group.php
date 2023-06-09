@@ -16,7 +16,7 @@
             try
             {
                 $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`) VALUES (:groupName);");
-                $stmt->bindParam("groupsName", $groupName, PDO::PARAM_STR);
+                $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR);
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
