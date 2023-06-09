@@ -19,6 +19,37 @@
                 </ul>
             </nav>
         </header>
+        <main>
+        </main>
+        <div id="createGroup">
+            <div class="loginprompt">
+                <h1>Les creëren</h1>
+            </div>
+            <form method="POST" action="#">
+            <div class="loginprompt">
+                <h4>Lesnaam</h4>
+            </div>
+            <div class="loginprompt">
+                <input type="text" id="lessonName" name="lessonName" placeholder="Mijn lesnaam..." required>
+            </div>
+            <div class="loginprompt">
+                <h4>Selecteer een groep</h4>
+            </div>
+            <div class="loginprompt">
+                <div>
+                    <input type="checkbox" id="biology" name="subject[]" value="biology">
+                    <label for="biology">Biologie</label></p>
+                    <input type="checkbox" id="geography" name="subject[]" value="geography">
+                    <label for="geography">Aardrijkskunde</label></p>
+                    <input type="checkbox" id="history" name="subject[]" value="history">
+                    <label for="history">Geschiedenis</label></p>
+                </div>
+            </div>
+            <div class="loginprompt">
+                <input type="submit" id="createButton" name="createGroup" value="Creëer">
+            </div>
+            </form>
+        </div>
         <footer>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>

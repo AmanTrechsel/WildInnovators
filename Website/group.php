@@ -20,16 +20,19 @@
     {
         // Check sign in
         $groupName = filter_input(INPUT_POST, "groupName");
+        $subjects = filter_input(INPUT_POST, 'subject', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         
+        $subject = implode(", ", $subjects);
         try
         {
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
 
             try
             {
-                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`) VALUES (:groupName, :groupCode);");
+                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`, `subjects`) VALUES (:groupName, :groupCode, :subjects);");
                 $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR);
                 $stmt->bindParam("groupCode", $groupCode, PDO::PARAM_STR);
+                $stmt->bindParam("subjects", $subject, PDO::PARAM_STR);
                 $stmt->execute();
             }
             catch (Exception $ex)
@@ -66,36 +69,37 @@
             </nav>
         </header>
         <main>
-            <div id="createGroup">
-                <div class="loginprompt">
-                    <h1>Groep creëren</h1>
-                </div>
-                <form method="POST" action="#">
-                <div class="loginprompt">
-                    <h4>Groepsnaam</h4>
-                </div>
-                <div class="loginprompt">
-                    <input type="text" id="groupName" name="groupName" placeholder="Mijn groepsnaam..." required>
-                </div>
-                <div class="loginprompt">
-                    <h4>Onderdelen</h4>
-                </div>
-                <div class="loginprompt">
-                    <div>
-                        <input type="checkbox" id="biology" name="biology" value="biology">
-                        <label for="biology">Biologie</label></p>
-                        <input type="checkbox" id="geography" name="geography" value="geography">
-                        <label for="geography">Aardrijkskunde</label></p>
-                        <input type="checkbox" id="history" name="history" value="history">
-                        <label for="history">Geschiedenis</label></p>
-                    </div>
-                </div>
-                <div class="loginprompt">
-                    <input type="submit" id="createButton" name="createGroup" value="Creëer">
-                </div>
-                </form>
-            </div>
         </main>
+        <div id="createGroup">
+            <div class="loginprompt">
+                <h1>Groep creëren</h1>
+            </div>
+            <form method="POST" action="#">
+            <div class="loginprompt">
+                <h4>Groepsnaam</h4>
+            </div>
+            <div class="loginprompt">
+                <input type="text" id="groupName" name="groupName" placeholder="Mijn groepsnaam..." required>
+            </div>
+            <div class="loginprompt">
+                <h4>Onderdelen</h4>
+            </div>
+            <div class="loginprompt">
+                <div>
+                    <input type="checkbox" id="biology" name="subject[]" value="biology">
+                    <label for="biology">Biologie</label></p>
+                    <input type="checkbox" id="geography" name="subject[]" value="geography">
+                    <label for="geography">Aardrijkskunde</label></p>
+                    <input type="checkbox" id="history" name="subject[]" value="history">
+                    <label for="history">Geschiedenis</label></p>
+                </div>
+            </div>
+            <div class="loginprompt">
+                <input type="submit" id="createButton" name="createGroup" value="Creëer">
+            </div>
+            </form>
+        </div>
+       
         <footer>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
