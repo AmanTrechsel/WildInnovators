@@ -29,6 +29,8 @@ public class MaterialButton : MonoBehaviour
   public void UpdateThumbnail()
   {
     Texture2D texture = _material.mainTexture as Texture2D;//AssetPreview.GetAssetPreview(_material);
+    if (texture == null) { texture = new Texture2D(1,1); }
     previewImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    previewImage.color = _material.GetColor("_Color");
   }
 }

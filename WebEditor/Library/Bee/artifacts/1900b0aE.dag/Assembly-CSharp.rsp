@@ -105,7 +105,6 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
--define:UNITY_PRO_LICENSE
 -define:ENABLE_CUSTOM_RENDER_TEXTURE
 -define:ENABLE_DIRECTOR
 -define:ENABLE_LOCALIZATION
@@ -117,22 +116,6 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"Assets/Firebase/Plugins/Firebase.Analytics.dll"
--r:"Assets/Firebase/Plugins/Firebase.App.dll"
--r:"Assets/Firebase/Plugins/Firebase.AppCheck.dll"
--r:"Assets/Firebase/Plugins/Firebase.Auth.dll"
--r:"Assets/Firebase/Plugins/Firebase.Crashlytics.dll"
--r:"Assets/Firebase/Plugins/Firebase.Database.dll"
--r:"Assets/Firebase/Plugins/Firebase.DynamicLinks.dll"
--r:"Assets/Firebase/Plugins/Firebase.Firestore.dll"
--r:"Assets/Firebase/Plugins/Firebase.Functions.dll"
--r:"Assets/Firebase/Plugins/Firebase.Installations.dll"
--r:"Assets/Firebase/Plugins/Firebase.Messaging.dll"
--r:"Assets/Firebase/Plugins/Firebase.Platform.dll"
--r:"Assets/Firebase/Plugins/Firebase.RemoteConfig.dll"
--r:"Assets/Firebase/Plugins/Firebase.Storage.dll"
--r:"Assets/Firebase/Plugins/Firebase.TaskExtension.dll"
--r:"Assets/Firebase/Plugins/Google.MiniJson.dll"
 -r:"Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll"
 -r:"Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.23f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -344,9 +327,6 @@
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.1.0/Runtime/Newtonsoft.Json.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.testtools.codecoverage@1.2.2/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
--r:"Library/Bee/artifacts/1900b0aE.dag/FirebaseMessagingActivityGenerator.ref.dll"
--r:"Library/Bee/artifacts/1900b0aE.dag/NativeFilePicker.Editor.ref.dll"
--r:"Library/Bee/artifacts/1900b0aE.dag/NativeFilePicker.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Addressables.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Addressables.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
@@ -407,8 +387,8 @@
 "Assets/Scripts/ModelEditor.cs"
 "Assets/Scripts/NumberInputModify.cs"
 "Assets/Scripts/OpenFile.cs"
+"Assets/Scripts/SerializedData.cs"
 "Assets/Scripts/SVImageControl.cs"
-"Assets/Scripts/UnityPackageHelper.cs"
 "Assets/StandaloneFileBrowser/IStandaloneFileBrowser.cs"
 "Assets/StandaloneFileBrowser/StandaloneFileBrowser.cs"
 "Assets/StandaloneFileBrowser/StandaloneFileBrowserEditor.cs"

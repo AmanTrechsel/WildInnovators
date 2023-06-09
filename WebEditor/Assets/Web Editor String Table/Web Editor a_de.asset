@@ -86,6 +86,10 @@ MonoBehaviour:
     m_Localized: Speichern
     m_Metadata:
       m_Items: []
+  - m_Id: 1008679000764416
+    m_Localized: "Abschlie\xDFen"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

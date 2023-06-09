@@ -51,10 +51,10 @@ public class MaterialEditor : MonoBehaviour
   {
     if (textureIndex == 0)
     {
-      material.mainTexture = null;
+      material.SetTexture("_MainTex", null);
       return;
     }
-    material.mainTexture = ModelEditor.instance.uploadedTextures[textureIndex-1];
+    material.SetTexture("_MainTex", ModelEditor.instance.uploadedTextures[textureIndex-1]);
   }
   
   public void SetColor(Color color)

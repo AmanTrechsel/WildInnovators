@@ -99,7 +99,7 @@ public class OpenFile : MonoBehaviour
       }
       model = new OBJLoader().Load(textStream);
       model.transform.localScale = new Vector3(-1, 1, 1); // set the position of parent model. Reverse X to show properly 
-      DoublicateFaces();
+      //DoublicateFaces();
 
       // Add new model to ModelEditor
       ModelEditor.instance.AddModel(model);

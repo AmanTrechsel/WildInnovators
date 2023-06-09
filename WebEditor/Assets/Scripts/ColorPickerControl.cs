@@ -106,6 +106,8 @@ public class ColorPickerControl : MonoBehaviour
   {
     Color currentColor = CurrentColor();
 
+    if (outputTexture == null) { CreateOutputImage(); }
+    
     for(int i = 0; i < outputTexture.height; i++)
     {
       outputTexture.SetPixel(0, i, currentColor);

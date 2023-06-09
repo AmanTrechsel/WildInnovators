@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class ModelEditor : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class ModelEditor : MonoBehaviour
   [SerializeField]
   private List<TMP_Dropdown> textureDropdowns;
   [SerializeField]
+  private TMP_InputField inputName;
+  [SerializeField]
   private TMP_InputField inputPositionX, inputPositionY, inputPositionZ;
   [SerializeField]
   private TMP_InputField inputRotationX, inputRotationY, inputRotationZ;
@@ -29,6 +32,7 @@ public class ModelEditor : MonoBehaviour
   private TMP_InputField inputScaleX, inputScaleY, inputScaleZ;
 
   private List<MaterialButton> _materialButtons = new List<MaterialButton>();
+  private Shader defaultShader;
 
   private void Awake()
   {
@@ -40,6 +44,8 @@ public class ModelEditor : MonoBehaviour
     {
       Destroy(gameObject);
     }
+
+    defaultShader = Shader.Find("Standard");
   }
 
   private void Update()
@@ -50,6 +56,29 @@ public class ModelEditor : MonoBehaviour
       model.transform.rotation = Quaternion.Euler(float.Parse(inputRotationX.text), float.Parse(inputRotationY.text), float.Parse(inputRotationZ.text));
       model.transform.localScale = new Vector3(float.Parse(inputScaleX.text), float.Parse(inputScaleY.text), float.Parse(inputScaleZ.text));
     }  
+  }
+
+  public void Finalize()
+  {
+    Mesh mesh = model.GetComponentInChildren<MeshFilter>().mesh;
+    List<Texture2D> images = new List<Texture2D>();
+    List<Color> colors = new List<Color>();
+    List<float> metallics = new List<float>();
+    List<float> smoothnesses = new List<float>();
+
+    foreach (MeshRenderer meshRenderer in model.GetComponentsInChildren<MeshRenderer>())
+    {
+      foreach (Material material in meshRenderer.materials)
+      {
+        images.Add(material.GetTexture("_MainTex") as Texture2D);
+        colors.Add(material.color);
+        metallics.Add(material.GetFloat("_Metallic"));
+        smoothnesses.Add(material.GetFloat("_Glossiness"));
+      }
+    }
+
+    SerializedData data = SerializedData.Create(inputName.text, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, mesh.vertices, mesh.uv,mesh.triangles, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray());
+    File.WriteAllText(Application.dataPath + "/Model.json", JsonUtility.ToJson(data));
   }
 
   public void AddModel(GameObject addedModel)
@@ -68,6 +97,7 @@ public class ModelEditor : MonoBehaviour
     {
       foreach (Material material in meshRenderer.materials)
       {
+        material.shader = defaultShader;
         GameObject materialButton = Instantiate(materialButtonPrefab);
         MaterialButton materialButtonComponent = materialButton.GetComponent<MaterialButton>();
         materialButtonComponent.SetMaterial(material);

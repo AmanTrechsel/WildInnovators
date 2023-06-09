@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: Save
     m_Metadata:
       m_Items: []
+  - m_Id: 1008679000764416
+    m_Key: Finish
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
