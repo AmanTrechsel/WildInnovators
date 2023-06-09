@@ -1,7 +1,7 @@
-document.querySelector("#openPopup").addEventListener("click", function(){
-    document.body.classList.add("active-popup");
-});
+function popupOpen(){
+document.body.classList.add("active-popup");
+}
 
-document.querySelector(".popup .closeButton").addEventListener("click", function(){
-    document.body.classList.remove("active-popup");
-});
+function popupClose(){
+document.body.classList.remove("active-popup");
+}

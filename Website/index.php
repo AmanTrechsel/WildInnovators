@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
+    <script src="scripts/popup.js"></script>
     <title>Wild Innovators</title>
 </head>
 <body>
@@ -25,8 +26,7 @@
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
         <div class="popup">
-            <script src="./scripts/popup.js"></script>
-            <button class="closeButton">&times;</button>
+            <button onclick = "popupClose()" class="closeButton">&times;</button>
             <h2>Contact gegevens</h2>
             <p>Telefoonnummer: 06123456789</p>
             <p>Adres: PostbodeLaan 168 Emmen</p>
@@ -34,6 +34,12 @@
         </div>
         <div id="timeWiseLogo">
             <img src="./images/AppLogoPNG.png" alt="TimeWise">  
+        </div>
+        <div id="buttonHomePage">
+            <form  id="login" method="GET" action="inlog.php">
+                <input class="buttonDashboard" type="submit" name="register" value="Naar Login Pagina">                    
+            </form>
+            <button onclick = "popupOpen()" id="openPopup">Contact</button>
         </div>
         <div id="aboutTimeWise">
             <div id="aboutTimeWisetext">

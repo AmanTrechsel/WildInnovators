@@ -25,7 +25,7 @@
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
         <div class="popup">
-            <button class="closeButton">&times;</button>
+            <button onclick = "popupClose()" class="closeButton">&times;</button>
             <h2>Contact gegevens</h2>
             <p>Telefoonnummer: 06123456789</p>
             <p>Adres: PostbodeLaan 168 Emmen</p>
@@ -38,6 +38,7 @@
             <form  id="login" method="GET" action="inlog.php">
                 <input class="buttonDashboard" type="submit" name="register" value="Naar Login Pagina">                    
             </form>
+            <button onclick = "popupOpen()" id="openPopup">Contact</button>
         </div>
         <div id="aboutTimeWise">
             <div id="aboutTimeWisetext">

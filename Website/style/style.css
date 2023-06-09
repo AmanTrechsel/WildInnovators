@@ -115,6 +115,19 @@ nav{
 
 #buttonHomePage{
     grid-column: 2/5;
+    display: flex;
+    margin-top: 2vh;
+}
+
+#openPopup{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 20vw;
+    height: 8vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10vw;
 }
 
 #aboutTimeWise{
@@ -177,16 +190,16 @@ nav{
 
 .popup{
     position: absolute;
-    top: -100%;
-    left: 50%;
+    top: 80%;
+    left: 50%; 
     transform: translate(-50%, -50%);
-    width: 98%;
+    width: 50%;
     max-width: 600px;
     padding: 20px;
     background-color: #F06500;
     border-radius: 10px;
     box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.1);
-    margin-top: -25px;
+    margin-top: 50px;
     opacity: 0;
     color: #f9f9f9; 
     -webkit-text-stroke: 1px #0F0F0F;
@@ -201,8 +214,8 @@ nav{
 
 .popup .closeButton{
     position: absolute;
-    top: -5px;
-    right: 10px;
+    top: -4px;
+    right: 11px;
     width: 20px;
     height: 20px;
     background: #f9f9f9;
@@ -217,14 +230,14 @@ body.active-popup{
     overflow: hidden;
 }
 
-body.active-popup main{
+body.active-popup body{
     filter: blur(5px);
     background: rgba(0,0,0,0.08);
     transition: filter 0ms ease-in-out 0ms;
 }
 
 body.active-popup .popup{
-    top: 50%;
+    top: 100%;
     opacity: 1;
     margin-top: 0px;
     transition: top 0ms ease-in-out 0ms,
