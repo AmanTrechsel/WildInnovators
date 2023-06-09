@@ -39,7 +39,7 @@
         <div id="welkom">
             <h1>Welkom <?php echo $_SESSION['username']; ?></h1>
         </div>
-        <div id="quotes">
+        <div id="quoteContainer">
             <script src="scripts/quotes.js"></script>
         </div>
         <div id="quote">
