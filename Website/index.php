@@ -26,7 +26,7 @@
         <?php } 
         else{
         ?>
-                <header>
+        <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>

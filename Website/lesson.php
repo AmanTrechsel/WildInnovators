@@ -14,7 +14,7 @@
             <nav>
                 <ul>
                     <li><a id="NavText" href="#">Home</a></li>
-                    <li><a href="handleiding.html">Handleiding</a></li>
+                    <li><a href="handleiding.php">Handleiding</a></li>
                     <li><a href="inlog.php">Login</a></li>
                 </ul>
             </nav>
