@@ -14,7 +14,7 @@
         return $randomString;
     }
 
-    var_dump($randomString);
+    $groupCode = generateRandomString();
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
@@ -27,15 +27,10 @@
 
             try
             {
-                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`) VALUES (:groupName);");
+                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`) VALUES (:groupName, :groupCode);");
                 $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR);
+                $stmt->bindParam("groupCode", $groupCode, PDO::PARAM_STR);
                 $stmt->execute();
-
-                if ($stmt->rowCount() > 0) {
-                    echo "hello";
-                } else {
-                    echo "no";
-                }
             }
             catch (Exception $ex)
             {
@@ -73,7 +68,7 @@
         <main>
             <div id="createGroup">
                 <div class="loginprompt">
-                    <h1>Group creëren</h1>
+                    <h1>Groep creëren</h1>
                 </div>
                 <form method="POST" action="#">
                 <div class="loginprompt">
