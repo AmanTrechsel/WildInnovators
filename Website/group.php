@@ -7,7 +7,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         // Check sign in
-        $groupsName = filter_input(INPUT_POST, "groupsName");
+        $groupName = filter_input(INPUT_POST, "groupsName");
         
         try
         {
@@ -15,8 +15,8 @@
 
             try
             {
-                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`) VALUES (:groupsName);");
-                $stmt->bindParam("groupsName", $groupsName, PDO::PARAM_STR);
+                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`) VALUES (:groupName);");
+                $stmt->bindParam("groupsName", $groupName, PDO::PARAM_STR);
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
@@ -68,17 +68,17 @@
                     <h4>Groepsnaam</h4>
                 </div>
                 <div class="loginprompt">
-                    <p><input type="text" name="groupsName" placeholder="Mijn groepsnaam..."></p>
+                    <input type="text" id="groupName" name="groupName" value="groupName" placeholder="Mijn groepsnaam...">
                 </div>
                 <div class="loginprompt">
                     <h4>Onderdelen</h4>
                 </div>
                 <div class="loginprompt">
-                    <p><input type="checkbox" id="lesson1" name="lesson1" value="lesson1">
+                    <input type="checkbox" id="lesson1" name="lesson1" value="lesson1">
                     <label for="lesson1">Placeholder</label></p>
-                    <p><input type="checkbox" id="lesson2" name="lesson2" value="lesson2">
+                    <input type="checkbox" id="lesson2" name="lesson2" value="lesson2">
                     <label for="lesson2">Placeholder</label></p>
-                    <p><input type="checkbox" id="lesson3" name="lesson3" value="lesson3">
+                    <input type="checkbox" id="lesson3" name="lesson3" value="lesson3">
                     <label for="lesson3">Placholder</label></p>
                 </div>
                 <div class="loginprompt">
