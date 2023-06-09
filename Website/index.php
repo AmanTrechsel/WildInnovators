@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="mainContainer">
+        <?php if ($_SESSION['username'] == NULL){?>
         <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
@@ -21,6 +22,22 @@
                 </ul>
             </nav>
         </header>
+        
+        <?php } 
+        else{
+        ?>
+                <header>
+            <img src="./images/LogoGroepjeWhite.png">
+            <nav>
+                <ul>
+                    <li><a id="NavText" href="#">Home</a></li>
+                    <li><a href="handleiding.html">Handleiding</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+        <?php }
+        ?>
         <main>
             <h1>TimeWise: de kennis op je device</h1>
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
