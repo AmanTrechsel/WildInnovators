@@ -63,12 +63,12 @@
                 <div class="loginprompt">
                     <h1>Group creëren</h1>
                 </div>
-                    <form method="POST" action="group.php">
+                    <form method="POST" action="#">
                 <div class="loginprompt">
                     <h4>Groepsnaam</h4>
                 </div>
                 <div class="loginprompt">
-                    <input type="text" id="groupName" name="groupName" value="groupName" placeholder="Mijn groepsnaam...">
+                    <input type="text" id="groupName" name="groupName" placeholder="Mijn groepsnaam..." required>
                 </div>
                 <div class="loginprompt">
                     <h4>Onderdelen</h4>
