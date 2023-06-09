@@ -7,7 +7,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         // Check sign in
-        $groupName = filter_input(INPUT_POST, "groupsName");
+        $groupName = filter_input(INPUT_POST, "groupName");
         
         try
         {
@@ -63,7 +63,7 @@
                 <div class="loginprompt">
                     <h1>Group creëren</h1>
                 </div>
-                    <form method="POST" action="#">
+                <form method="POST" action="#">
                 <div class="loginprompt">
                     <h4>Groepsnaam</h4>
                 </div>
