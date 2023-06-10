@@ -78,7 +78,10 @@ public class ModelEditor : MonoBehaviour
     }
 
     SerializedData data = SerializedData.Create(inputName.text, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, mesh.vertices, mesh.uv,mesh.triangles, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray());
-    File.WriteAllText(Application.dataPath + "/Model.json", JsonUtility.ToJson(data));
+    string json = JsonUtility.ToJson(data);
+    File.WriteAllText(Application.dataPath + "/Model.json", json);
+
+    SerializedData.Reconstruct(JsonUtility.FromJson(json, typeof(SerializedData)) as SerializedData);
   }
 
   public void AddModel(GameObject addedModel)
