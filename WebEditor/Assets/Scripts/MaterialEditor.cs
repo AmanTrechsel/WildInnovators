@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MaterialEditor : MonoBehaviour
 {
+  // Reference to the material
   [HideInInspector]
   public Material material;
 
+  // Reference to material property fields
   [SerializeField]
   private CustomSlider _opacitySlider, _metallicSlider, _smoothnessSlider;
   [SerializeField]
@@ -14,28 +16,28 @@ public class MaterialEditor : MonoBehaviour
   [SerializeField]
   private ColorPickerControl _colorPicker;
 
+  // Reset the material properties
   public void ResetInputs()
   {
+    // Make the material opaque
     // From https://answers.unity.com/questions/1004666/change-material-rendering-mode-in-runtime.html
     material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
     material.DisableKeyword("_ALPHATEST_ON");
     material.DisableKeyword("_ALPHABLEND_ON");
     material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-    if (material.color.a < 1)
-    {
-      SetTransparent();
-    }
-    else 
-    {
-      SetOpaque();
-    }
 
+    // Set the material to be opaque or transparent based on the alpha value
+    if (material.color.a < 1) { SetTransparent(); }
+    else { SetOpaque(); }
+
+    // Reset the material properties
     _opacitySlider.value = material.color.a;
     _metallicSlider.value = material.GetFloat("_Metallic");
     _smoothnessSlider.value = material.GetFloat("_Glossiness");
     _colorPicker.SetColor(material.color);
     _colorPicker.UpdatePicker(material.color);
 
+    // Set the texture dropdown to the correct value
     foreach (Texture2D texture in ModelEditor.instance.uploadedTextures)
     {
       if (texture == material.mainTexture)
@@ -47,39 +49,45 @@ public class MaterialEditor : MonoBehaviour
     _textureDropdown.value = 0;
   }
 
+  // Set the material's texture
   public void SetTexture(int textureIndex)
   {
+    // Check if the texture index is 0 (no texture)
     if (textureIndex == 0)
     {
+      // Set the texture to null
       material.SetTexture("_MainTex", null);
       return;
     }
+
+    // Set the texture to the selected texture
     material.SetTexture("_MainTex", ModelEditor.instance.uploadedTextures[textureIndex-1]);
   }
   
+  // Set the material's color
   public void SetColor(Color color)
   {
     material.color = color;
   }
 
+  // Set the material's opacity
   public void SetOpacity(float opacity)
   {
-    if (material.color.a == 1 && opacity < 1)
-    {
-      SetTransparent();
-    }
-    else if (material.color.a < 1 && opacity == 1)
-    {
-      SetOpaque();
-    }
+    // Set the material to be opaque or transparent based on the alpha value
+    if (material.color.a == 1 && opacity < 1) { SetTransparent(); }
+    else if (material.color.a < 1 && opacity == 1) { SetOpaque(); }
+
+    // Set the opacity of the material
     material.color = new Color(material.color.r, material.color.g, material.color.b, opacity);
   }
 
+  // Set the material's metallic
   public void SetMetallic(float metallic)
   {
     material.SetFloat("_Metallic", metallic);
   }
 
+  // Set the material's smoothness
   public void SetSmoothness(float smoothness)
   {
     material.SetFloat("_Glossiness", smoothness);
