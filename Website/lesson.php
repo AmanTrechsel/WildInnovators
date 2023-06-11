@@ -46,7 +46,7 @@
                 <ul>
                     <li><a id="NavText" href="#">Home</a></li>
                     <li><a href="handleiding.php">Handleiding</a></li>
-                    <li><a href="inlog.php">Login</a></li>
+                    <li><a id="NavText" href="dashboard.php">dashboard</a></li>
                 </ul>
             </nav>
         </header>
