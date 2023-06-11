@@ -21,14 +21,14 @@ public class ClickObject : MonoBehaviour
   private List<GameObject> loadedObjects;
 
   // Defining some lists for positions and distances of every 3D model in the scene
-  private List<Vector3> objectPositions;
+  private List<Vector2> objectPositions;
   private List<float> distances;
 
   void Start()
   {
     // Creating the lists
     loadedObjects = ARCursor.Instance.arRepositionObjects;
-    objectPositions = new List<Vector3>();
+    objectPositions = new List<Vector2>();
     distances = new List<float>();
   }
 
