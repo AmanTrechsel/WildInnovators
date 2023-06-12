@@ -82,7 +82,7 @@
 
                                 foreach($results as $result){
                                     var_dump($result);
-                                    echo "<option value='groupID' id='groupID'>$result</option>";
+                                    echo "<option value='groupID' id='groupID'>.$result[groupId].</option>";
                                 }
                                 }
                                 catch (Exception $ex)
