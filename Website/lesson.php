@@ -86,6 +86,7 @@
 
                                 foreach($results as $result){
                                     echo "<option value='groupID' id='groupID'>$result</option>";
+                                    var_dump($result);
                                 }
                                 }
                                 catch (Exception $ex)
@@ -113,7 +114,10 @@
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 foreach($results as $result){
-                                    echo "<option value='subject' id='subject'>$result</option>";
+                                    $subjectresult = implode(", ", $result);
+                                    echo "<option value='subject' id='subject'>$subjectresult</option>";
+                                    var_dump($result);
+                                    var_dump($subjectresult);
                                 }
                             ?>
                         </select>
