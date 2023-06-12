@@ -112,12 +112,11 @@
                                 $stmt->bindParam("username", $username, PDO::PARAM_STR);
                                 $stmt->execute();
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+                                
                                 foreach($results as $result){
-                                    $subjectresult = implode(", ", $result);
+                                    foreach($result as $subjectresult){
                                     echo "<option value='subject' id='subject'>$subjectresult</option>";
-                                    var_dump($result);
-                                    var_dump($subjectresult);
+                                    }
                                 }
                             ?>
                         </select>
