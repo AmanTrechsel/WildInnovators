@@ -278,13 +278,13 @@ public class ModelEditor : MonoBehaviour
     // Open the connection
     connection.Open();
 
-    // Create a new command
-    MySqlCommand writeCommand = new MySqlCommand("INSERT INTO my_table (jasonFile) VALUES ();", connection);
+    // Create a new command to write the json to the database
+    MySqlCommand writeCommand = new MySqlCommand($"INSERT INTO models (jasonFile) VALUES ({json});", connection);
 
     // Execute the command
     writeCommand.ExecuteNonQuery();
 
-    // Create a new command
+    // Create a new command to read the id of the model
     MySqlCommand readCommand = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
 
     // Execute the command
