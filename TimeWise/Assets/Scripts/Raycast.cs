@@ -42,7 +42,7 @@ public class Raycast : MonoBehaviour
     {
       List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-      if(raycastManager.Raycast(touch.position, hits, TrackableType.AllTypes))
+      if(raycastManager.Raycast(touch.position, hits))
       {
         foreach(ARRaycastHit hit in hits)
         {
@@ -51,7 +51,7 @@ public class Raycast : MonoBehaviour
           {
             if(Vector2.Distance(objectPosition, rayPosition) <= range)
             {
-            question.SetActive(true);
+              question.SetActive(true);
             }
           }
         }

@@ -1580,7 +1580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380042662}
   - component: {fileID: 380042661}
-  - component: {fileID: 380042664}
+  - component: {fileID: 380042663}
   m_Layer: 0
   m_Name: ARManager
   m_TagString: Untagged
@@ -1628,7 +1628,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &380042664
+--- !u!114 &380042663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1637,10 +1637,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 380042660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de29e09f02c6fa4a852d5fc6f5ba28e, type: 3}
+  m_Script: {fileID: 11500000, guid: 70d52daed45b05b4ba6d46b20d020948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastManager: {fileID: 317706037}
   cam: {fileID: 1302903668}
   question: {fileID: 902727248}
   loadedObjects: []
