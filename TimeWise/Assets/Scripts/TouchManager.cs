@@ -11,35 +11,33 @@ public class TouchManager : MonoBehaviour
   private GameObject question;
   [SerializeField]
   private Transform parent;
-
+  // reference
   private PlayerInput playerInput;
-
-  // private InputAction positionAction; 
+  // reference in TouchAction (Input Actions)
   private InputAction pressAction;
 
   void Awake()
   {
     playerInput = GetComponent<PlayerInput>();
-    // positionAction = playerInput.actions["TouchPosition"];
+
     pressAction = playerInput.actions["TouchPress"];
   }
 
+  // This is an event to check if a value is being pressed
   void OnEnable()
   {
     pressAction.performed += TouchPressed;
   }
 
+  // This is an event to check is a value is not being pressed
   void OnDisable()
   {
     pressAction.performed -= TouchPressed;
   }
 
+  // When this method is getting called, it will show a pop-up with the corresponding question
   void TouchPressed(InputAction.CallbackContext context)
   {
-    // Vector3 position = Camera.main.ScreenToWorldPoint(positionAction.ReadValue<Vector2>());
-    // position.z = model.transform.position.z;
-    // model.transform.position = position;
-
     Instantiate(question, question.transform.position, question.transform.rotation, parent);
   }
 
