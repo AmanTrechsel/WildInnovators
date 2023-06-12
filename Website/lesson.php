@@ -82,9 +82,9 @@
                                     $stmt->bindParam("username", $username, PDO::PARAM_STR);
                                     $stmt->execute();
                                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    var_dump($results);
 
                                     foreach($results as $result){
-                                        var_dump($result);
                                         echo "<option value='groupID' id='groupID'>.$result[groupId].</option>";
                                     }
                                     }
