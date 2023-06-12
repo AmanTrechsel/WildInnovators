@@ -72,32 +72,26 @@
                     <div>
                         <label for="groups">Kies een groep:</label>
                         <select name="groups" id="groups">
+                        <option value='groupID' id='groupID'>
                             <?php
-                                try{
-                                    $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
-                                
-                                    try
-                                    {
-                                    $stmt = $dbHandler->prepare("SELECT `groupId` FROM `groups` WHERE `username` = :username");
-                                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                                    $stmt->execute();
-                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    var_dump($results);
-
-                                    foreach($results as $result){
-                                        echo "<option value='groupID' id='groupID'>.$result[groupId].</option>";
-                                    }
-                                    }
-                                    catch (Exception $ex)
-                                    {
-                                        $errors[] = $ex->getMessage();
-                                    }
+                            try {
+                                $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+                                $dbHandler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            
+                                $stmt = $dbHandler->prepare("SELECT `name` FROM `groups` WHERE `username` = :username");
+                                $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+                                $stmt->execute();
+                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            
+                                foreach ($results as $result) {
+                                    echo $result["name"];
                                 }
-                                catch (Exception $ex)
-                                {
-                                    $errors[] = $ex->getMessage();
-                                }
+                            } catch (PDOException $ex) {
+                                $errors[] = $ex->getMessage();
+                            }
                             ?>
+
+                            </option>
                         </select>
                     </div>
                 </div>
