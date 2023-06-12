@@ -83,6 +83,10 @@
                                 $stmt->bindParam("username", $username, PDO::PARAM_STR);
                                 $stmt->execute();
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                foreach($results as $result){
+                                    echo "<option value='groupID' id='groupID'>$result</option>";
+                                }
                                 }
                                 catch (Exception $ex)
                                 {
@@ -93,11 +97,7 @@
                             catch(Exception $ex)
                             {
                                 $errors[] = $ex->getMessage();
-                            }
-
-                                foreach($results as $result){
-                                    echo "<option value='groupID' id='groupID'>$result</option>";
-                                }
+                            }  
                             ?>
                         </select>
                     </div>
