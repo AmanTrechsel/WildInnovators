@@ -9,9 +9,14 @@ public class ModelEditor : MonoBehaviour
   // Singleton
   public static ModelEditor instance;
 
+  public byte[] image;
+
   // Reference to the model
   [HideInInspector]
   public GameObject model;
+  // Bytes for the model
+  [HideInInspector]
+  public byte[] modelBytes;
   // List of uploaded textures
   public List<Texture2D> uploadedTextures = new List<Texture2D>();
 
@@ -75,9 +80,6 @@ public class ModelEditor : MonoBehaviour
   // Used when the user wants to finish editing the model
   public void Finalize()
   {
-    // Reference to the mesh of the model
-    Mesh mesh = model.GetComponentInChildren<MeshFilter>().mesh;
-
     // Initialize lists for the data
     List<Texture2D> images = new List<Texture2D>();
     List<Color> colors = new List<Color>();
@@ -98,7 +100,7 @@ public class ModelEditor : MonoBehaviour
     }
 
     // Create a new serialized data object and save it to a json file
-    SerializedData data = SerializedData.Create(inputName.text, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, mesh.vertices, mesh.uv,mesh.triangles, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray());
+    SerializedData data = SerializedData.Create(inputName.text, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray());
     string json = JsonUtility.ToJson(data);
 
     // Write the json to a file
@@ -109,13 +111,16 @@ public class ModelEditor : MonoBehaviour
   }
 
   // Used when the user wants to add a model
-  public void AddModel(GameObject addedModel)
+  public void AddModel(GameObject addedModel, byte[] addedModelBytes)
   {
     // Remove the current model
     RemoveModel();
 
     // Set the model
     model = addedModel;
+
+    // Set the model bytes
+    modelBytes = addedModelBytes;
 
     // Remove all existing material buttons
     foreach (Transform child in materialContent)

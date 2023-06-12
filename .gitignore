@@ -78,3 +78,9 @@ crashlytics-build.properties
 /WebEditor/Library/*
 /WebEditor/Builds
 /WebEditor/Builds/*
+/WebEditor/Library
+/WebEditor/Library/*
+/WebEditor/Logs
+/WebEditor/Logs/*
+/WebEditor/UserSettings
+/WebEditor/UserSettings/*

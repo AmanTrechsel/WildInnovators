@@ -1,7 +1,10 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using Dummiesman; //Load OBJ Model
 
 public class SerializedData
 {
@@ -13,72 +16,66 @@ public class SerializedData
   public float[] rotation;
   public float[] scale;
 
-  // Mesh data
-  public float[] meshVertices;
-  public float[] meshUVs;
-  public int[] meshTriangles;
+  // Model
+  public byte[] modelBytes;
+
+  // Images
+  public byte[] images;
 
   // Material data
-  public int[] images;
   public float[] materialColors;
   public float[] materialMetallics;
   public float[] materialSmoothnesses;
+
+  // Serialize byte[][] to a byte array
+  public static byte[] SerializeByteArray(byte[][] data)
+  {
+    BinaryFormatter formatter = new BinaryFormatter();
+    using (MemoryStream stream = new MemoryStream())
+    {
+      formatter.Serialize(stream, data);
+      return stream.ToArray();
+    }
+  }
+
+  // Deserialize byte array to byte[][]
+  public static byte[][] DeserializeByteArray(byte[] serializedData)
+  {
+    BinaryFormatter formatter = new BinaryFormatter();
+    using (MemoryStream stream = new MemoryStream(serializedData))
+    {
+      return (byte[][])formatter.Deserialize(stream);
+    }
+  }
 
   // Constructs a GameObject from the serialized data
   public static GameObject Reconstruct(SerializedData serializedData)
   {
     // Create the GameObject
-    GameObject newModel = new GameObject(serializedData.displayName);
+    GameObject newModel = new OBJLoader().Load(new MemoryStream(serializedData.modelBytes));
+    newModel.name = serializedData.displayName;
 
     // Set the position, rotation, and scale
     newModel.transform.position = new Vector3(serializedData.position[0], serializedData.position[1], serializedData.position[2]);
     newModel.transform.rotation = Quaternion.Euler(serializedData.rotation[0], serializedData.rotation[1], serializedData.rotation[2]);
     newModel.transform.localScale = new Vector3(serializedData.scale[0], serializedData.scale[1], serializedData.scale[2]);
 
-    // Create the MeshFilter and MeshRenderer
-    MeshFilter meshFilter = newModel.AddComponent<MeshFilter>();
-    MeshRenderer meshRenderer = newModel.AddComponent<MeshRenderer>();
-
-    // Create the Mesh
-    Mesh mesh = new Mesh();
-
-    // Set the vertices
-    Vector3[] meshVertices = new Vector3[serializedData.meshVertices.Length / 3];
-    for (int i = 0; i < serializedData.meshVertices.Length; i += 3)
-    {
-      meshVertices[i / 3] = new Vector3(serializedData.meshVertices[i], serializedData.meshVertices[i + 1], serializedData.meshVertices[i + 2]);
-    }
-
-    // Set the UVs
-    Vector2[] meshUV = new Vector2[serializedData.meshUVs.Length / 2];
-    for (int i = 0; i < serializedData.meshUVs.Length; i += 2)
-    {
-      meshUV[i / 2] = new Vector2(serializedData.meshUVs[i], serializedData.meshUVs[i + 1]);
-    }
-
-    // Build the mesh
-    mesh.vertices = meshVertices;
-    mesh.uv = meshUV;
-    mesh.triangles = serializedData.meshTriangles;
-    mesh.RecalculateNormals();
-
-    // Set the mesh
-    meshFilter.mesh = UnityEngine.Object.Instantiate(mesh);
-
     // Create the textures
     List<Texture2D> images = new List<Texture2D>();
     Texture2D texture = null;
-    for (int i = 0; i < serializedData.images.Length; i++)
+    byte[][] deserializedImages = DeserializeByteArray(serializedData.images);
+    foreach (byte[] encodedImage in deserializedImages)
     {
       texture = new Texture2D(2, 2);
-      texture.LoadImage(BitConverter.GetBytes(serializedData.images[i]));
+      texture.LoadImage(encodedImage);
+      //texture.Apply();
       images.Add(texture);
     }
 
     // Create the materials
     List<Material> materials = new List<Material>();
     Shader defaultShader = Shader.Find("Standard");
-    for (int i = 0; i < serializedData.images.Length; i++)
+    for (int i = 0; i < deserializedImages.Length; i++)
     {
       Material material = new Material(defaultShader);
       material.SetTexture("_MainTex", images[i]);
@@ -89,58 +86,40 @@ public class SerializedData
     }
 
     // Set the materials
-    meshRenderer.materials = materials.ToArray();
+    newModel.GetComponentInChildren<MeshRenderer>().materials = materials.ToArray();
 
     // Return the GameObject
     return newModel;
   }
 
   // Creates a SerializedData object from given data
-  public static SerializedData Create(string displayName, Vector3 position, Vector3 rotation, Vector3 scale, Vector3[] meshVertices, Vector2[] meshUVs,
-                               int[] meshTriangles, Texture2D[] images, Color[] materialColors, float[] materialMetallics, float[] materialSmoothnesses)
+  public static SerializedData Create(string displayName, Vector3 position, Vector3 rotation, Vector3 scale, Texture2D[] images,
+                                      Color[] materialColors, float[] materialMetallics, float[] materialSmoothnesses)
   {
     // Create the SerializedData object
     SerializedData newData = new SerializedData();
 
     // Set the display name
     newData.displayName = displayName;
+    
+    // Set model bytes
+    newData.modelBytes = ModelEditor.instance.modelBytes;
 
     // Set the position, rotation, and scale floats
     newData.position = new float[] { position.x, position.y, position.z };
     newData.rotation = new float[] { rotation.x, rotation.y, rotation.z };
     newData.scale = new float[] { scale.x, scale.y, scale.z };
 
-    // Set the mesh vertices
-    List<float> listMeshVertices = new List<float>();
-    foreach (Vector3 meshVertex in meshVertices)
-    {
-      listMeshVertices.Add(meshVertex.x);
-      listMeshVertices.Add(meshVertex.y);
-      listMeshVertices.Add(meshVertex.z);
-    }
-    newData.meshVertices = listMeshVertices.ToArray();
-
-    // Set the mesh UVs
-    List<float> listMeshUVs = new List<float>();
-    foreach (Vector2 meshUV in meshUVs)
-    {
-      listMeshUVs.Add(meshUV.x);
-      listMeshUVs.Add(meshUV.y);
-    }
-    newData.meshUVs = listMeshUVs.ToArray();
-
-    // Set the mesh triangles
-    newData.meshTriangles = meshTriangles;
-
     // Set the images
-    List<int> listImages = new List<int>();
+    List<byte[]> listImages = new List<byte[]>();
     foreach (Texture2D image in images)
     {
       // Convert the image to a byte array
-      byte[] encodedImage = ImageConversion.EncodeToPNG(image);
-      listImages.Add(BitConverter.ToInt32(encodedImage));
-    }
-    newData.images = listImages.ToArray();
+      byte[] encodedImage = image.EncodeToPNG();
+      listImages.Add(encodedImage);
+      ModelEditor.instance.image = encodedImage;
+    } 
+    newData.images = SerializeByteArray(listImages.ToArray());
 
     // Set the material colors
     List<float> listMaterialColors = new List<float>();

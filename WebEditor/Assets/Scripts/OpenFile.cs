@@ -92,7 +92,8 @@ public class OpenFile : MonoBehaviour
     else
     {
       //Load OBJ Model
-      MemoryStream textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.downloadHandler.text));
+      byte[] modelBytes = Encoding.UTF8.GetBytes(www.downloadHandler.text);
+      MemoryStream textStream = new MemoryStream(modelBytes);
       if (model != null)
       {
         Destroy(model);
@@ -102,7 +103,7 @@ public class OpenFile : MonoBehaviour
       //DoublicateFaces();
 
       // Add new model to ModelEditor
-      ModelEditor.instance.AddModel(model);
+      ModelEditor.instance.AddModel(model, modelBytes);
     }
   }
 
