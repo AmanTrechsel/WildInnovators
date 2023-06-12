@@ -73,12 +73,11 @@
                         <?php
                             $stmt = $dbHandler->prepare("SELECT * FROM `groups` WHERE `username` = :username");
                             $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                            $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
                             $stmt->execute();
-                            $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                            foreach(){
-                                echo '<option value=""></option>'
+                            foreach($results as $result){
+                                echo "<option value='$result'>$result</option>";
                             }
                         ?>
                     </select>
