@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sun
   prefab: {fileID: 3648040413146847791, guid: 8f53fc7b43b25194e90a9f75efd72624, type: 3}
-  offsetPosition: {x: 2, y: 2, z: 0}
+  offsetPosition: {x: 0, y: 2000, z: 0}
   offsetRotation: {x: 0, y: 0, z: 0}
-  offsetScale: {x: 1, y: 1, z: 1}
+  offsetScale: {x: 500, y: 500, z: 500}
   recenter: 0

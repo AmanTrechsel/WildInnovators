@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Yellow Bird
   prefab: {fileID: 6961062834557445109, guid: b5bfa72db4ab99842b2e04db70755484, type: 3}
-  offsetPosition: {x: 0, y: 0, z: -0.75}
+  offsetPosition: {x: -5, y: 0, z: -0.5}
   offsetRotation: {x: -90, y: 0, z: 0}
-  offsetScale: {x: 0.01, y: 0.01, z: 0.01}
+  offsetScale: {x: 0.025, y: 0.025, z: 0.025}
   recenter: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hummingbird
   prefab: {fileID: 8867246609539993030, guid: dac440f9d2b2ce545962f0731cd162f1, type: 3}
-  offsetPosition: {x: 0, y: 0, z: -1}
+  offsetPosition: {x: -5, y: 0, z: 1}
   offsetRotation: {x: -15, y: 180, z: 0}
-  offsetScale: {x: 0.015, y: 0.015, z: 0.015}
+  offsetScale: {x: 0.025, y: 0.025, z: 0.025}
   recenter: 0

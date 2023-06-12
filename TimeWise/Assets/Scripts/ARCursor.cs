@@ -5,11 +5,14 @@ using UnityEngine.XR.ARFoundation;
 
 public class ARCursor : MonoBehaviour
 {
+  // Singleton
+  public static ARCursor Instance;
+
   // Holds the ARRaycastManager, which is used to find the AR plane
   [SerializeField]
   private ARRaycastManager raycastManager;
   // Objects that may need to be repositioned
-  private List<GameObject> arRepositionObjects;
+  public List<GameObject> arRepositionObjects;
   // Meshes that may need to be repositioned
   private List<Renderer> arRepositionMeshes;
   // Offsets for the repositioned objects
@@ -17,6 +20,9 @@ public class ARCursor : MonoBehaviour
 
   private void Start()
   {
+    if (Instance == null) { Instance = this; }
+    else if (Instance != this) { Destroy(gameObject); }
+
     // Initialize lists for repositionable objects
     arRepositionObjects = new List<GameObject>();
     arRepositionMeshes = new List<Renderer>();
