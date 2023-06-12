@@ -73,10 +73,6 @@
                         <label for="groups">Kies een groep:</label>
                         <select name="groups" id="groups">
                             <?php
-                            try
-                            {
-                                $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
-                                
                                 try
                                 {
                                 $stmt = $dbHandler->prepare("SELECT `groupId` FROM `groups` WHERE `username` = :username");
@@ -93,12 +89,6 @@
                                 {
                                     $errors[] = $ex->getMessage();
                                 }
-
-                            }
-                            catch(Exception $ex)
-                            {
-                                $errors[] = $ex->getMessage();
-                            }  
                             ?>
                         </select>
                     </div>
