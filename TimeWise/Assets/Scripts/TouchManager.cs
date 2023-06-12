@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TouchManager : MonoBehaviour
 {
   [SerializeField]
   private GameObject question;
+  [SerializeField]
+  private Transform parent;
 
   private PlayerInput playerInput;
 
@@ -34,7 +40,18 @@ public class TouchManager : MonoBehaviour
     // position.z = model.transform.position.z;
     // model.transform.position = position;
 
-    question.SetActive(true);
+    Instantiate(question, question.transform.position, question.transform.rotation, parent);
   }
+
+  // Start of a method to change the content of the prefab. The prefab is going to require a script as well, which will deliver all the parameters.
+  
+  /*private void ChangePrefab(TextMeshProUGUI title, TextMeshProUGUI question, Button option1, Button option2, Button option3)
+  {
+    title.text = title;
+    question.text = question;
+    option1.text = option1;
+    option2.text = option2;
+    option3.text = option3;
+  }*/
 }
 
