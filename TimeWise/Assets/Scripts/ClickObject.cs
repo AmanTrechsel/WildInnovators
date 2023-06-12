@@ -19,6 +19,8 @@ public class ClickObject : MonoBehaviour
   // Defining a list of every 3D model in the current scene
   [SerializeField]
   private List<GameObject> loadedObjects;
+  [SerializeField]
+  private TextMeshProUGUI screenPointText, worldPointText, objectPositionText;
 
   // Defining a list for positions and create some values used for raycast-simulating
   private List<Vector3> objectPositions;
@@ -30,6 +32,9 @@ public class ClickObject : MonoBehaviour
     // Creating the lists
     loadedObjects = ARCursor.Instance.arRepositionObjects;
     objectPositions = new List<Vector3>();
+    screenPointText.text = $"Epische tekst {range}";            // doesnt work
+    worldPointText.text = $"Epische tekst {range}";             // doesnt work
+    objectPositionText.text = $"Epische tekst {range}";         // doesnt work
   }
 
   void Update()
@@ -39,6 +44,10 @@ public class ClickObject : MonoBehaviour
     {
       // Get the touch
       Touch touch = Input.GetTouch(0);
+      
+      screenPointText.text = $"Ge heb geklikt bruv {range}";    // works ?????
+      worldPointText.text = $"Ge heb geklikt bruv {range}";     // doesnt work
+      objectPositionText.text = $"Ge heb geklikt bruv {range}"; // doesnt work
     
       // Get the positions of every 3D model and add them to a list
       foreach (GameObject loadedObject in loadedObjects)
@@ -50,6 +59,7 @@ public class ClickObject : MonoBehaviour
       // Go through the list and simulate a raycast (see method below)
       foreach(Vector3 objectPosition in objectPositions)
       {
+        RaycastSimulation(objectPosition);
         if(RaycastSimulation(objectPosition) == true)
         {
           question.SetActive(true);
@@ -66,6 +76,11 @@ public class ClickObject : MonoBehaviour
 
     // Get the touch position and transform it to coordinates in world space
     Vector3 touchInWorld = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+    // Display touchInWorld en touch.position en objectPosition here.
+    screenPointText.text = $"{Input.GetTouch(0).position.x}, {Input.GetTouch(0).position.y}";
+    worldPointText.text = $"{touchInWorld.x}, {touchInWorld.y}, {touchInWorld.z}";
+    objectPositionText.text = $"{objectPosition.x}, {objectPosition.y}, {objectZValue}";
 
     // Go through different values of z and check whether an object is within certain boundaries around each z value
     for(float i = 0; i <= 1000.0f; i += 0.1f)
