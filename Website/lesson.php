@@ -79,7 +79,7 @@
                                 
                                 try
                                 {
-                                $stmt = $dbHandler->prepare("SELECT groupId FROM `groups` WHERE `username` = :username");
+                                $stmt = $dbHandler->prepare("SELECT `groupId` FROM `groups` WHERE `username` = :username");
                                 $stmt->bindParam("username", $username, PDO::PARAM_STR);
                                 $stmt->execute();
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
