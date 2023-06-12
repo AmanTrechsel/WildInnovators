@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using MySql.Data.MySqlClient;
+using System.Runtime.InteropServices;
 
 public class ModelEditor : MonoBehaviour
 {
   // Singleton
   public static ModelEditor instance;
 
-  public byte[] image;
+  // Import the UploadJson function from the JavaScript file
+  [DllImport("__Internal")]
+  private static extern void UploadJson(string json);
 
   // Reference to the model
   [HideInInspector]
@@ -19,10 +23,16 @@ public class ModelEditor : MonoBehaviour
   public byte[] modelBytes;
   // List of uploaded textures
   public List<Texture2D> uploadedTextures = new List<Texture2D>();
-
+  
+  // Reference to the finish button animator
+  [SerializeField]
+  private Animator finishButtonAnimator;
   // Reference to the model editor
   [SerializeField]
   private GameObject modelEditor;
+  // Reference to the encyclopedia editor
+  [SerializeField]
+  private GameObject encyclopediaEditor;
   // Reference to the material editor
   [SerializeField]
   private MaterialEditor materialEditor;
@@ -35,9 +45,15 @@ public class ModelEditor : MonoBehaviour
   // List of dropdowns that use uploaded textures
   [SerializeField]
   private List<TMP_Dropdown> textureDropdowns;
+  // Image used for the encyclopedia
+  [SerializeField]
+  private TMP_Dropdown encyclopediaImageDropdown;
+  // Description used for the encyclopedia
+  [SerializeField]
+  private TMP_InputField encyclopediaDescription;
   // Reference to the name input field
   [SerializeField]
-  private TMP_InputField inputName;
+  private TMP_InputField inputName, inputNameEncyclopedia;
   // Reference to the position input fields
   [SerializeField]
   private TMP_InputField inputPositionX, inputPositionY, inputPositionZ;
@@ -77,14 +93,39 @@ public class ModelEditor : MonoBehaviour
     }  
   }
 
+  // Updates the name from the Model Edit window
+  public void ChangeName()
+  {
+    inputNameEncyclopedia.text = inputName.text;
+  }
+
+  // Updates the name from the Encyclopedia Edit window
+  public void ChangeNameEncyclopedia()
+  {
+    inputName.text = inputNameEncyclopedia.text;
+  }
+
   // Used when the user wants to finish editing the model
   public void Finalize()
   {
+    // Check if the model is not null
+    if (model == null)
+    {
+      // Show an error message
+      Debug.LogError("No model selected");
+      finishButtonAnimator.SetTrigger("Error");
+      return;
+    }
+
     // Initialize lists for the data
     List<Texture2D> images = new List<Texture2D>();
     List<Color> colors = new List<Color>();
     List<float> metallics = new List<float>();
     List<float> smoothnesses = new List<float>();
+
+    // Get the name of the model
+    string name = inputName.text;
+    if (name == "") { name = "Unnamed"; }
 
     // Iterate through all the materials of the model
     foreach (MeshRenderer meshRenderer in model.GetComponentsInChildren<MeshRenderer>())
@@ -92,19 +133,32 @@ public class ModelEditor : MonoBehaviour
       foreach (Material material in meshRenderer.materials)
       {
         // Add the data to the lists
-        images.Add(material.GetTexture("_MainTex") as Texture2D);
+        Texture2D texture = material.GetTexture("_MainTex") as Texture2D;
+        if (texture == null) { texture = Texture2D.whiteTexture; }
+        images.Add(texture);
         colors.Add(material.color);
         metallics.Add(material.GetFloat("_Metallic"));
         smoothnesses.Add(material.GetFloat("_Glossiness"));
       }
     }
 
+    // Get the image for the encyclopedia
+    Texture2D encyclopediaImage;
+    if (encyclopediaImageDropdown.value == 0) { encyclopediaImage = Texture2D.whiteTexture; }
+    else { encyclopediaImage = images[encyclopediaImageDropdown.value - 1]; }
+
     // Create a new serialized data object and save it to a json file
-    SerializedData data = SerializedData.Create(inputName.text, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray());
+    SerializedData data = SerializedData.Create(name, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray(), encyclopediaImage, encyclopediaDescription.text);
     string json = JsonUtility.ToJson(data);
 
     // Write the json to a file
     File.WriteAllText(Application.dataPath + "/Model.json", json);
+
+    // Send the json file to the database
+    UploadToDatabase(json);
+
+    // Send the json file to the JavaScript file
+    UploadJson(json);
 
     // (Debug) Read the json from the file and reconstruct the serialized data object
     SerializedData.Reconstruct(JsonUtility.FromJson(json, typeof(SerializedData)) as SerializedData);
@@ -179,8 +233,9 @@ public class ModelEditor : MonoBehaviour
   // Used when the user wants to start editing a material
   public void EditMaterial(Material material)
   {
-    // Disable the model editor and enable the material editor
+    // Disable the model and encyclopedia editor and enable the material editor
     modelEditor.SetActive(false);
+    encyclopediaEditor.SetActive(false);
     materialEditor.gameObject.SetActive(true);
 
     // Set the material of the material editor
@@ -199,8 +254,53 @@ public class ModelEditor : MonoBehaviour
       materialButton.UpdateThumbnail();
     }
 
-    // Disable the material editor and enable the model editor
+    // Disable the material and encyclopedia editor and enable the model editor
     modelEditor.SetActive(true);
     materialEditor.gameObject.SetActive(false);
+    encyclopediaEditor.SetActive(false);
+  }
+
+  // Used when the user wants to start editing the encyclopedia
+  public void EditEncyclopedia()
+  {
+    // Disable the model and material editor and enable the encyclopedia editor
+    modelEditor.SetActive(false);
+    materialEditor.gameObject.SetActive(false);
+    encyclopediaEditor.SetActive(true);
+  }
+
+  // Uploads the model to the database
+  public void UploadToDatabase(string json)
+  {
+    // Create a new connection to the database
+    MySqlConnection connection = new MySqlConnection("connection");
+
+    // Open the connection
+    connection.Open();
+
+    // Create a new command
+    MySqlCommand writeCommand = new MySqlCommand("INSERT INTO my_table (jasonFile) VALUES ();", connection);
+
+    // Execute the command
+    writeCommand.ExecuteNonQuery();
+
+    // Create a new command
+    MySqlCommand readCommand = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
+
+    // Execute the command
+    MySqlDataReader reader = readCommand.ExecuteReader();
+
+    // Initialize the id
+    int id = 0;
+
+    // Read the result
+    while (reader.Read())
+    {
+      // Get the id
+      id = reader.GetInt32(0);
+    }
+
+    // Close the connection
+    connection.Close();
   }
 }

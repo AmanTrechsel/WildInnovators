@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218925699329253
-    m_Hash: 4078428581
+      ticks: 638216561488841629
+    m_Hash: 2771217894
   m_LockFileStatus:
     m_FilePath: C:/Users/amant/Documents/GitHub/WildInnovators/WebEditor/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218925699329253
-    m_Hash: 3940772907
+      ticks: 638216561488881621
+    m_Hash: 924299146
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -3660,7 +3660,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: 
   description: A framework for making any serializable field a setting, complete
     with a pre-built settings interface.
   status: 0

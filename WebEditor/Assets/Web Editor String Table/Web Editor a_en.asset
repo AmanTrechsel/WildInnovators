@@ -90,6 +90,22 @@ MonoBehaviour:
     m_Localized: Finish
     m_Metadata:
       m_Items: []
+  - m_Id: 2146097874067456
+    m_Localized: Encyclopedia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2146912978329600
+    m_Localized: Edit Encyclopedia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2147902297202688
+    m_Localized: Image
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2150195432251392
+    m_Localized: Description...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

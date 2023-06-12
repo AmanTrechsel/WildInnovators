@@ -27,6 +27,10 @@ public class SerializedData
   public float[] materialMetallics;
   public float[] materialSmoothnesses;
 
+  // Encyclopedia data
+  public byte[] encyclopediaImage;
+  public string encyclopediaDescription;
+
   // Serialize byte[][] to a byte array
   public static byte[] SerializeByteArray(byte[][] data)
   {
@@ -68,7 +72,6 @@ public class SerializedData
     {
       texture = new Texture2D(2, 2);
       texture.LoadImage(encodedImage);
-      //texture.Apply();
       images.Add(texture);
     }
 
@@ -88,13 +91,20 @@ public class SerializedData
     // Set the materials
     newModel.GetComponentInChildren<MeshRenderer>().materials = materials.ToArray();
 
+    // Set the encyclopedia image
+    Texture2D encyclopediaImage = new Texture2D(2, 2);
+    encyclopediaImage.LoadImage(serializedData.encyclopediaImage);
+
+    // Set the encyclopedia description
+    string encyclopediaDescription = serializedData.encyclopediaDescription;
+
     // Return the GameObject
     return newModel;
   }
 
   // Creates a SerializedData object from given data
   public static SerializedData Create(string displayName, Vector3 position, Vector3 rotation, Vector3 scale, Texture2D[] images,
-                                      Color[] materialColors, float[] materialMetallics, float[] materialSmoothnesses)
+                                      Color[] materialColors, float[] materialMetallics, float[] materialSmoothnesses, Texture2D encyclopediaImage, string encyclopediaDescription)
   {
     // Create the SerializedData object
     SerializedData newData = new SerializedData();
@@ -117,7 +127,6 @@ public class SerializedData
       // Convert the image to a byte array
       byte[] encodedImage = image.EncodeToPNG();
       listImages.Add(encodedImage);
-      ModelEditor.instance.image = encodedImage;
     } 
     newData.images = SerializeByteArray(listImages.ToArray());
 
@@ -139,6 +148,12 @@ public class SerializedData
     // Set the material smoothnesses
     List<float> listMaterialSmoothnesses = new List<float>( materialSmoothnesses );
     newData.materialSmoothnesses = listMaterialSmoothnesses.ToArray();
+
+    // Set the encyclopedia image
+    newData.encyclopediaImage = encyclopediaImage.EncodeToPNG();
+
+    // Set the encyclopedia description
+    newData.encyclopediaDescription = encyclopediaDescription;
 
     // Return the SerializedData object
     return newData;
