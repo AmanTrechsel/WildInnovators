@@ -29,10 +29,11 @@
 
             try
             {
-                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`, `subjects`) VALUES (:groupName, :groupCode, :subjects);");
+                $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`, `subjects`, `username`) VALUES (:groupName, :groupCode, :subjects, :userName);");
                 $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR);
                 $stmt->bindParam("groupCode", $groupCode, PDO::PARAM_STR);
                 $stmt->bindParam("subjects", $subject, PDO::PARAM_STR);
+                $stmt->bindParam("userName", $username, PDO::PARAM_STR);
                 $stmt->execute();
             }
             catch (Exception $ex)
