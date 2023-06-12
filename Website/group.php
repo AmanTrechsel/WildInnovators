@@ -2,6 +2,8 @@
     session_start();
     require_once 'constants.php';
 
+    $username = $_SESSION['username'];
+
     $errors = [];
 
     function generateRandomString($length = 6) {

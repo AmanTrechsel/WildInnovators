@@ -2,6 +2,8 @@
     session_start();
     require_once 'constants.php';
 
+    $username = $_SESSION['username'];
+
     $errors = [];
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
