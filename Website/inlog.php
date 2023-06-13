@@ -100,8 +100,10 @@
                     <input type="password" id="password" name="password" placeholder="Mijn wachtwoord..." required>
                 </div>
                 <div class="loginprompt">
-                    <input class="button" type="submit" value="Login">
-                </div>  
+                    <div class="loginbuttons">
+                        <input class="button" type="submit" value="Login">
+                    </div> 
+                </div> 
             </form>
             <?php
                 }

@@ -80,7 +80,7 @@
             <nav>
                 <ul>
                     <li>Copyright</li>
-                    <li><button id="openPopup">Contact</button></li>
+                    <li>Contact</li>
                     <li><a href="policy.html">Policy</a></li>
                 </ul>
             </nav>
