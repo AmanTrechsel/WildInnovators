@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2151,7 +2151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1025653958}
   - component: {fileID: 1025653956}
-  - component: {fileID: 1025653957}
   m_Layer: 0
   m_Name: ARManager
   m_TagString: Untagged
@@ -2184,22 +2183,6 @@ MonoBehaviour:
   calibrationMask: {fileID: 2076999911}
   currentSubjectName: {fileID: 117569715}
   encyclopediaUnlockCount: {fileID: 1153932152}
---- !u!114 &1025653957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025653955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de29e09f02c6fa4a852d5fc6f5ba28e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastManager: {fileID: 1166115935}
-  cam: {fileID: 1346928332}
-  question: {fileID: 0}
-  loadedObjects: []
 --- !u!4 &1025653958
 Transform:
   m_ObjectHideFlags: 0
