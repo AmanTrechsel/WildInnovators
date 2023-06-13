@@ -100,10 +100,8 @@
                     <input type="password" id="password" name="password" placeholder="Mijn wachtwoord..." required>
                 </div>
                 <div class="loginprompt">
-                    <div class="loginbuttons">
-                        <input class="button" type="submit" value="Login">
-                    </div> 
-                </div> 
+                    <input class="button" type="submit" value="Login">
+                </div>  
             </form>
             <?php
                 }
@@ -138,6 +136,7 @@
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
+                    <li><a href="policy.php">Policy</a></li>
                 </ul>
             </nav>
         </footer>

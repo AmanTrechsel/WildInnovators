@@ -1,4 +1,5 @@
 <?php session_start()?>
+<?php ini_set('display_errors', 0); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
         <?php } 
         else{
         ?>
-        <header>
+        <header id="dashboardHeader">
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
@@ -62,7 +63,7 @@
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
-                    <li><a href="policy.html">Policy</a></li>
+                    <li><a href="policy.php">Policy</a></li>
                 </ul>
             </nav>
         </footer>

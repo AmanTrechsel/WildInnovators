@@ -51,7 +51,7 @@
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
-                    <li><a href="policy.html">Policy</a></li>
+                    <li><a href="policy.php">Policy</a></li>
                 </ul>
             </nav>
         </footer>

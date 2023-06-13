@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<?php ini_set('display_errors', 0); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +11,33 @@
 </head>
 <body>
     <div id="mainContainer">
+    <?php if ($_SESSION['username'] == NULL){?>
         <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="handleiding.html">Handleiding</a></li>
+                    <li><a id="NavText" href="#">Home</a></li>
+                    <li><a href="handleiding.php">Handleiding</a></li>
                     <li><a href="inlog.php">Login</a></li>
                 </ul>
             </nav>
         </header>
+        
+        <?php } 
+        else{
+        ?>
+        <header id="dashboardHeader">
+            <img src="./images/LogoGroepjeWhite.png">
+            <nav>
+                <ul>
+                    <li><a id="NavText" href="index.php">Home</a></li>
+                    <li><a href="handleiding.php">Handleiding</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+        <?php }
+        ?>
         <div id="privacyPolicy">
             <main>
             <h1>Privacy Policy for Wild Innovators</h1>
@@ -84,7 +103,7 @@
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
-                    <li><a id="NavText" href="policy.html">Policy</a></li>
+                    <li><a id="NavText" href="#">Policy</a></li>
                 </ul>
             </nav>
         </footer>

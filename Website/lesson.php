@@ -8,11 +8,12 @@
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        $groupID = filter_input(INPUT_POST, "groupID");
+        $groupName = filter_input(INPUT_POST, "groupName");
         $lessonName = filter_input(INPUT_POST, "lessonName");
         $subject = filter_input(INPUT_POST, "subject");
         try{
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+
         
             try{
                     $stmt = $dbHandler->prepare("INSERT INTO  `lessons` (`name`, `subject`, `groupId`) VALUES (:lessonName, :subjects, :groupID);");
@@ -44,7 +45,7 @@
 </head>
 <body>
     <div id="mainContainer">
-        <header>
+        <header id="dashboardHeader">
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
@@ -72,11 +73,11 @@
                     <div>
                         <label for="groups">Kies een groep:</label>
                         <select name="groups" id="groups">
-                        <option value='groupID' id='groupID'>
+                        
                             <?php
                             try {
                                 $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
-                                $dbHandler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                
                             
                                 $stmt = $dbHandler->prepare("SELECT `name` FROM `groups` WHERE `username` = :username");
                                 $stmt->bindParam(":username", $username, PDO::PARAM_STR);
@@ -84,14 +85,14 @@
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             
                                 foreach ($results as $result) {
-                                    echo $result["name"];
+                                    echo "<option value='groupName' id='groupName'>$result[name]</option>";
                                 }
                             } catch (PDOException $ex) {
                                 $errors[] = $ex->getMessage();
                             }
                             ?>
 
-                            </option>
+                            
                         </select>
                     </div>
                 </div>
@@ -99,23 +100,14 @@
                     <div>
                         <label for="subject">Kies een vak:</label>
                         <select name="subject" id="subject">
-                            <?php
-                                $stmt = $dbHandler->prepare("SELECT subjects FROM `groups` WHERE `username` = :username");
-                                $stmt->bindParam("username", $username, PDO::PARAM_STR);
-                                $stmt->execute();
-                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                
-                                foreach($results as $result){
-                                    foreach($result as $subjectresult){
-                                        $endresults = explode(', ', $subjectresult);
-                                        foreach($endresults as $endresult){
-                                            echo "<option value='subject' id='subject'>$endresult</option>";
-                                        }
-                                    }
-                                }
-                            ?>
+                        <option value="subject" id="subject">Aardrijkskunde</option>
+                        <option value="subject" id="subject">Geschiedenis</option>
+                        <option value="subject" id="subject">Biologie</option>
                         </select>
                     </div>
+                </div>
+                <div class="loginprompt">
+                    <button onclick = "" id="openWebEditor">Upload je Modellen</button>
                 </div>
                 <div class="loginprompt">
                     <input type="submit" id="createButton" name="createGroup" value="Creëer">
@@ -128,7 +120,7 @@
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
-                    <li><a href="policy.html">Policy</a></li>
+                    <li><a href="policy.php">Policy</a></li>
                 </ul>
             </nav>
         </footer>
