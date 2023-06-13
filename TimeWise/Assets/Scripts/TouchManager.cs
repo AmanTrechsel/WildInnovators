@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 public class TouchManager : MonoBehaviour
 {
+  // Singleton
+  public static TouchManager Instance;
+
   [SerializeField]
   private GameObject question;
   [SerializeField]
@@ -18,9 +21,17 @@ public class TouchManager : MonoBehaviour
 
   void Awake()
   {
+    if (Instance == null) { Instance = this; }
+    else if (Instance != this) { Destroy(gameObject); }
+
     playerInput = GetComponent<PlayerInput>();
 
     pressAction = playerInput.actions["TouchPress"];
+
+    foreach(Transform child in parent)
+    {
+      GameObject.Destroy(child.gameObject);
+    }
   }
 
   // This is an event to check if a value is being pressed
@@ -39,6 +50,11 @@ public class TouchManager : MonoBehaviour
   void TouchPressed(InputAction.CallbackContext context)
   {
     Instantiate(question, question.transform.position, question.transform.rotation, parent);
+  }
+
+  public void DestroyObject()
+  {
+    Destroy(question);
   }
 
   // Start of a method to change the content of the prefab. The prefab is going to require a script as well, which will deliver all the parameters.
