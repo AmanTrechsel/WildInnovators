@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class ResourceManager : MonoBehaviour
 
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
+
+    // 
+    AddCollider();
 
     // Load and store found resources
     arItems.AddRange(Resources.LoadAll<ARItem>("ARItems"));
@@ -116,5 +120,25 @@ public class ResourceManager : MonoBehaviour
     }
     // Return the list of encyclopedia pages with this topic
     return subjectPages;
+  }
+
+  // Adds a sphere collider on every AR-Item
+  public void AddCollider()
+  {
+    List<GameObject> arObjects = new List<GameObject>();
+
+    foreach(ARItem arItem in arItems)
+    {
+      GameObject arObject = Instantiate(arItem.prefab) as GameObject;
+      arObjects.Add(arObject);
+    } 
+
+    foreach(GameObject arGameObject in arObjects)
+    {
+      if(arGameObject.GetComponent<SphereCollider>() == null)
+      {
+        arGameObject.AddComponent<SphereCollider>();
+      }
+    }
   }
 }
