@@ -45,9 +45,9 @@ public class ClickObject : MonoBehaviour
       // Get the touch
       Touch touch = Input.GetTouch(0);
       
-      screenPointText.text = $"Ge heb geklikt bruv {range}";    // works ?????
-      worldPointText.text = $"Ge heb geklikt bruv {range}";     // doesnt work
-      objectPositionText.text = $"Ge heb geklikt bruv {range}"; // doesnt work
+      screenPointText.text = $"Ge heb geklikt bruv {range}";    // works
+      worldPointText.text = $"Ge heb geklikt bruv {range}";     // works
+      objectPositionText.text = $"Ge heb geklikt bruv {range}"; // works
     
       // Get the positions of every 3D model and add them to a list
       foreach (GameObject loadedObject in loadedObjects)

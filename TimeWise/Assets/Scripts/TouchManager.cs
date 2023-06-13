@@ -10,8 +10,7 @@ public class TouchManager : MonoBehaviour
   // Singleton
   public static TouchManager Instance;
 
-  [SerializeField]
-  private GameObject question;
+  public GameObject question;
   [SerializeField]
   private Transform parent;
   // reference
@@ -49,12 +48,12 @@ public class TouchManager : MonoBehaviour
   // When this method is getting called, it will show a pop-up with the corresponding question
   void TouchPressed(InputAction.CallbackContext context)
   {
-    Instantiate(question, question.transform.position, question.transform.rotation, parent);
+    Instantiate(question, new Vector3(540, 960, 0), question.transform.rotation, parent);
   }
 
-  public void DestroyObject()
+  public void HideQuestion()
   {
-    Destroy(question);
+    question.SetActive(false);
   }
 
   // Start of a method to change the content of the prefab. The prefab is going to require a script as well, which will deliver all the parameters.
