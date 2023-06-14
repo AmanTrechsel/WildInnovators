@@ -24,7 +24,7 @@ public class ResourceManager : MonoBehaviour
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
 
-    // 
+    // Calls the method that adds a SphereCollider to every ARItem
     AddCollider();
 
     // Load and store found resources
@@ -135,10 +135,7 @@ public class ResourceManager : MonoBehaviour
 
     foreach(GameObject arGameObject in arObjects)
     {
-      if(arGameObject.GetComponent<SphereCollider>() == null)
-      {
-        arGameObject.AddComponent<SphereCollider>();
-      }
+      arGameObject.AddComponent<SphereCollider>();
     }
   }
 }
