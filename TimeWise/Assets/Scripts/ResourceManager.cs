@@ -24,9 +24,6 @@ public class ResourceManager : MonoBehaviour
     // Ensure this object remains active between scenes
     DontDestroyOnLoad(gameObject);
 
-    // Calls the method that adds a SphereCollider to every ARItem
-    AddCollider();
-
     // Load and store found resources
     arItems.AddRange(Resources.LoadAll<ARItem>("ARItems"));
     subjects.AddRange(Resources.LoadAll<Subject>("Subjects"));
@@ -120,22 +117,5 @@ public class ResourceManager : MonoBehaviour
     }
     // Return the list of encyclopedia pages with this topic
     return subjectPages;
-  }
-
-  // Adds a sphere collider on every AR-Item
-  public void AddCollider()
-  {
-    List<GameObject> arObjects = new List<GameObject>();
-
-    foreach(ARItem arItem in arItems)
-    {
-      GameObject arObject = Instantiate(arItem.prefab) as GameObject;
-      arObjects.Add(arObject);
-    } 
-
-    foreach(GameObject arGameObject in arObjects)
-    {
-      arGameObject.AddComponent<SphereCollider>();
-    }
   }
 }

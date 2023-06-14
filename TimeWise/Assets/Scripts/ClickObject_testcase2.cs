@@ -17,7 +17,11 @@ public class ClickObject_testcase2 : MonoBehaviour
 
     void Start()
     {
-        ResourceManager.Instance.AddCollider();
+        if(AddCollider())
+        {
+            screenText.text = "Collider succesvol toegevoegd";
+        }
+        
     }
 
     void Update()
@@ -34,17 +38,22 @@ public class ClickObject_testcase2 : MonoBehaviour
                 screenText.text = "Er is een collider geraakt";
                 if(hit.transform != null)
                 {
-                    PrintName(hit.transform.gameObject);
                     question.SetActive(true);
                 }
             }
         }
     }
-    
-    // Method will be obsolete in the final version
-    void PrintName(GameObject ball)
+
+    // Adds a SphereCollider to every loaded GameObject
+    public bool AddCollider()
     {
-        print(ball.name);
+      List<GameObject> arObjects = new List<GameObject>();
+
+      foreach(GameObject loadedObject in ARCursor.Instance.arRepositionObjects)
+      {
+        loadedObject.AddComponent<SphereCollider>();
+      }
+      return true;
     }
 
     // The question is now hard-coded into the scene (it's already in the hierarchy), but we want the content of question change depending on which object has been clicked.
