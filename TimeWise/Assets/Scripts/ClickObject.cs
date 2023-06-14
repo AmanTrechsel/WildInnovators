@@ -1,83 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class ClickObject : MonoBehaviour
 {
-  // VARIABLES //
-  // Defining the camera to use
-  [SerializeField]
-  private Camera cam;
-  // Defining the GameObject containing the pop-up with the question
-  [SerializeField]
-  private GameObject question;
-  // Defining a list of every 3D model in the current scene
-  [SerializeField]
-  private List<GameObject> loadedObjects;
+    [SerializeField]
+    private Camera cam;
 
-  // Defining a list for positions and create some values used for raycast-simulating
-  private List<Vector3> objectPositions;
-  private float range = 100.0f;
-  private float zValue;
+    [SerializeField]
+    private GameObject question;
 
-  void Start()
-  {
-    // Creating the lists
-    loadedObjects = ARCursor.Instance.arRepositionObjects;
-    objectPositions = new List<Vector3>();
-  }
+    [SerializeField]
+    private TextMeshProUGUI screenText;
 
-  void Update()
-  {
-    // Detects whether the screen has been touched
-    if (Input.GetTouch(0).phase == TouchPhase.Began)
+    void Start()
     {
-      // Get the touch
-      Touch touch = Input.GetTouch(0);
-    
-      // Get the positions of every 3D model and add them to a list
-      foreach (GameObject loadedObject in loadedObjects)
-      {
-        Vector3 pos = loadedObject.transform.position;
-        objectPositions.Add(pos);
-      }
+      AddCollider(); 
+    }
 
-      // Go through the list and simulate a raycast (see method below)
-      foreach(Vector3 objectPosition in objectPositions)
+    void Update()
+    {
+      if(Input.GetTouch(0).phase == TouchPhase.Began)       // Input.GetMouseButtonDown(0)
       {
-        RaycastSimulation(objectPosition);
-        if(RaycastSimulation(objectPosition) == true)
+        RaycastHit hit;
+        screenText.text = "Er is gedrukt";
+
+        Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);     // Input.mousePosition
+
+        if(Physics.Raycast(ray, out hit, 10000.0f))
         {
-          question.SetActive(true);
+          screenText.text = "Er is een collider geraakt";
+          if(hit.transform != null)
+          {
+            question.SetActive(true);
+          }
         }
       }
     }
-  }
 
-  // Method for simulating a raycast
-  private bool RaycastSimulation(Vector3 objectPosition)
-  {
-    // Turn the z-value of a loaded object to a float with 1 decimal point
-    float objectZValue = (float)System.Math.Round(objectPosition.z, 1);
-
-    // Get the touch position and transform it to coordinates in world space
-    Vector3 touchInWorld = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-
-    // Go through different values of z and check whether an object is within certain boundaries around each z value
-    for(float i = 0; i <= 1000.0f; i += 0.1f)
+    // Adds a SphereCollider to every loaded GameObject
+    public bool AddCollider()
     {
-      zValue = i;
-      Vector3 worldPoint = new Vector3(touchInWorld.x, touchInWorld.y, zValue);
-      if(objectZValue == worldPoint.z && Vector2.Distance(new Vector2(objectPosition.x, objectPosition.y), new Vector2(worldPoint.x, worldPoint.y)) <= range)
+      List<GameObject> arObjects = new List<GameObject>();
+
+      foreach(GameObject loadedObject in ARCursor.Instance.arRepositionObjects)
       {
-        return true;
+        loadedObject.AddComponent<SphereCollider>();
       }
+      return true;
     }
-    return false;
-  }
 }
