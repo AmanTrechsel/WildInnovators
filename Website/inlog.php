@@ -99,8 +99,8 @@
                     <label for="password">Wachtwoord</label>
                     <input type="password" id="password" name="password" placeholder="Mijn wachtwoord..." required>
                 </div>
-                <div class="loginprompt">
-                    <input class="button" type="submit" value="Login">
+                <div id="loginbutton">
+                    <input class="button" type="submit" value="Registreer">
                 </div>  
             </form>
             <?php

@@ -49,9 +49,9 @@
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
-                    <li><a id="NavText" href="#">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="handleiding.php">Handleiding</a></li>
-                    <li><a id="NavText" href="dashboard.php">Dashboard</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
                 </ul>
             </nav>
         </header>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <div class="loginprompt">
-                    <button onclick = "" id="openWebEditor">Upload je Modellen</button>
+                    <h4>Upload je Modellen</h4>
                 </div>
                 <div class="loginprompt">
                     <input type="submit" id="createButton" name="createGroup" value="Creëer">

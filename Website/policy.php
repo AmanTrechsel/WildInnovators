@@ -30,7 +30,7 @@
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
                 <ul>
-                    <li><a id="NavText" href="index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="handleiding.php">Handleiding</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
                 </ul>

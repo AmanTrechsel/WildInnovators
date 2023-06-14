@@ -55,7 +55,7 @@
         </div>
         <div id="buttonHomePage">
             <form  id="login" method="GET" action="inlog.php">
-                <input class="buttonDashboard" type="submit" name="register" value="Naar Login Pagina">                    
+                <input class="buttonDashboard" type="submit" value="Naar Login Pagina">                    
             </form>
             <button onclick = "popupOpen()" id="openPopup">Contact</button>
         </div>
