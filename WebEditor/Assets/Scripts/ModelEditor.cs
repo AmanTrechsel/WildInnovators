@@ -87,10 +87,18 @@ public class ModelEditor : MonoBehaviour
     if (model != null)
     {
       // Update the position, rotation and scale of the model
-      model.transform.position = new Vector3(float.Parse(inputPositionX.text), float.Parse(inputPositionY.text), float.Parse(inputPositionZ.text));
-      model.transform.rotation = Quaternion.Euler(float.Parse(inputRotationX.text), float.Parse(inputRotationY.text), float.Parse(inputRotationZ.text));
-      model.transform.localScale = new Vector3(float.Parse(inputScaleX.text), float.Parse(inputScaleY.text), float.Parse(inputScaleZ.text));
+      model.transform.position = new Vector3(StringToFloat(inputPositionX.text), StringToFloat(inputPositionY.text), StringToFloat(inputPositionZ.text));
+      model.transform.rotation = Quaternion.Euler(StringToFloat(inputRotationX.text), StringToFloat(inputRotationY.text), StringToFloat(inputRotationZ.text));
+      model.transform.localScale = new Vector3(StringToFloat(inputScaleX.text), StringToFloat(inputScaleY.text), StringToFloat(inputScaleZ.text));
     }  
+  }
+
+  // Tries to parse a float from a string
+  public static float StringToFloat(string input)
+  {
+    float output = float.Parse(input);
+    if (output == null) { return 0f; }
+    return output;
   }
 
   // Updates the name from the Model Edit window
@@ -158,7 +166,7 @@ public class ModelEditor : MonoBehaviour
     UploadToDatabase(json);
 
     // Send the json file to the JavaScript file
-    UploadJson(json);
+    //UploadJson(json);
 
     // (Debug) Read the json from the file and reconstruct the serialized data object
     SerializedData.Reconstruct(JsonUtility.FromJson(json, typeof(SerializedData)) as SerializedData);
@@ -273,13 +281,13 @@ public class ModelEditor : MonoBehaviour
   public void UploadToDatabase(string json)
   {
     // Create a new connection to the database
-    MySqlConnection connection = new MySqlConnection("connection");
+    MySqlConnection connection = new MySqlConnection("Server=timewise.mysql.database.azure.com;User=WildInnovators;Password=TimeWise1;Database=timewise;");
 
     // Open the connection
     connection.Open();
 
     // Create a new command to write the json to the database
-    MySqlCommand writeCommand = new MySqlCommand($"INSERT INTO models (jasonFile) VALUES ({json});", connection);
+    MySqlCommand writeCommand = new MySqlCommand($"INSERT INTO models (jsonFile) VALUES ({json});", connection);
 
     // Execute the command
     writeCommand.ExecuteNonQuery();

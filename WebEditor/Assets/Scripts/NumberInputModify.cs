@@ -57,7 +57,7 @@ public class NumberInputModify : MonoBehaviour, IPointerDownHandler, IPointerUpH
       Vector2 mouseDelta = (currentMousePosition - previousMousePosition) * 0.0001f;
 
       // Get the current value of the input field
-      float value = float.Parse(inputField.text);
+      float value = ModelEditor.StringToFloat(inputField.text);
 
       // Modify the input field value
       value = value + mouseDelta.x;

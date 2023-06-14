@@ -48,18 +48,6 @@ public class OpenFile : MonoBehaviour
   {
     UploadFile(gameObject.name, "OnTextureUpload", ".png", false);
   }
-
-  // Called from browser
-  public void OnFileUpload(string url)
-  {
-    StartCoroutine(OutputRoutineOpenModel(url));
-  }
-
-  // Called from browser
-  public void OnTextureUpload(string url)
-  {
-    StartCoroutine(OutputRoutineOpenTexture(url));
-  }
 #else
   // Standalone platforms & editor
   public void OnClickOpen()
@@ -80,6 +68,18 @@ public class OpenFile : MonoBehaviour
     }
   }
 #endif
+
+  // Called from browser
+  public void OnFileUpload(string url)
+  {
+    StartCoroutine(OutputRoutineOpenModel(url));
+  }
+
+  // Called from browser
+  public void OnTextureUpload(string url)
+  {
+    StartCoroutine(OutputRoutineOpenTexture(url));
+  }
 
   private IEnumerator OutputRoutineOpenModel(string url)
   {
