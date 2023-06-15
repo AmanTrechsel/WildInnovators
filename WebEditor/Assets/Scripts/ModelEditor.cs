@@ -1,19 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.IO;
-using MySql.Data.MySqlClient;
-using System.Runtime.InteropServices;
+using UnityEngine.Networking;
+using System.Collections;
 
 public class ModelEditor : MonoBehaviour
 {
   // Singleton
   public static ModelEditor instance;
-
-  // Import the UploadJson function from the JavaScript file
-  [DllImport("__Internal")]
-  private static extern void UploadJson(string json);
 
   // Reference to the model
   [HideInInspector]
@@ -63,6 +57,9 @@ public class ModelEditor : MonoBehaviour
   // Reference to the scale input fields
   [SerializeField]
   private TMP_InputField inputScaleX, inputScaleY, inputScaleZ;
+  // Reference to the finalize button
+  [SerializeField]
+  private CustomButton finalizeButton;
 
   // List of material buttons
   private List<MaterialButton> _materialButtons = new List<MaterialButton>();
@@ -96,9 +93,8 @@ public class ModelEditor : MonoBehaviour
   // Tries to parse a float from a string
   public static float StringToFloat(string input)
   {
-    float output = float.Parse(input);
-    if (output == null) { return 0f; }
-    return output;
+    // Try to parse the input string to a float
+    return (float.TryParse(input, out float result)) ? result : 0f;
   }
 
   // Updates the name from the Model Edit window
@@ -159,17 +155,8 @@ public class ModelEditor : MonoBehaviour
     SerializedData data = SerializedData.Create(name, model.transform.position, model.transform.rotation.eulerAngles, model.transform.localScale, images.ToArray(), colors.ToArray(), metallics.ToArray(), smoothnesses.ToArray(), encyclopediaImage, encyclopediaDescription.text);
     string json = JsonUtility.ToJson(data);
 
-    // Write the json to a file
-    File.WriteAllText(Application.dataPath + "/Model.json", json);
-
     // Send the json file to the database
     UploadToDatabase(json);
-
-    // Send the json file to the JavaScript file
-    //UploadJson(json);
-
-    // (Debug) Read the json from the file and reconstruct the serialized data object
-    SerializedData.Reconstruct(JsonUtility.FromJson(json, typeof(SerializedData)) as SerializedData);
   }
 
   // Used when the user wants to add a model
@@ -280,35 +267,56 @@ public class ModelEditor : MonoBehaviour
   // Uploads the model to the database
   public void UploadToDatabase(string json)
   {
-    // Create a new connection to the database
-    MySqlConnection connection = new MySqlConnection("Server=timewise.mysql.database.azure.com;User=WildInnovators;Password=TimeWise1;Database=timewise;");
+    // Disable the finalize button so the user can't upload the model multiple times
+    finalizeButton.interactable = false;
 
-    // Open the connection
-    connection.Open();
+    // Create a new form
+    WWWForm form = new WWWForm();
 
-    // Create a new command to write the json to the database
-    MySqlCommand writeCommand = new MySqlCommand($"INSERT INTO models (jsonFile) VALUES ({json});", connection);
+    // Add the json file to the form
+    form.AddField("json", json);
 
-    // Execute the command
-    writeCommand.ExecuteNonQuery();
+    // Send the form to the database
+    StartCoroutine(UploadToDatabaseCoroutine(form));
+  }
 
-    // Create a new command to read the id of the model
-    MySqlCommand readCommand = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
+  // Coroutine that uploads the model to the database
+  private IEnumerator UploadToDatabaseCoroutine(WWWForm form)
+  {
+    // Send the form to the database
+    UnityWebRequest www = UnityWebRequest.Post("https:://timewise.serverict.nl/WebEditor/upload_json.php", form);
+    yield return www.SendWebRequest();
 
-    // Execute the command
-    MySqlDataReader reader = readCommand.ExecuteReader();
-
-    // Initialize the id
-    int id = 0;
-
-    // Read the result
-    while (reader.Read())
+    // Check if there are any errors
+    if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
     {
-      // Get the id
-      id = reader.GetInt32(0);
+      // Show an error message
+      Debug.LogError(www.error);
+    }
+    else
+    {
+      // Show a success message
+      Debug.Log("Upload complete!");
     }
 
-    // Close the connection
-    connection.Close();
+    // Enable the finalize button again
+    finalizeButton.interactable = true;
+
+    // Remove the model
+    RemoveModel();
+
+    // Reset the inputs
+    inputName.text = "";
+    encyclopediaDescription.text = "";
+    encyclopediaImageDropdown.value = 0;
+    foreach (TMP_Dropdown dropdown in textureDropdowns)
+    {
+      dropdown.value = 0;
+    }
+    foreach (Transform child in materialContent)
+    {
+      Destroy(child.gameObject);
+    }
+    materialContent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
   }
 }
