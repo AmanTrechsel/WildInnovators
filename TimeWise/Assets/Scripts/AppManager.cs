@@ -192,11 +192,6 @@ public class AppManager : MonoBehaviour
     if(AppManager.Instance.permission == true)
     {
       LoadScene("ARWarning");
-
-      foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(arSubject))
-      {
-        unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
-      }
     }
     else
     {

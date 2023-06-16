@@ -19,12 +19,28 @@ public class QuestionHandler : MonoBehaviour
   // If the button with the correct answer is pressed, show the correctPopUp
   public void CorrectAnswer()
   {
-    correctPopUp.SetActive(true);
-    question.SetActive(false);
+    CloseQuestion();
+
+    // Check every encyclopedia page with this subject
+    foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
+    {
+      // Check if this page isn't already unlocked
+      if (!AppManager.Instance.unlockedEncyclopediaPages.Contains((int)encyclopediaPage.id))
+      {
+        // Unlock this page
+        AppManager.Instance.unlockedEncyclopediaPages.Add((int)encyclopediaPage.id);
+      }
+    }
   }
 
   // If the button with the incorrect answer is pressed, show the incorrectPopUp
   public void IncorrectAnswer()
+  {
+    CloseQuestion();
+  }
+
+  // Closes the question pop up
+  public void CloseQuestion()
   {
     incorrectPopUp.SetActive(true);
     question.SetActive(false);
