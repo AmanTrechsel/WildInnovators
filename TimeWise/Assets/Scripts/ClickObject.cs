@@ -44,19 +44,16 @@ public class ClickObject : MonoBehaviour
     // Adds a BoxCollider to every loaded GameObject
     public void AddCollider()
     {
-      List<GameObject> arObjects = new List<GameObject>();
-
-      // Get the loadedObjects from ARCurson.cs
+      Debug.Log(ARCursor.Instance.arRepositionObjects);
+      // Get the loadedObjects from ARCursor.cs
       foreach(GameObject loadedObject in ARCursor.Instance.arRepositionObjects)
       {
         // Adds a BoxCollider
-        loadedObject.AddComponent<BoxCollider>();
-        arObjects.Add(loadedObject);
-      }
-
-      foreach(GameObject loadedObject in arObjects)
-      {
-        loadedObject.GetComponent<BoxCollider>().size = new Vector3(2.0f, 2.0f, 2.0f);
+        BoxCollider bc = loadedObject.AddComponent<BoxCollider>() as BoxCollider;
+        Renderer objectRenderer = GetComponentInChildren<Renderer>();
+        Bounds bounds = objectRenderer.bounds;
+        bc.center = bounds.center;
+        bc.size = bounds.extents; 
       }
     }
 }
