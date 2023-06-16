@@ -19,7 +19,7 @@ public class QuestionHandler : MonoBehaviour
   // If the button with the correct answer is pressed, show the correctPopUp
   public void CorrectAnswer()
   {
-    CloseQuestion();
+    CloseQuestion(correctPopUp);
 
     // Check every encyclopedia page with this subject
     foreach (EncyclopediaPage encyclopediaPage in ResourceManager.Instance.GetEncyclopediaPagesBySubject(AppManager.Instance.arSubject))
@@ -36,13 +36,13 @@ public class QuestionHandler : MonoBehaviour
   // If the button with the incorrect answer is pressed, show the incorrectPopUp
   public void IncorrectAnswer()
   {
-    CloseQuestion();
+    CloseQuestion(incorrectPopUp);
   }
 
   // Closes the question pop up
-  public void CloseQuestion()
+  public void CloseQuestion(GameObject popUp)
   {
-    incorrectPopUp.SetActive(true);
+    popUp.SetActive(true);
     question.SetActive(false);
   }
 }

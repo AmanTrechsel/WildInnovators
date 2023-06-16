@@ -41,17 +41,22 @@ public class ClickObject : MonoBehaviour
       }
     }
 
-    // Adds a SphereCollider to every loaded GameObject
-    public bool AddCollider()
+    // Adds a BoxCollider to every loaded GameObject
+    public void AddCollider()
     {
       List<GameObject> arObjects = new List<GameObject>();
 
       // Get the loadedObjects from ARCurson.cs
       foreach(GameObject loadedObject in ARCursor.Instance.arRepositionObjects)
       {
-        // Adds a SphereCollider
-        loadedObject.AddComponent<SphereCollider>();
+        // Adds a BoxCollider
+        loadedObject.AddComponent<BoxCollider>();
+        arObjects.Add(loadedObject);
       }
-      return true;
+
+      foreach(GameObject loadedObject in arObjects)
+      {
+        loadedObject.GetComponent<BoxCollider>().size = new Vector3(2.0f, 2.0f, 2.0f);
+      }
     }
 }
