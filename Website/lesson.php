@@ -55,7 +55,7 @@
                 </ul>
             </nav>
         </header>
-        <div id="createGroup">
+        <div id="choiceSelection">
             <div class="loginprompt">
                 <h1>Les creëren</h1>
             </div>
@@ -92,7 +92,6 @@
                             }
                             ?>
 
-                            
                         </select>
                     </div>
                 </div>
@@ -109,7 +108,7 @@
                 <div class="loginprompt">
                     <h4>Upload je Modellen</h4>
                 </div>
-                <div class="webeditor" style="text-align: center; padding: 0; border: 0; margin: 0">
+                <div id="webEditor">
                     <canvas id="unity-canvas" width=1200 height=800 style="width: 1200px; height: 800px; background: #FF8800"></canvas>
                     <script src="WebEditor/Build/1.1.0.loader.js"></script>
                     <script>
@@ -141,22 +140,23 @@
                         });
                     </script>
                 </div>
-                <br><br><br><br><br><br>
                 <div class="loginprompt">
                     <input type="submit" id="createButton" name="createGroup" value="Creëer">
                 </div>
             </form>
         </div>
-        <footer>
-            <img src="./images/LogoGroepjeWhite.png">
-            <nav>
+        <div id="lessonFooter">
+            <div id="lessonDiv">
                 <ul>
                     <li>Copyright</li>
                     <li>Contact</li>
                     <li><a href="policy.php">Policy</a></li>
                 </ul>
-            </nav>
-        </footer>
+            </div>
+            <div>
+                <img src="./images/LogoGroepjeWhite.png" id="footerImg">
+            </div>
+        </div>
     </div>
 </body>
 </html>

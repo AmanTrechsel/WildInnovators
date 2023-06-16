@@ -111,7 +111,7 @@ select{
     color: #00E0FF;
 }
 
-/* ----Home Pagina---- */
+/* ----Home page---- */
 #timeWiseLogo{
     grid-column: 4/7; 
 }
@@ -196,7 +196,7 @@ select{
     width: auto;
 }
 
-/* ----Popup---- */
+/* ----Pop-up---- */
 
 .popup{
     position: absolute;
@@ -256,7 +256,7 @@ body.active-popup .popup{
 }
 
 
-/* ----Handleiding Pagina---- */
+/* ----Manual page---- */
 #frontPageApp{
     grid-column: 5/7; 
     height: 74.5vh;
@@ -450,7 +450,6 @@ input[type="password"]{
     display: flex;
     flex-direction: column;
     text-align: center;
-
 }
 
 #createButton{
@@ -479,4 +478,49 @@ input[type="password"]{
     font-size: 1em;
     margin-top: 2vh;
     margin-bottom: 2vh;
+}
+
+#webEditor{
+    margin-bottom: 100px;
+}
+
+canvas{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 1200px;
+}
+
+#choiceSelection{
+    grid-column: 2/6;
+}
+
+#lessonFooter{
+    grid-column: 1/7;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background-image: url("../images/footer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 15.3vw 17.2vh;
+    height: 53vh;
+    text-align: right;
+    padding-right: 80px;
+}
+
+#footerImg{
+    height: 15vh;
+    width: 7vw;
+}
+
+#lessonDiv > ul > li{
+    list-style-type: none;
+    display: inline-block;
+    color: white;
+    padding: 0px 10px 20px 0px;
+    font-size: 1vw;
 }
