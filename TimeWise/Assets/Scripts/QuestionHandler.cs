@@ -7,10 +7,8 @@ public class QuestionHandler : MonoBehaviour
   // Singleton
   public static QuestionHandler Instance;
   
-  public GameObject popUpContent, question;
-
   [SerializeField]
-  private GameObject parent;
+  private GameObject question, correctPopUp, incorrectPopUp;
 
   void Awake()
   {
@@ -18,30 +16,17 @@ public class QuestionHandler : MonoBehaviour
     else if (Instance != this) { Destroy(gameObject); }
   }
 
-  void Start()
-  {
-    popUpContent = question;
-  }
-
   // If the button with the correct answer is pressed, show the correctPopUp
-  public void CorrectAnswer(GameObject correctPopUp)
+  public void CorrectAnswer()
   {
-    popUpContent = correctPopUp;
-    popUpContent.SetActive(true);
+    correctPopUp.SetActive(true);
+    question.SetActive(false);
   }
 
   // If the button with the incorrect answer is pressed, show the incorrectPopUp
-  public void IncorrectAnswer(GameObject incorrectPopUp)
+  public void IncorrectAnswer()
   {
-    popUpContent = incorrectPopUp;
-    popUpContent.SetActive(true);
+    incorrectPopUp.SetActive(true);
+    question.SetActive(false);
   }
-
-  // Disables the pop-up
-  public void HidePopUp()
-  {
-    popUpContent.SetActive(false);
-  }
-
-
 }
