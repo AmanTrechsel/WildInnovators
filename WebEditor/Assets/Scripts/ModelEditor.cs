@@ -284,7 +284,7 @@ public class ModelEditor : MonoBehaviour
   private IEnumerator UploadToDatabaseCoroutine(WWWForm form)
   {
     // Send the form to the database
-    UnityWebRequest www = UnityWebRequest.Post("https:://timewise.serverict.nl/WebEditor/upload_json.php", form);
+    UnityWebRequest www = UnityWebRequest.Post("https:://timewise.serverict.nl/upload_json.php", form);
     yield return www.SendWebRequest();
 
     // Check if there are any errors

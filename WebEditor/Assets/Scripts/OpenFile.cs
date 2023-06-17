@@ -32,6 +32,7 @@ using Dummiesman; //Load OBJ Model
 
 public class OpenFile : MonoBehaviour
 {
+  [HideInInspector]
   public GameObject model; //Load OBJ Model
 
 #if UNITY_WEBGL && !UNITY_EDITOR
