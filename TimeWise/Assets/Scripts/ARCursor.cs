@@ -58,7 +58,7 @@ public class ARCursor : MonoBehaviour
         arRepositionOffsets.Add(arObjectOffsets);
       }
 
-      // Add the nametag to the object
+      // Add the nametag and box collider to the object
       if (arObjectMeshes.Length > 0)
       {
         // Instantiate the nametag
@@ -71,6 +71,33 @@ public class ARCursor : MonoBehaviour
         topPosition = 0.1f; // Debug
         // Set the nametag position
         nameTag.transform.localPosition = new Vector3(0f, topPosition, 0f);
+
+        // Get the largest renderer in the object
+        Renderer objectRenderer = arObjectMeshes[0];
+        foreach (Renderer arMesh in arObjectMeshes)
+        {
+          if (arMesh.bounds.extents.z > objectRenderer.bounds.extents.z)
+          {
+            objectRenderer = arMesh;
+          }
+        }
+        // Add a mesh collider to the object
+        MeshCollider objectCollider = arObjectToAdd.AddComponent<MeshCollider>();
+        // Check if the object has a mesh filter
+        if (objectRenderer.GetComponent<MeshFilter>() != null)
+        {
+          // Set the collider mesh to the object's mesh
+          objectCollider.sharedMesh = objectRenderer.GetComponent<MeshFilter>().sharedMesh;
+        }
+        else
+        {
+          // Make object renderer a SkinnedMeshRenderer
+          SkinnedMeshRenderer objectSkinnedRenderer = objectRenderer as SkinnedMeshRenderer;
+          // Set the collider mesh to the object's renderer mesh
+          objectCollider.sharedMesh = objectSkinnedRenderer.sharedMesh;
+        }
+        // Make the collider convex
+        objectCollider.convex = true;
       }
     }
 
