@@ -5,7 +5,7 @@
 
   try
   {
-    $dbHandler = new PDO("mysql:host={$dbhost};dbname=timewise;charset=utf8;", $dbuser, $dbpassword);
+    $dbHandler = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", $dbuser, $dbpassword);
 
     try
     {
