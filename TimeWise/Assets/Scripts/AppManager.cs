@@ -150,6 +150,9 @@ public class AppManager : MonoBehaviour
           case "Settings":
             sceneToLoad = previousScene;
             break;
+          case "Code":
+            sceneToLoad = "CourseSelect";
+            break;
         }
 
         // Check if the scene to load is not empty and load it
@@ -245,6 +248,12 @@ public class AppManager : MonoBehaviour
   public void GoToHome()
   {
     LoadScene("CourseSelect");
+  }
+
+  // Opens the code input menu
+  public void OpenCodeInputMenu()
+  {
+    LoadScene("Code");
   }
 
   // Method to open URLs

@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SelectionSearch.unity
     guid: 6a1f4d9fc2f1e824f870540a54ffc93b
+  - enabled: 1
+    path: Assets/Scenes/Code.unity
+    guid: b7afaf59216670e4389215c615296b57
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: e74f5f70ed09bd84c8529cdfa11e035c, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 4a6a097983f9ffe4dbd977bc5dbbf9ed, type: 2}
