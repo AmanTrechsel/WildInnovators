@@ -4,38 +4,38 @@
 
     $errors = []; //Making a variable with a array in it for possible errors.
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    if ($_SERVER['REQUEST_METHOD'] == "POST") //Check if the submit button is pushed
     {
-        // Check sign in
+        // Create variables for input
         $username = filter_input(INPUT_POST, "username");
         $password = filter_input(INPUT_POST, "password");
         $hash = password_hash($password, PASSWORD_BCRYPT);
 
         try
         {
-            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Make connection with database
 
             try
             {
-                if (isset($_GET['register']))
+                if (isset($_GET['register'])) //If the register is pressed 
                 {
-                    $stmt = $dbHandler->prepare("INSERT INTO `accounts` (`name`, `password`) VALUES (:username, :password);");
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR);
+                    $stmt = $dbHandler->prepare("INSERT INTO `accounts` (`name`, `password`) VALUES (:username, :password);"); //Pass in the information in to the database
+                    $stmt->bindParam("username", $username, PDO::PARAM_STR); //Bind the variables for use in the database
                     $stmt->bindParam("password", $hash, PDO::PARAM_STR);
                     $stmt->execute();
 
                     $_SESSION['username'] = $username;
                     header("Location: dashboard.php");
                 }
-                else
+                else //If the register is not pressed than it is a login page 
                 {
-                    $stmt = $dbHandler->prepare("SELECT * FROM `accounts` WHERE `name` = :username");
+                    $stmt = $dbHandler->prepare("SELECT * FROM `accounts` WHERE `name` = :username"); //Look if the username is in the database
                     $stmt->bindParam("username", $username, PDO::PARAM_STR);
                     $stmt->bindColumn("password", $hashedPassword, PDO::PARAM_STR);
                     $stmt->execute();
                     $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword))
+                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword)) //Check if the database have the accounts and the password 
                     {
                       $_SESSION['username'] = $username;
                       header("Location: dashboard.php");
