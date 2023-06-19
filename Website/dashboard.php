@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require_once 'constants.php';
+    $username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +44,31 @@
         <div id="quoteContainer">
             <script src="scripts/quotes.js"></script>
         </div>
-        <div id="quote">
+        <div id="quoteDashboard">
             <img src="./images/balk.png" alt="quote">
+        </div>
+        <div id="groups">
+            <h1>Mijn Groepen</h1>
+            <?php
+                try {
+                    $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+                    
+                
+                    $stmt = $dbHandler->prepare("SELECT `name`, `code` FROM `groups` WHERE `username` = :username");
+                    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+                    $stmt->execute();
+                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                    foreach ($results as $result) {
+                        echo "<div class='groupView'>
+                                <p>Groep: $result[name]</p>
+                                <p>Code: $result[code] </p>
+                            </div>";
+                    }
+                } catch (PDOException $ex) {
+                    $errors[] = $ex->getMessage();
+                }
+            ?>
         </div>
         <footer>
             <img src="./images/LogoGroepjeWhite.png">
