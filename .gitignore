@@ -70,3 +70,17 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Temporary files for WebEditor
+/WebEditor/Temp
+/WebEditor/Temp/*
+/WebEditor/Library
+/WebEditor/Library/*
+/WebEditor/Builds
+/WebEditor/Builds/*
+/WebEditor/Library
+/WebEditor/Library/*
+/WebEditor/Logs
+/WebEditor/Logs/*
+/WebEditor/UserSettings
+/WebEditor/UserSettings/*

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: Web Editor a
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 9e378f3093ec5f74da9a6b3d60822825, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 7f35340c61297db44a0d5c04fdf26167, type: 2}
+  - {fileID: 11400000, guid: a01876fd60f82f6459e12c211ed63706, type: 2}
+  - {fileID: 11400000, guid: 8e0d379bb409a0f4cbfff9c885450811, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
