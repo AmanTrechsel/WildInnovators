@@ -8,18 +8,20 @@
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        $groupName = filter_input(INPUT_POST, "groupName");
+        $groupID = filter_input(INPUT_POST, "groups");
         $lessonName = filter_input(INPUT_POST, "lessonName");
         $subject = filter_input(INPUT_POST, "subject");
+        $modelIDs = $_COOKIE['modelsUploaded'];
         try{
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
 
         
             try{
-                    $stmt = $dbHandler->prepare("INSERT INTO  `lessons` (`name`, `subject`, `groupId`) VALUES (:lessonName, :subjects, :groupID);");
+                    $stmt = $dbHandler->prepare("INSERT INTO  `lessons` (`name`, `subject`, `groupId`, `modelIds`) VALUES (:lessonName, :subjects, :groupID, :modelIDs);");
                     $stmt->bindParam("lessonName", $lessonName, PDO::PARAM_STR);
                     $stmt->bindParam("subjects", $subject, PDO::PARAM_STR);
                     $stmt->bindParam("groupID", $groupID, PDO::PARAM_STR);
+                    $stmt->bindParam("modelIDs", $modelIDs, PDO::PARAM_STR);
                     $stmt->execute();
                 }
                 catch (Exception $ex)
@@ -79,13 +81,13 @@
                                 $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
                                 
                             
-                                $stmt = $dbHandler->prepare("SELECT `name` FROM `groups` WHERE `username` = :username");
+                                $stmt = $dbHandler->prepare("SELECT `name`, `groupdId` FROM `groups` WHERE `username` = :username");
                                 $stmt->bindParam(":username", $username, PDO::PARAM_STR);
                                 $stmt->execute();
                                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             
                                 foreach ($results as $result) {
-                                    echo "<option value='groupName' id='groupName'>$result[name]</option>";
+                                    echo "<option value=$result[groupdId] id='groupName'>$result[name]</option>";
                                 }
                             } catch (PDOException $ex) {
                                 $errors[] = $ex->getMessage();
@@ -99,9 +101,9 @@
                     <div>
                         <label for="subject">Kies een vak:</label>
                         <select name="subject" id="subject">
-                        <option value="subject" id="subject">Aardrijkskunde</option>
-                        <option value="subject" id="subject">Geschiedenis</option>
-                        <option value="subject" id="subject">Biologie</option>
+                        <option value="Aardrijkskunde" id="subject">Aardrijkskunde</option>
+                        <option value="Geschiedenis" id="subject">Geschiedenis</option>
+                        <option value="Biologie" id="subject">Biologie</option>
                         </select>
                     </div>
                 </div>

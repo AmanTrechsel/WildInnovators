@@ -443,6 +443,33 @@ input[type="password"]{
     margin-left: -2vw;
 }
 
+#quoteDashboard{
+    grid-column: 1/7; 
+    margin-bottom: 45vh;
+}
+
+
+#quoteDashboard > img{
+    max-width: 100%;
+}
+
+#groups{
+    grid-column: 3/5;
+    margin-top: -60vh;
+    text-align: center;
+}
+
+.groupView{
+    column-gap: 10vw;
+    display: flex;
+    flex-wrap: wrap ;
+    justify-content: center;
+    border: 3px solid #F06500;
+    border-radius: 140px;
+    background-color: #F9F9F9;
+    padding: 1vh;
+    margin-bottom: 1vh;
+}
 
 /* ----Creating group---- */
 #createGroup{
