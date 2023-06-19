@@ -53,4 +53,11 @@ public class CourseSelectionManager : MonoBehaviour
     // Set the content's height to contentHeight
     contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, contentHeight);
   }
+
+  // Opens the code input menu
+  public void OpenCodeInputMenu()
+  {
+    // Open the code input menu
+    AppManager.Instance.OpenCodeInputMenu();
+  }
 }
