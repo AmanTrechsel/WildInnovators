@@ -15,21 +15,31 @@ public class ClickObject : MonoBehaviour
 
   void Update()
   {
-    // If there has been a touch
-    if(Input.GetTouch(0).phase == TouchPhase.Began)
+    // Check if the user taps the screen
+    if (Input.touchCount > 0)
     {
-      RaycastHit hit;
+      // Store current touch
+      Touch inputTouch = Input.GetTouch(0);
 
-      // Raycast at the position of the touch-input
-      Ray ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
-
-      // If the raycast hits a collider within 10000.0f units
-      if(Physics.Raycast(ray, out hit, 10000.0f))
+      // If there was a valid touch
+      if(inputTouch.phase == TouchPhase.Began)
       {
-        if(hit.transform != null)
+        RaycastHit hit;
+
+        // If the spherecast hits a collider within 10000.0f units and a radius based on the touch multiplied by factor 2
+        if(Physics.SphereCast(inputTouch.position, inputTouch.radius * 2, cam.transform.forward, out hit, 10000.0f))
         {
-          // Show the question
-          question.SetActive(true);
+          if(hit.transform != null)
+          {
+            // Show the question
+            question.SetActive(true);
+
+            // Hide the tooltip for clicking an object
+            ARManager.Instance.HideTooltip();
+
+            // Makes it so you don't get the tooltip again
+            AppManager.Instance.hasClicked = true;
+          }
         }
       }
     }

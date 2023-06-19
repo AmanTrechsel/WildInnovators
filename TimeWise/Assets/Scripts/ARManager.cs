@@ -23,6 +23,9 @@ public class ARManager : MonoBehaviour
   // The AR Cursor
   [SerializeField]
   private GameObject arCursor;
+  // Reference to the tooltip object
+  [SerializeField]
+  private GameObject tooltip;
   // The AR Tracked Image Manager
   [SerializeField]
   private ARTrackedImageManager imageTracking;
@@ -53,6 +56,9 @@ public class ARManager : MonoBehaviour
 
     // Set the encyclopedia unlock count
     encyclopediaUnlockCount.text = AppManager.Instance.GetEncyclopediaUnlockText();
+
+    // Hide the tooltip if the user has already clicked an object
+    if (AppManager.Instance.hasClicked) { HideTooltip(); }
   }
 
   // Update is called once per frame
@@ -102,6 +108,12 @@ public class ARManager : MonoBehaviour
     // Reposition the AR Cursor to the tracked image and set it to visible
     arCursor.transform.position = trackedImage.transform.position;
     trackedImageVisible = true;
+  }
+
+  // Hides the tooltip
+  public void HideTooltip()
+  {
+    tooltip.SetActive(false);
   }
 
   // Show the calibration layout

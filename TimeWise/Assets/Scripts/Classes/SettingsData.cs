@@ -9,4 +9,6 @@ public class SettingsData
   public int languageIndex;
   // The location of the images
   public string location;
+  // Whether the user has clicked an object before
+  public bool hasClicked;
 }

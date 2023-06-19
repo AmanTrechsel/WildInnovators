@@ -14,6 +14,7 @@ public class AppManager : MonoBehaviour
   public bool permission = true;
   public int languageIndex;
   public string location;
+  public bool hasClicked;
   public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Singleton
@@ -124,50 +125,57 @@ public class AppManager : MonoBehaviour
           return;
         }
 
-        // Set the scene to load to an empty string
-        string sceneToLoad = "";
-
-        // Check which scene is currently active and set the scene to load accordingly
-        switch (SceneManager.GetActiveScene().name)
-        {
-          case "CourseSelect":
-            break;
-          case "Selection":
-            sceneToLoad = "CourseSelect";
-            break;
-          case "SelectionSearch":
-            sceneToLoad = "Selection";
-            break;
-          case "ARWarning":
-            sceneToLoad = "Selection";
-            break;
-          case "AR":
-            sceneToLoad = "Selection";
-            break;
-          case "Encyclopedia":
-            sceneToLoad = previousScene;
-            break;
-          case "Settings":
-            sceneToLoad = previousScene;
-            break;
-          case "Code":
-            sceneToLoad = "CourseSelect";
-            break;
-        }
-
-        // Check if the scene to load is not empty and load it
-        if (sceneToLoad != "")
-        {
-          LoadScene(sceneToLoad);
-          return;
-        }
-        //if (previousScene != null)
-        //{
-        //  AppManager.Instance.LoadScene(previousScene);
-        //  return;
-        //}
+        // Goes to the previous scene
+        GoBack();
       }
     }
+  }
+
+  // Goes to the previous scene
+  public void GoBack()
+  {
+    // Set the scene to load to an empty string
+    string sceneToLoad = "";
+
+    // Check which scene is currently active and set the scene to load accordingly
+    switch (SceneManager.GetActiveScene().name)
+    {
+      case "CourseSelect":
+        break;
+      case "Selection":
+        sceneToLoad = "CourseSelect";
+        break;
+      case "SelectionSearch":
+        sceneToLoad = "Selection";
+        break;
+      case "ARWarning":
+        sceneToLoad = "Selection";
+        break;
+      case "AR":
+        sceneToLoad = "Selection";
+        break;
+      case "Encyclopedia":
+        sceneToLoad = previousScene;
+        break;
+      case "Settings":
+        sceneToLoad = previousScene;
+        break;
+      case "Code":
+        sceneToLoad = "CourseSelect";
+        break;
+    }
+
+    // Check if the scene to load is not empty and load it
+    if (sceneToLoad != "")
+    {
+      LoadScene(sceneToLoad);
+      return;
+    }
+    //if (previousScene != null)
+    //{
+    //  AppManager.Instance.LoadScene(previousScene);
+    //  return;
+    //}
   }
 
   // Show the no permission popup

@@ -35,6 +35,7 @@ public class SettingsManager : MonoBehaviour
     data.permission = AppManager.Instance.permission;
     data.languageIndex = AppManager.Instance.languageIndex;
     data.location = AppManager.Instance.location;
+    data.hasClicked = AppManager.Instance.hasClicked;
     
     string json = JsonUtility.ToJson(data);
     File.WriteAllText(Application.dataPath + "/" + saveFile, json);
@@ -49,6 +50,7 @@ public class SettingsManager : MonoBehaviour
     AppManager.Instance.permission = data.permission;
     AppManager.Instance.languageIndex = data.languageIndex;
     AppManager.Instance.location = data.location;
+    AppManager.Instance.hasClicked = data.hasClicked;
   }
 
   // For the permission setting. The parameters are given through the separate PermissionManager.cs script
