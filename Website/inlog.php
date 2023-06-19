@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    require_once 'constants.php';
+    session_start(); //Session started on every page, in case someone is logged in
+    require_once 'constants.php'; //Need the document for the connection with the database  
 
-    $errors = [];
+    $errors = []; //Making a variable with a array in it for possible errors.
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {

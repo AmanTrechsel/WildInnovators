@@ -1,5 +1,5 @@
-<?php session_start()?>
-<?php ini_set('display_errors', 0); ?>
+<?php session_start()?> <!-- Session started on every page, in case someone is logged in -->
+<?php ini_set('display_errors', 0); ?> <!-- You set the display errors on zero -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="mainContainer">
-    <?php if ($_SESSION['username'] == NULL){?>
+    <?php if ($_SESSION['username'] == NULL){?> <!-- Check if the username is used if so than the navbar changed from login to dashboard -->
         <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>

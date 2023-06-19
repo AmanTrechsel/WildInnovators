@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<?php ini_set('display_errors', 0); ?>
+<?php session_start(); ?> <!-- Session started on every page, in case someone is logged in -->
+<?php ini_set('display_errors', 0); ?> <!-- You set the display errors on zero -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="mainContainer">
-        <?php if ($_SESSION['username'] == NULL){?>
+        <?php if ($_SESSION['username'] == NULL){?> <!-- Check if the username is used if so than the navbar changed from login to dashboard -->
         <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>
@@ -44,7 +44,7 @@
             <p>TimeWise een interactieve app voor in het onderwijs.</p>
         </main>
         <div class="popup">
-            <button onclick = "popupClose()" class="closeButton">&times;</button>
+            <button onclick="popupClose()" class="closeButton">&times;</button>
             <h2>Contact gegevens</h2>
             <p>Telefoonnummer: 06123456789</p>
             <p>Adres: PostbodeLaan 168 Emmen</p>
@@ -54,10 +54,10 @@
             <img src="./images/AppLogoPNG.png" alt="TimeWise">  
         </div>
         <div id="buttonHomePage">
-            <form  id="login" method="GET" action="inlog.php">
+            <form id="login" method="GET" action="inlog.php">
                 <input class="buttonDashboard" type="submit" value="Naar Login Pagina">                    
             </form>
-            <button onclick = "popupOpen()" id="openPopup">Contact</button>
+            <button onclick="popupOpen()" id="openPopup">Contact</button>
         </div>
         <div id="aboutTimeWise">
             <div id="aboutTimeWisetext">

@@ -20,11 +20,11 @@
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        // Check sign in
+        
         $groupName = filter_input(INPUT_POST, "groupName");
         $subjects = filter_input(INPUT_POST, 'subject', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        
         $subject = implode(", ", $subjects);
+
         try
         {
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
