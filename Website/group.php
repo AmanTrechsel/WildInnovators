@@ -1,12 +1,12 @@
 <?php
-    session_start();
-    require_once 'constants.php';
+    session_start(); //Start the session
+    require_once 'constants.php'; //Need this page for the database connection
 
-    $username = $_SESSION['username'];
+    $username = $_SESSION['username']; //Get the variable out of the session
 
     $errors = [];
 
-    function generateRandomString($length = 6) {
+    function generateRandomString($length = 6) { //A function for the random string, to create a unique code for every group
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -23,16 +23,16 @@
         
         $groupName = filter_input(INPUT_POST, "groupName");
         $subjects = filter_input(INPUT_POST, 'subject', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $subject = implode(", ", $subjects);
+        $subject = implode(", ", $subjects); //Split the subjects 
 
         try
         {
-            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Making a connection with the database
 
             try
             {
                 $stmt = $dbHandler->prepare("INSERT INTO  `groups` (`name`, `code`, `subjects`, `username`) VALUES (:groupName, :groupCode, :subjects, :userName);");
-                $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR);
+                $stmt->bindParam("groupName", $groupName, PDO::PARAM_STR); //Bind variables for the database
                 $stmt->bindParam("groupCode", $groupCode, PDO::PARAM_STR);
                 $stmt->bindParam("subjects", $subject, PDO::PARAM_STR);
                 $stmt->bindParam("userName", $username, PDO::PARAM_STR);
@@ -40,7 +40,7 @@
             }
             catch (Exception $ex)
             {
-                $errors[] = $ex->getMessage();
+                $errors[] = $ex->getMessage(); //If there is any errors put them in the error array
             }
         }
         catch (Exception $ex)

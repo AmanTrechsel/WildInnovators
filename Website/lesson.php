@@ -1,24 +1,24 @@
 <?php
-    session_start();
-    require_once 'constants.php';
+    session_start(); //Start a session
+    require_once 'constants.php'; //Need the file for the connection with the database
 
-    $username = $_SESSION['username'];
+    $username = $_SESSION['username']; //Get the username out of the session
 
-    $errors = [];
+    $errors = []; 
 
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        $groupID = filter_input(INPUT_POST, "groups");
+        $groupID = filter_input(INPUT_POST, "groups"); //Put every input in variables
         $lessonName = filter_input(INPUT_POST, "lessonName");
         $subject = filter_input(INPUT_POST, "subject");
         $modelIDs = $_COOKIE['modelsUploaded'];
         try{
-            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}");
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Making a connection with the database
 
         
             try{
-                    $stmt = $dbHandler->prepare("INSERT INTO  `lessons` (`name`, `subject`, `groupId`, `modelIds`) VALUES (:lessonName, :subjects, :groupID, :modelIDs);");
-                    $stmt->bindParam("lessonName", $lessonName, PDO::PARAM_STR);
+                    $stmt = $dbHandler->prepare("INSERT INTO  `lessons` (`name`, `subject`, `groupId`, `modelIds`) VALUES (:lessonName, :subjects, :groupID, :modelIDs);"); //Make a statement to send to the database
+                    $stmt->bindParam("lessonName", $lessonName, PDO::PARAM_STR); //Bind the variables for the prepare
                     $stmt->bindParam("subjects", $subject, PDO::PARAM_STR);
                     $stmt->bindParam("groupID", $groupID, PDO::PARAM_STR);
                     $stmt->bindParam("modelIDs", $modelIDs, PDO::PARAM_STR);
@@ -26,7 +26,7 @@
                 }
                 catch (Exception $ex)
                 {
-                    $errors[] = $ex->getMessage();
+                    $errors[] = $ex->getMessage(); //If there is any errors give the message with the errors array. 
                 }
         }
         catch (Exception $ex)
@@ -84,10 +84,10 @@
                                 $stmt = $dbHandler->prepare("SELECT `name`, `groupdId` FROM `groups` WHERE `username` = :username");
                                 $stmt->bindParam(":username", $username, PDO::PARAM_STR);
                                 $stmt->execute();
-                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                $results = $stmt->fetchAll(PDO::FETCH_ASSOC); //Get everything out of the table 
                             
                                 foreach ($results as $result) {
-                                    echo "<option value=$result[groupdId] id='groupName'>$result[name]</option>";
+                                    echo "<option value=$result[groupdId] id='groupName'>$result[name]</option>"; //Put everything out of the table in to a dropdown menu. 
                                 }
                             } catch (PDOException $ex) {
                                 $errors[] = $ex->getMessage();
@@ -128,7 +128,7 @@
 
                             document.body.style.textAlign = "left";
                         }
-
+                        //Display the Webeditor
                         createUnityInstance(document.querySelector("#unity-canvas"), {
                             dataUrl: "WebEditor/Build/f6e885ef6f053eabac2c1324ce768fac.data",
                             frameworkUrl: "WebEditor/Build/05262282d3d6f17fceaef00bac0bcb70.js",

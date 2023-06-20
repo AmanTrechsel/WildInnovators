@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    require_once 'constants.php';
-    $username = $_SESSION['username'];
+    session_start(); //Start the session
+    require_once 'constants.php'; //Add the page for the login constants
+    $username = $_SESSION['username']; //Get the variable out of the session
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
             </div>
         </main>
         <div id="welkom">
-            <h1>Welkom <?php echo $_SESSION['username']; ?></h1>
+            <h1>Welkom <?php echo $_SESSION['username']; ?></h1> <!--Show the username for a little personal touch-->
         </div>
         <div id="quoteContainer">
             <script src="scripts/quotes.js"></script>
@@ -55,18 +55,18 @@
                     
                 
                     $stmt = $dbHandler->prepare("SELECT `name`, `code` FROM `groups` WHERE `username` = :username");
-                    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+                    $stmt->bindParam(":username", $username, PDO::PARAM_STR); //Bind the variables
                     $stmt->execute();
                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
-                    foreach ($results as $result) {
+                    foreach ($results as $result) { //Everything out of the table goes in to the groupview to show the different groups and code
                         echo "<div class='groupView'>
                                 <p>Groep: $result[name]</p>
-                                <p>Code: $result[code] </p>
+                                <p>Code: $result[code] </p> 
                             </div>";
                     }
                 } catch (PDOException $ex) {
-                    $errors[] = $ex->getMessage();
+                    $errors[] = $ex->getMessage(); //If there is any erros put it in the error array
                 }
             ?>
         </div>

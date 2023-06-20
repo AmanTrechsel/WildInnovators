@@ -106,12 +106,12 @@ select{
     font-size: 0.8em;
 }
 
-
 #NavText{
     color: #00E0FF;
 }
 
 /* ----Home page---- */
+
 #timeWiseLogo{
     grid-column: 4/7; 
 }
@@ -255,8 +255,8 @@ body.active-popup .popup{
                 margin-top 300ms ease-in-out;
 }
 
-
 /* ----Manual page---- */
+
 #frontPageApp{
     grid-column: 5/7; 
     height: 74.5vh;
@@ -269,7 +269,6 @@ body.active-popup .popup{
 #quote{
     grid-column: 1/7; 
 }
-
 
 #quote > img{
     max-width: 100%;
@@ -285,6 +284,7 @@ body.active-popup .popup{
 }
 
 /* ----Login page---- */
+
 #content{
     grid-column: 3/5; 
     margin-top: -30vh;
@@ -374,8 +374,8 @@ input[type="password"]{
     margin-top:1vh;
 }
 
-
 /* ----Privacy Policy Page---- */
+
 #privacyPolicy{
     grid-column: 2/5;
     display: flex;
@@ -395,6 +395,7 @@ input[type="password"]{
 }
 
 /* ----Dashboard---- */
+
 #welkom{
     grid-column: 4/7;
     height: 74.5vh;
@@ -472,6 +473,7 @@ input[type="password"]{
 }
 
 /* ----Creating group---- */
+
 #createGroup{
     grid-column: 3/5;
     display: flex;
@@ -491,6 +493,7 @@ input[type="password"]{
 
 
 /* ----Creating Lesson---- */
+
 #subject{
     margin-top: 2vh;
 }

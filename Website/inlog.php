@@ -24,8 +24,8 @@
                     $stmt->bindParam("password", $hash, PDO::PARAM_STR);
                     $stmt->execute();
 
-                    $_SESSION['username'] = $username;
-                    header("Location: dashboard.php");
+                    $_SESSION['username'] = $username; //Set the session to the username, if the user goes to a different page is still loggedin. 
+                    header("Location: dashboard.php"); //Set the location to the dashboard page. 
                 }
                 else //If the register is not pressed than it is a login page 
                 {
@@ -38,11 +38,11 @@
                     if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword)) //Check if the database have the accounts and the password 
                     {
                       $_SESSION['username'] = $username;
-                      header("Location: dashboard.php");
+                      header("Location: dashboard.php"); //If everything is correct you will send to the dashboard page.
                     }
                     else
                     {
-                      $errors[] = "Username or password is incorrect!";
+                      $errors[] = "Username or password is incorrect!"; //if the username or password is not correct than the message will go in to the errors array, that will display later on the page
                     }
                 }
             }
@@ -82,9 +82,9 @@
             <?php
                 foreach ($errors as $error)
                 {
-                    echo "<p>".$error."</p>";
+                    echo "<p>".$error."</p>"; //Display all errors if there is any to display
                 }
-                if (isset($_GET['register']))
+                if (isset($_GET['register'])) //If the user clicked on the register button than display this code underneath.
                 {
             ?>
             <form id ="register" method="POST" action="#">
@@ -105,7 +105,7 @@
             </form>
             <?php
                 }
-                else
+                else //If nothing is pressed than it will display the login form. 
                 {
             ?>
             <form id ="login" method="POST" action="#">
