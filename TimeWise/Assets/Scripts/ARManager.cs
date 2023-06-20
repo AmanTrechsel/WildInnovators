@@ -200,7 +200,7 @@ public class ARManager : MonoBehaviour
     string filename = $"{dt.ToString().Replace(":", "_").Replace(" ", "_").Replace("/", "_")}.png";
 
     // Create path if it doesn't exist yet
-    if(!Directory.Exists(path))
+    if (!Directory.Exists(path))
     {    
       Directory.CreateDirectory(path);
     }

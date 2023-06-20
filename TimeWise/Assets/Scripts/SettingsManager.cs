@@ -19,10 +19,8 @@ public class SettingsManager : MonoBehaviour
   // Assign this instance as the singleton
   private void Awake()
   {
-    if(Instance == null)
-    {
-      Instance = this;
-    }
+    if (Instance == null) { Instance = this; }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Load the settings from the local file
     LoadData();
@@ -57,12 +55,12 @@ public class SettingsManager : MonoBehaviour
   public void SwitchPermission(Button button, Sprite toggleOff, Sprite toggleOn)
   {
     // Check the current state of the button and switch it accordingly
-    if(button.image.sprite == toggleOn)
+    if (button.image.sprite == toggleOn)
     {
       button.image.sprite = toggleOff;
       AppManager.Instance.permission = false;
     }
-    else if(button.image.sprite == toggleOff)
+    else if (button.image.sprite == toggleOff)
     {
       // If the permission is not yet given, ask for it
       if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
@@ -101,9 +99,9 @@ public class SettingsManager : MonoBehaviour
 
   public void ChangeLocation(GameObject inputField, string location)
   {
-    if(inputField.GetComponent<TMP_InputField>().text != location)
+    if (inputField.GetComponent<TMP_InputField>().text != location)
     {
-      if(inputField.GetComponent<TMP_InputField>().text == "")
+      if (inputField.GetComponent<TMP_InputField>().text == "")
       {
         inputField.GetComponent<TMP_InputField>().text = "Timewise";
       }
@@ -151,7 +149,7 @@ public class SettingsManager : MonoBehaviour
   public void HideSetting()
   {
     popup.SetActive(false);
-    foreach(Transform child in content)
+    foreach (Transform child in content)
     {
       GameObject.Destroy(child.gameObject);
     }

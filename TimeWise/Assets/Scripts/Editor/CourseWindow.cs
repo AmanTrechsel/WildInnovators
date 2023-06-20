@@ -48,11 +48,13 @@ public class CourseEditorWindow : EditorWindow
       CreateNewCourse();
       GUI.FocusControl(null);
     }
+
     if (selectedCourse != null && GUILayout.Button("-"))
     {
       DeleteSelectedCourse();
       GUI.FocusControl(null);
     }
+
     GUILayout.EndHorizontal();
     GUILayout.EndVertical();
     GUILayout.Box("", GUILayout.ExpandHeight(true), GUILayout.Width(5));
@@ -69,6 +71,7 @@ public class CourseEditorWindow : EditorWindow
         AssetDatabase.SaveAssets();
         selectedCourse.name = newFilename;
       }
+
       Editor editor = Editor.CreateEditor(selectedCourse);
       editor.DrawDefaultInspector();
       GUILayout.Space(20);
@@ -76,6 +79,7 @@ public class CourseEditorWindow : EditorWindow
       {
         EditorGUIUtility.PingObject(selectedCourse);
       }
+
       GUILayout.EndVertical();
     }
     GUILayout.EndHorizontal();
@@ -94,6 +98,7 @@ public class CourseEditorWindow : EditorWindow
           courseObjects.Add(course);
         }
       }
+
       if (courseObjects.Count > 0)
       {
         selectedCourseIndex = 0;
@@ -113,6 +118,7 @@ public class CourseEditorWindow : EditorWindow
         courseName = "New Course (" + courseIndex + ")";
         coursePath = folderPath + "/" + courseName + ".asset";
       }
+      
       Course newCourse = ScriptableObject.CreateInstance<Course>();
       AssetDatabase.CreateAsset(newCourse, coursePath);
       AssetDatabase.SaveAssets();

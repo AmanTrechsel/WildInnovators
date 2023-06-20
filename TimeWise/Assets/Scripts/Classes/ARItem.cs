@@ -12,5 +12,5 @@ public class ARItem : ScriptableObject
   // The offset rotation for the AR Item
   public Vector3 offsetRotation = Vector3.zero;
   // The offset scale for the AR Item
-  public Vector3 offsetScale = new Vector3(1f,1f,1f);
+  public Vector3 offsetScale = new Vector3(1f, 1f, 1f);
 }

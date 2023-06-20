@@ -22,14 +22,14 @@ public class ClickObject : MonoBehaviour
       Touch inputTouch = Input.GetTouch(0);
 
       // If there was a valid touch
-      if(inputTouch.phase == TouchPhase.Began)
+      if (inputTouch.phase == TouchPhase.Began)
       {
         RaycastHit hit;
 
         // If the spherecast hits a collider within 10000.0f units and a radius based on the touch multiplied by factor 2
-        if(Physics.SphereCast(inputTouch.position, inputTouch.radius * 2, cam.transform.forward, out hit, 10000.0f))
+        if (Physics.SphereCast(inputTouch.position, inputTouch.radius * 2, cam.transform.forward, out hit, 10000.0f))
         {
-          if(hit.transform != null)
+          if (hit.transform != null)
           {
             // Show the question
             question.SetActive(true);

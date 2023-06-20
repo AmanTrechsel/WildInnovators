@@ -48,11 +48,13 @@ public class SettingEditorWindow : EditorWindow
       CreateNewSetting();
       GUI.FocusControl(null);
     }
+
     if (selectedSetting != null && GUILayout.Button("-"))
     {
       DeleteSelectedSetting();
       GUI.FocusControl(null);
     }
+
     GUILayout.EndHorizontal();
     GUILayout.EndVertical();
     GUILayout.Box("", GUILayout.ExpandHeight(true), GUILayout.Width(5));
@@ -69,6 +71,7 @@ public class SettingEditorWindow : EditorWindow
         AssetDatabase.SaveAssets();
         selectedSetting.name = newFilename;
       }
+
       Editor editor = Editor.CreateEditor(selectedSetting);
       editor.DrawDefaultInspector();
       GUILayout.Space(20);
@@ -76,6 +79,7 @@ public class SettingEditorWindow : EditorWindow
       {
         EditorGUIUtility.PingObject(selectedSetting);
       }
+
       GUILayout.EndVertical();
     }
     GUILayout.EndHorizontal();
@@ -94,6 +98,7 @@ public class SettingEditorWindow : EditorWindow
           settingObjects.Add(setting);
         }
       }
+
       if (settingObjects.Count > 0)
       {
         selectedSettingIndex = 0;
@@ -113,6 +118,7 @@ public class SettingEditorWindow : EditorWindow
         settingName = "New Setting (" + settingIndex + ")";
         settingPath = folderPath + "/" + settingName + ".asset";
       }
+      
       Setting newSetting = ScriptableObject.CreateInstance<Setting>();
       AssetDatabase.CreateAsset(newSetting, settingPath);
       AssetDatabase.SaveAssets();

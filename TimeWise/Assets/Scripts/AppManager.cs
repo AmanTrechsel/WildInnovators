@@ -100,6 +100,7 @@ public class AppManager : MonoBehaviour
     // Show or hide the AppCanvas based on the scene being loaded
     if (sceneName == "ARWarning") { appCanvas.SetActive(false); }
     else { appCanvas.SetActive(true); }
+
     // Show or hide the SearchButton based on the scene being loaded
     if (sceneName == "CourseSelect" || sceneName == "Selection") { searchButton.SetActive(true); }
     else { searchButton.SetActive(false); }
@@ -171,6 +172,7 @@ public class AppManager : MonoBehaviour
       LoadScene(sceneToLoad);
       return;
     }
+
     //if (previousScene != null)
     //{
     //  AppManager.Instance.LoadScene(previousScene);
@@ -200,7 +202,7 @@ public class AppManager : MonoBehaviour
   // Send the user to the AR Scene based on parameters
   public void GoToARScene()
   {
-    if(AppManager.Instance.permission == true)
+    if (AppManager.Instance.permission == true)
     {
       LoadScene("ARWarning");
     }

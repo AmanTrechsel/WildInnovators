@@ -18,11 +18,11 @@ public class MoveOvertime : MonoBehaviour
   private void Update()
   {
     // Move and rotate the object over time
-    if(randomizeMovement == false)
+    if (randomizeMovement == false)
     {
       MoveObject(moveSpeed, rotationSpeed);
     }
-    else if(randomizeMovement == true)
+    else if (randomizeMovement == true)
     {
       MoveObject(moveSpeed, rotationSpeed);
       StartCoroutine(RandomizeValues());
@@ -43,12 +43,12 @@ public class MoveOvertime : MonoBehaviour
 
     int randomValue = Random.Range(0, 1);
 
-    if(randomValue == 0)
+    if (randomValue == 0)
     {
       moveSpeed.x += Random.Range(-10.0f, 10.0f);
       moveSpeed.z += Random.Range(-10.0f, 10.0f);
     }
-    else if(randomValue == 1)
+    else if (randomValue == 1)
     {
       rotationSpeed.y += Random.Range(-50.0f, 50.0f);
     }
