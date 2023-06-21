@@ -172,12 +172,6 @@ public class AppManager : MonoBehaviour
       LoadScene(sceneToLoad);
       return;
     }
-
-    //if (previousScene != null)
-    //{
-    //  AppManager.Instance.LoadScene(previousScene);
-    //  return;
-    //}
   }
 
   // Show the no permission popup

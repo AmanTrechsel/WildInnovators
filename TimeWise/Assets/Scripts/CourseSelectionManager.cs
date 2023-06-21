@@ -18,6 +18,9 @@ public class CourseSelectionManager : MonoBehaviour
   private RectTransform contentRect;
   [SerializeField]
   private VerticalLayoutGroup contentLayoutGroup;
+  // Message shown when no courses were added
+  [SerializeField]
+  private GameObject noneFoundMessage;
 
   // Called once at the start of the app
   private void Awake()
@@ -52,6 +55,12 @@ public class CourseSelectionManager : MonoBehaviour
 
     // Set the content's height to contentHeight
     contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, contentHeight);
+
+    // Check whether any courses were added
+    if (courseContent.childCount == 0)
+    {
+      noneFoundMessage.SetActive(true);
+    }
   }
 
   // Opens the code input menu
