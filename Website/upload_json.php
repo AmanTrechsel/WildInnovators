@@ -1,7 +1,7 @@
 <?php
-  require_once 'constants.php';
+  require_once 'constants.php'; //Add the page for the database login constants 
 
-  $upload_json = filter_input(INPUT_POST, "json"); 
+  $upload_json = filter_input(INPUT_POST, "json"); // Create variables for input and filter the input
 
   try
   {
