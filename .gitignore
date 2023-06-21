@@ -84,3 +84,11 @@ crashlytics-build.properties
 /WebEditor/Logs/*
 /WebEditor/UserSettings
 /WebEditor/UserSettings/*
+
+/WebEditor/[Ll]ibrary/
+/WebEditor/[Tt]emp/
+/WebEditor/[Oo]bj/
+/WebEditor/[Bb]uild/
+/WebEditor/[Bb]uilds/
+/WebEditor/[Ll]ogs/
+/WebEditor/[Uu]ser[Ss]ettings/

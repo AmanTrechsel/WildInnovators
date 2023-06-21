@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -65,6 +66,25 @@ public class ModelEditor : MonoBehaviour
   private List<MaterialButton> _materialButtons = new List<MaterialButton>();
   // Reference to the default shader
   private Shader defaultShader;
+  // The id for the model that has just been uploaded
+  private int uploadedId;
+
+// Checks whether you are using WebGL and not from the editor
+#if UNITY_WEBGL && !UNITY_EDITOR
+  // WebGL
+  [DllImport("__Internal")]
+  private static extern void SetCookie(string cookie, int value);
+
+  private void SetModelId(int value)
+  {
+    SetCookie("modelsUploaded", uploadedId);
+  }
+#else
+  private void SetModelId(int value)
+  {
+    Debug.Log("Tried setting cookie to: " + value);
+  }
+#endif
 
   // Called when the script instance is being loaded
   private void Awake()
@@ -292,12 +312,21 @@ public class ModelEditor : MonoBehaviour
     {
       // Show an error message
       Debug.LogError(www.error);
+
+      // Set the upload id to -1
+      uploadedId = -1;
     }
     else
     {
       // Show a success message
       Debug.Log("Upload complete!");
+
+      // Get the upload id
+      Int32.TryParse(www.downloadHandler.text, out uploadedId);
     }
+
+    // Set cookie data to the uploaded code if it was successful
+    if (uploadedId > -1) { SetModelId(uploadedId); }
 
     // Enable the finalize button again
     finalizeButton.interactable = true;
