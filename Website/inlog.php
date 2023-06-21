@@ -1,33 +1,33 @@
 <?php
     session_start(); //Session started on every page, in case someone is logged in
-    require_once 'constants.php'; //Need the document for the connection with the database  
+    require_once 'constants.php'; //Add the page for the database login constants 
 
-    $errors = []; //Making a variable with a array in it for possible errors.
+    $errors = []; //Making a variable with an array in it for possible errors.
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") //Check if the submit button is pushed
     {
-        // Create variables for input
+        // Create variables for input and filter the input
         $username = filter_input(INPUT_POST, "username");
         $password = filter_input(INPUT_POST, "password");
         $hash = password_hash($password, PASSWORD_BCRYPT);
 
         try
         {
-            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Make connection with database
+            $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Makes a connection with the database
 
             try
             {
-                if (isset($_GET['register'])) //If the register is pressed 
+                if (isset($_GET['register'])) //If the register button is pressed then do the following:
                 {
-                    $stmt = $dbHandler->prepare("INSERT INTO `accounts` (`name`, `password`) VALUES (:username, :password);"); //Pass in the information in to the database
-                    $stmt->bindParam("username", $username, PDO::PARAM_STR); //Bind the variables for use in the database
+                    $stmt = $dbHandler->prepare("INSERT INTO `accounts` (`name`, `password`) VALUES (:username, :password);"); //Prepare to insert the information/data into the database
+                    $stmt->bindParam("username", $username, PDO::PARAM_STR); //Bind the variables so the info can get put into database
                     $stmt->bindParam("password", $hash, PDO::PARAM_STR);
                     $stmt->execute();
 
-                    $_SESSION['username'] = $username; //Set the session to the username, if the user goes to a different page is still loggedin. 
+                    $_SESSION['username'] = $username; //Bind the session username to the username variable, if the user goes to a different page then he/she is still logged in. 
                     header("Location: dashboard.php"); //Set the location to the dashboard page. 
                 }
-                else //If the register is not pressed than it is a login page 
+                else //If the register button isnt pressed then do this:
                 {
                     $stmt = $dbHandler->prepare("SELECT * FROM `accounts` WHERE `name` = :username"); //Look if the username is in the database
                     $stmt->bindParam("username", $username, PDO::PARAM_STR);
@@ -35,14 +35,14 @@
                     $stmt->execute();
                     $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword)) //Check if the database have the accounts and the password 
+                    if ($username && $password && $hashedPassword && password_verify($password, $hashedPassword)) //Check if the database has the account and the password 
                     {
                       $_SESSION['username'] = $username;
-                      header("Location: dashboard.php"); //If everything is correct you will send to the dashboard page.
+                      header("Location: dashboard.php"); //If everything is correct then you'll get send to the dashboard page.
                     }
                     else
                     {
-                      $errors[] = "Username or password is incorrect!"; //if the username or password is not correct than the message will go in to the errors array, that will display later on the page
+                      $errors[] = "Username or password is incorrect!"; //if the username or password is not correct then the message will go into the errors array, which will display later on in the page
                     }
                 }
             }

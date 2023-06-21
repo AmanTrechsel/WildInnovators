@@ -1,5 +1,5 @@
-<?php session_start(); ?>
-<?php ini_set('display_errors', 0); ?>
+<?php session_start(); ?> <!-- Session started on every page, in case someone is logged in -->
+<?php ini_set('display_errors', 0); ?> <!-- With this small bit of php code you disable the errors -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="mainContainer">
-    <?php if ($_SESSION['username'] == NULL){?>
+    <?php if ($_SESSION['username'] == NULL){?> <!-- Checks if the visitor is logged in to change the navbar from login to dashboard -->
         <header>
             <img src="./images/LogoGroepjeWhite.png">
             <nav>

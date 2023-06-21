@@ -1,7 +1,7 @@
 <?php
     session_start(); //Start the session
-    require_once 'constants.php'; //Add the page for the login constants
-    $username = $_SESSION['username']; //Get the variable out of the session
+    require_once 'constants.php'; //Add the page for the database login constants
+    $username = $_SESSION['username']; //Get the username from the session and put it into a variable
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,18 +55,18 @@
                     
                 
                     $stmt = $dbHandler->prepare("SELECT `name`, `code` FROM `groups` WHERE `username` = :username");
-                    $stmt->bindParam(":username", $username, PDO::PARAM_STR); //Bind the variables
+                    $stmt->bindParam(":username", $username, PDO::PARAM_STR); //Bind the variable so the info can get put into the database
                     $stmt->execute();
                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
-                    foreach ($results as $result) { //Everything out of the table goes in to the groupview to show the different groups and code
+                    foreach ($results as $result) { //The name and codes out of the groups table gets put in to the groupview to show the different groups and codes bound to the logged in user
                         echo "<div class='groupView'>
                                 <p>Groep: $result[name]</p>
                                 <p>Code: $result[code] </p> 
                             </div>";
                     }
                 } catch (PDOException $ex) {
-                    $errors[] = $ex->getMessage(); //If there is any erros put it in the error array
+                    $errors[] = $ex->getMessage(); //If there are any errors then put it in the error array
                 }
             ?>
         </div>

@@ -5,17 +5,17 @@
 
   try
   {
-    $dbHandler = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", $dbuser, $dbpassword); //Making connection with the database
+    $dbHandler = new PDO("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", $dbuser, $dbpassword); //Makes a connection with the database
 
     try
     {
-      $stmt = $dbHandler->prepare("INSERT INTO models (`jsonfile`) VALUES (:json)"); //prepare a statement to use in the database
-      $stmt->bindParam(":json", $upload_json, PDO::PARAM_STR); //Bind the variables 
+      $stmt = $dbHandler->prepare("INSERT INTO models (`jsonfile`) VALUES (:json)"); //Prepare to insert the information/data into the database
+      $stmt->bindParam(":json", $upload_json, PDO::PARAM_STR); //Binds the variable so the info can get put into the database
       $stmt->execute();
     }
     catch (Exception $ex)
     {
-      die($ex); //if there is something wrong with the connectie or something else, abport the mission. 
+      die($ex); //if there is something wrong with the connection or the insertion into the database, abort the mission. 
     }
   }
   catch (Exception $ex)
