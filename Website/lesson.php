@@ -11,7 +11,7 @@
         $groupID = filter_input(INPUT_POST, "groups"); //Put every input in variables
         $lessonName = filter_input(INPUT_POST, "lessonName");
         $subject = filter_input(INPUT_POST, "subject");
-        $modelIDs = $_COOKIE['modelsUploaded'];
+        $modelIDs = $_COOKIE['modelsUploaded']; //Gets the models data from the cookie and puts it into a variable 
         try{
             $dbHandler = new PDO ("mysql:host={$dbhost};dbname={$dbname};charset=utf8;", "{$dbuser}", "{$dbpassword}"); //Making a connection with the database
 
@@ -23,6 +23,7 @@
                     $stmt->bindParam("groupID", $groupID, PDO::PARAM_STR);
                     $stmt->bindParam("modelIDs", $modelIDs, PDO::PARAM_STR);
                     $stmt->execute();
+                    setcookie("modelsUploaded", "", time() - 28800); //Clears the cookie after the data got uploaded into the database
                 }
                 catch (Exception $ex)
                 {
