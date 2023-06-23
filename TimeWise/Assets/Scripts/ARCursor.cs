@@ -46,17 +46,13 @@ public class ARCursor : MonoBehaviour
       {
         meshExtent.Add(arMesh.bounds.extents.z);
       }
-      // Check if the object needs to be recentered
-      if (arItem.recenter)
-      {
-        // Add the object to the reposition lists
-        arRepositionObjects.Add(arObjectToAdd);
-        arRepositionMeshes.Add(arObjectMeshes[0]);
-        List<Vector3> arObjectOffsets = new List<Vector3>();
-        arObjectOffsets.Add(arItem.offsetPosition);
-        arObjectOffsets.Add(arItem.offsetRotation);
-        arRepositionOffsets.Add(arObjectOffsets);
-      }
+      // Add the object to the reposition lists
+      arRepositionObjects.Add(arObjectToAdd);
+      arRepositionMeshes.Add(arObjectMeshes[0]);
+      List<Vector3> arObjectOffsets = new List<Vector3>();
+      arObjectOffsets.Add(arItem.offsetPosition);
+      arObjectOffsets.Add(arItem.offsetRotation);
+      arRepositionOffsets.Add(arObjectOffsets);
 
       // Add the nametag and box collider to the object
       if (arObjectMeshes.Length > 0)

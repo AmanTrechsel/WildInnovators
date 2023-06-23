@@ -48,11 +48,13 @@ public class SubjectEditorWindow : EditorWindow
       CreateNewSubject();
       GUI.FocusControl(null);
     }
+
     if (selectedSubject != null && GUILayout.Button("-"))
     {
       DeleteSelectedSubject();
       GUI.FocusControl(null);
     }
+
     GUILayout.EndHorizontal();
     GUILayout.EndVertical();
     GUILayout.Box("", GUILayout.ExpandHeight(true), GUILayout.Width(5));
@@ -69,6 +71,7 @@ public class SubjectEditorWindow : EditorWindow
         AssetDatabase.SaveAssets();
         selectedSubject.name = newFilename;
       }
+
       Editor editor = Editor.CreateEditor(selectedSubject);
       editor.DrawDefaultInspector();
       GUILayout.Space(20);
@@ -76,6 +79,7 @@ public class SubjectEditorWindow : EditorWindow
       {
         EditorGUIUtility.PingObject(selectedSubject);
       }
+
       GUILayout.EndVertical();
     }
     GUILayout.EndHorizontal();
@@ -94,6 +98,7 @@ public class SubjectEditorWindow : EditorWindow
           subjectObjects.Add(subject);
         }
       }
+
       if (subjectObjects.Count > 0)
       {
         selectedSubjectIndex = 0;
@@ -113,6 +118,7 @@ public class SubjectEditorWindow : EditorWindow
         subjectName = "New Subject (" + subjectIndex + ")";
         subjectPath = folderPath + "/" + subjectName + ".asset";
       }
+      
       Subject newSubject = ScriptableObject.CreateInstance<Subject>();
       AssetDatabase.CreateAsset(newSubject, subjectPath);
       AssetDatabase.SaveAssets();

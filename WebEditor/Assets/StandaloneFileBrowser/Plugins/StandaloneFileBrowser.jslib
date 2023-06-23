@@ -81,6 +81,20 @@ var StandaloneFileBrowserWebGLPlugin = {
 
             SendMessage(gameObjectName, methodName);
         }
+    },
+
+    // Sets a cookie to a value, and adds to it if it is already set
+    SetCookie: function(cookieName, cookieValue) {
+      // From https://stackoverflow.com/questions/10730362/get-cookie-by-name
+      if (document.cookie.includes(cookieName)) {
+        cookieValue = document.cookie.match(new RegExp('(^| )' + cookieName + '=([^;]+)'))[2] + ",${cookieValue}";
+      }
+      // Set expiration date
+      const d = new Date();
+      d.setTime(d.getTime() + (8*60*60*1000));
+      let expires = "expires="+ d.toUTCString();
+      // Set the cookie
+      document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
     }
 };
 

@@ -19,10 +19,8 @@ public class SettingsManager : MonoBehaviour
   // Assign this instance as the singleton
   private void Awake()
   {
-    if(Instance == null)
-    {
-      Instance = this;
-    }
+    if (Instance == null) { Instance = this; }
+    else if (Instance != this) { Destroy(gameObject); }
 
     // Load the settings from the local file
     LoadData();
@@ -35,6 +33,7 @@ public class SettingsManager : MonoBehaviour
     data.permission = AppManager.Instance.permission;
     data.languageIndex = AppManager.Instance.languageIndex;
     data.location = AppManager.Instance.location;
+    data.hasClicked = AppManager.Instance.hasClicked;
     
     string json = JsonUtility.ToJson(data);
     File.WriteAllText(Application.dataPath + "/" + saveFile, json);
@@ -49,18 +48,19 @@ public class SettingsManager : MonoBehaviour
     AppManager.Instance.permission = data.permission;
     AppManager.Instance.languageIndex = data.languageIndex;
     AppManager.Instance.location = data.location;
+    AppManager.Instance.hasClicked = data.hasClicked;
   }
 
   // For the permission setting. The parameters are given through the separate PermissionManager.cs script
   public void SwitchPermission(Button button, Sprite toggleOff, Sprite toggleOn)
   {
     // Check the current state of the button and switch it accordingly
-    if(button.image.sprite == toggleOn)
+    if (button.image.sprite == toggleOn)
     {
       button.image.sprite = toggleOff;
       AppManager.Instance.permission = false;
     }
-    else if(button.image.sprite == toggleOff)
+    else if (button.image.sprite == toggleOff)
     {
       // If the permission is not yet given, ask for it
       if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
@@ -99,9 +99,9 @@ public class SettingsManager : MonoBehaviour
 
   public void ChangeLocation(GameObject inputField, string location)
   {
-    if(inputField.GetComponent<TMP_InputField>().text != location)
+    if (inputField.GetComponent<TMP_InputField>().text != location)
     {
-      if(inputField.GetComponent<TMP_InputField>().text == "")
+      if (inputField.GetComponent<TMP_InputField>().text == "")
       {
         inputField.GetComponent<TMP_InputField>().text = "Timewise";
       }
@@ -149,7 +149,7 @@ public class SettingsManager : MonoBehaviour
   public void HideSetting()
   {
     popup.SetActive(false);
-    foreach(Transform child in content)
+    foreach (Transform child in content)
     {
       GameObject.Destroy(child.gameObject);
     }

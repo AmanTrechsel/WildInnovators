@@ -112,11 +112,13 @@ public class SearchButton : MonoBehaviour
       case ButtonType.Course:
         // Set the selected course and load the selection scene
         AppManager.Instance.selectedCourse = ResourceManager.Instance.GetCourseByID(id);
+        if (AppManager.Instance.selectedCourse == null) { return; }
         AppManager.Instance.LoadScene("Selection");
         break;
       case ButtonType.Subject:
         // Set the ar subject and load the ar scene
         AppManager.Instance.arSubject = ResourceManager.Instance.GetSubjectByID(id);
+        if (AppManager.Instance.arSubject == null) { return; }
         AppManager.Instance.GoToARScene();
         break;
       case ButtonType.Setting:
@@ -129,6 +131,7 @@ public class SearchButton : MonoBehaviour
         Subject mySubject = myPage.subject;
         AppManager.Instance.arSubject = mySubject;
         AppManager.Instance.selectedCourse = ResourceManager.Instance.FindCourseContainingSubject(mySubject);
+        if (AppManager.Instance.selectedCourse == null) { return; }
         AppManager.Instance.LoadScene("Encyclopedia");
         break;
     }

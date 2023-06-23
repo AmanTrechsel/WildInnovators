@@ -1,0 +1,572 @@
+@font-face {
+    font-family: bruno Ace;
+    src: url("../fonts/Bruno_Ace/BrunoAce-Regular.ttf");
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: bruno Ace; 
+    font-size: 1.3vw;
+    max-width: 125vw;
+}
+
+#mainContainer{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+}
+
+header{
+    grid-column: 1/7; 
+    background-image: url("../images/header.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -18.9vw -71.75vh;
+    height: 55.95vh;
+    display: flex;
+    justify-content: left;
+    z-index: 1;
+}
+
+header > nav > ul{
+    display: flex;
+    list-style: none;
+    gap: 1.3vw;
+    font-size: 1.3vw;
+    max-width: 30vw;
+    margin-top: 7vh;   
+    margin-left: -1vw; 
+}
+
+footer{
+    grid-column: 2/7; 
+    background-image: url("../images/footer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 15.3vw 17.2vh;
+    height: 53vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    z-index:1;
+}
+
+a{
+    color: #F9F9F9;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #00E0FF;
+}
+
+main{
+    grid-column: 1/4; 
+    margin-left: 8.36vw;
+    transition: filter 0ms ease-in-out 300ms;
+}
+
+header > img{
+    height: 15vh;
+    width: 7vw;
+    margin-top: 1vh;
+    margin-left: 4vw;
+}
+
+footer  > img{
+    height: 15vh;
+    width: 7vw;
+    margin-top: 38vh;
+    margin-left: 15vw;
+}
+
+footer > nav > ul{
+    display: flex;
+    list-style: none;
+    gap: 2vw;
+    font-size: 1vw;
+    color: #F9F9F9;
+    max-width: 5vw;
+    margin-left: 40vw;
+    margin-top: 21vh;
+}
+
+nav{
+    max-height: 2vw;
+}
+
+select{
+    border: 4px solid #F06500;
+    border-radius: 35px;
+    width: 12vw;
+    height: 4vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+#NavText{
+    color: #00E0FF;
+}
+
+/* ----Home page---- */
+
+#timeWiseLogo{
+    grid-column: 4/7; 
+}
+
+#timeWiseLogo > img{
+    height: 74.5vh;
+    width: 36.6vw;
+    margin-left: 10vw;
+    margin-top: -21vh;
+}
+
+#buttonHomePage{
+    grid-column: 2/5;
+    display: flex;
+    margin-top: 2vh;
+}
+
+#openPopup{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 20vw;
+    height: 8vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10vw;
+}
+
+#aboutTimeWise{
+    grid-column: 1/7;
+    background-image: url("../images/middlePart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 251.75vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutTimeWise > #aboutTimeWisetext{
+    max-width: 35vw;
+    color: #F9F9F9;
+    margin-right:20vw;
+    margin-left:-10vw;
+    margin-top: -50vh;
+}
+
+#aboutTimeWise > img{
+    height: 74.5vh;
+    width: auto;
+    margin-top: -80vh;
+}
+
+#aboutUs{
+    grid-column: 1/7;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    margin-top: -75vh;
+}
+
+#aboutUs > #aboutUstext{
+    color: #0F0F0F;
+    max-width: 40vw;
+}
+
+#aboutUs > #aboutUstext > p{
+    color: #0F0F0F;
+    max-width: 35vw;
+}
+
+#aboutUs > #arrow{
+    width: auto;
+    height: 25vh;
+}
+
+#aboutUs > img{
+    height: 40vh;
+    width: auto;
+}
+
+/* ----Pop-up---- */
+
+.popup{
+    position: absolute;
+    top: 80%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #F06500;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.1);
+    margin-top: 50px;
+    opacity: 0;
+    color: #f9f9f9; 
+    -webkit-text-stroke: 1px #0F0F0F;
+    transition: top 0ms ease-in-out 300ms,
+                opacity 300ms ease-in-out,
+                margin-top 300ms ease-in-out;
+}
+
+.popup > *{
+    margin: 15px 0px;
+}
+
+.popup .closeButton{
+    position: absolute;
+    top: -4px;
+    right: 11px;
+    width: 20px;
+    height: 20px;
+    background: #f9f9f9;
+    color: #111;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+body.active-popup{
+    overflow: hidden;
+}
+
+body.active-popup body{
+    filter: blur(5px);
+    background: rgba(0,0,0,0.08);
+    transition: filter 0ms ease-in-out 0ms;
+}
+
+body.active-popup .popup{
+    top: 100%;
+    opacity: 1;
+    margin-top: 0px;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 300ms ease-in-out,
+                margin-top 300ms ease-in-out;
+}
+
+/* ----Manual page---- */
+
+#frontPageApp{
+    grid-column: 5/7; 
+    height: 74.5vh;
+    width: 36.6vw;
+    max-width: 30vw;
+    margin-top: -40vh;
+    margin-bottom: 10vh;
+}
+
+#quote{
+    grid-column: 1/7; 
+}
+
+#quote > img{
+    max-width: 100%;
+}
+
+#downloaden{
+    grid-column: 1/4; 
+    margin-left: 15vw;
+}
+
+#googleLogo{
+    grid-column: 5/7;
+}
+
+/* ----Login page---- */
+
+#content{
+    grid-column: 3/5; 
+    margin-top: -30vh;
+    z-index: 2;
+}
+
+#login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 125vw;
+}
+
+.loginprompt{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1vw;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.loginprompt > h1{
+    font-weight: normal;
+}
+
+.field{
+    border: 2px solid #F06500;
+    border-radius: 12px;
+}
+
+.loginprompt > input[type=text]{
+    border: 4px solid #F06500;
+    border-radius: 10px;
+    width: 35vh;
+    height: 5vh;
+    font-size: 0.8em;
+    font-family: Bruno Ace;
+}
+
+input[type="password"]{
+  border: 4px solid #F06500;
+  border-radius: 10px;
+  width: 35vh;
+  height: 5vh;
+  font-size: 0.8em;
+  font-family: Bruno Ace;
+}
+
+.loginbuttons .button{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: auto;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.loginbuttons{
+    display: flex;
+    gap: 1vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50vw;;
+}
+
+.loginprompt > #forgotpass{
+    color:#017BFD;
+    font-size: 1vw;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: underline;
+}
+
+#loginbutton .button{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: auto;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-left:12vw;
+    margin-top:1vh;
+}
+
+/* ----Privacy Policy Page---- */
+
+#privacyPolicy{
+    grid-column: 2/5;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-items: center;
+    margin-top: -25vh;
+}
+
+#privacyPolicy a{
+    color:#0F0F0F
+}
+
+#privacyPolicy a:hover{
+    color: #00E0FF;
+}
+
+/* ----Dashboard---- */
+
+#welkom{
+    grid-column: 4/7;
+    height: 74.5vh;
+    margin-top: -40vh;
+    margin-bottom: 10vh;
+}
+
+#quoteContainer{
+    grid-column: 1/7;
+    margin-top: -45vh;
+    margin-left: 44vw;
+    text-align: center;
+    font-size: 2.5vw;
+    transform: rotate(8deg);
+    z-index: -1;
+    max-width:50vw;
+    color:#0F0F0F;
+}
+
+.buttonLogo{
+    width: auto;
+    height:20vh;
+    margin-bottom: -14vh;
+}
+
+.buttonDashboard{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 20vw;
+    height: 8vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10vw;
+}
+
+#group{
+    padding-bottom: 15vh;
+}
+
+#dashboardHeader nav{
+    margin-left: -2vw;
+}
+
+#dashboardHeader {
+    margin-left: -2vw;
+}
+
+#quoteDashboard{
+    grid-column: 1/7; 
+    margin-bottom: 45vh;
+}
+
+
+#quoteDashboard > img{
+    max-width: 100%;
+}
+
+#groups{
+    grid-column: 3/5;
+    margin-top: -60vh;
+    text-align: center;
+}
+
+.groupView{
+    column-gap: 10vw;
+    display: flex;
+    flex-wrap: wrap ;
+    justify-content: center;
+    border: 3px solid #F06500;
+    border-radius: 140px;
+    background-color: #F9F9F9;
+    padding: 1vh;
+    margin-bottom: 1vh;
+}
+
+/* ----Creating group---- */
+
+#createGroup{
+    grid-column: 3/5;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#createButton{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 12vw;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+
+/* ----Creating Lesson---- */
+
+#subject{
+    margin-top: 2vh;
+}
+
+#openWebEditor{
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 18vw;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+#webEditor{
+    margin-bottom: 100px;
+}
+
+canvas{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 1200px;
+}
+
+#choiceSelection{
+    grid-column: 2/6;
+}
+
+#lessonFooter{
+    grid-column: 1/7;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background-image: url("../images/footer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 15.3vw 17.2vh;
+    height: 53vh;
+    text-align: right;
+    padding-right: 80px;
+}
+
+#footerImg{
+    height: 15vh;
+    width: 7vw;
+}
+
+#lessonDiv > ul > li{
+    list-style-type: none;
+    display: inline-block;
+    color: white;
+    padding: 0px 10px 20px 0px;
+    font-size: 1vw;
+}
+
+.buttonLesson{ 
+    margin-left: 25vw;  
+    border: 8px solid #F06500;
+    border-radius: 35px;
+    width: 15vw;
+    height: 6vh;
+    font-family: Bruno Ace;
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 2vh;
+}
+
+#pasOp{
+    color:#FF0000;
+}

@@ -31,6 +31,9 @@ public class MenuManager : MonoBehaviour
   // Encyclopedia unlock count text field
   [SerializeField]
   private TextMeshProUGUI encyclopediaUnlockCount;
+  // Message shown when no subjects were added
+  [SerializeField]
+  private GameObject noneFoundMessage;
 
   // Called once at the start of the app
   private void Awake()
@@ -72,6 +75,12 @@ public class MenuManager : MonoBehaviour
 
     // Set the encyclopedia unlock count
     encyclopediaUnlockCount.text = AppManager.Instance.GetEncyclopediaUnlockText();
+
+    // Check whether any subjects were added
+    if (subjectButtonContent.childCount == 0)
+    {
+      noneFoundMessage.SetActive(true);
+    }
   }
 
   // Method to select the subject

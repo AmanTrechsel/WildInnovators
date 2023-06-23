@@ -14,6 +14,7 @@ public class AppManager : MonoBehaviour
   public bool permission = true;
   public int languageIndex;
   public string location;
+  public bool hasClicked;
   public List<Texture2D> calibrationData = new List<Texture2D>();
 
   // Singleton
@@ -99,6 +100,7 @@ public class AppManager : MonoBehaviour
     // Show or hide the AppCanvas based on the scene being loaded
     if (sceneName == "ARWarning") { appCanvas.SetActive(false); }
     else { appCanvas.SetActive(true); }
+
     // Show or hide the SearchButton based on the scene being loaded
     if (sceneName == "CourseSelect" || sceneName == "Selection") { searchButton.SetActive(true); }
     else { searchButton.SetActive(false); }
@@ -124,49 +126,51 @@ public class AppManager : MonoBehaviour
           return;
         }
 
-        // Set the scene to load to an empty string
-        string sceneToLoad = "";
-
-        // Check which scene is currently active and set the scene to load accordingly
-        switch (SceneManager.GetActiveScene().name)
-        {
-          case "CourseSelect":
-            break;
-          case "Selection":
-            sceneToLoad = "CourseSelect";
-            break;
-          case "SelectionSearch":
-            sceneToLoad = "Selection";
-            break;
-          case "ARWarning":
-            sceneToLoad = "Selection";
-            break;
-          case "AR":
-            sceneToLoad = "Selection";
-            break;
-          case "Encyclopedia":
-            sceneToLoad = previousScene;
-            break;
-          case "Settings":
-            sceneToLoad = previousScene;
-            break;
-          case "Code":
-            sceneToLoad = "CourseSelect";
-            break;
-        }
-
-        // Check if the scene to load is not empty and load it
-        if (sceneToLoad != "")
-        {
-          LoadScene(sceneToLoad);
-          return;
-        }
-        //if (previousScene != null)
-        //{
-        //  AppManager.Instance.LoadScene(previousScene);
-        //  return;
-        //}
+        // Goes to the previous scene
+        GoBack();
       }
+    }
+  }
+
+  // Goes to the previous scene
+  public void GoBack()
+  {
+    // Set the scene to load to an empty string
+    string sceneToLoad = "";
+
+    // Check which scene is currently active and set the scene to load accordingly
+    switch (SceneManager.GetActiveScene().name)
+    {
+      case "CourseSelect":
+        break;
+      case "Selection":
+        sceneToLoad = "CourseSelect";
+        break;
+      case "SelectionSearch":
+        sceneToLoad = "Selection";
+        break;
+      case "ARWarning":
+        sceneToLoad = "Selection";
+        break;
+      case "AR":
+        sceneToLoad = "Selection";
+        break;
+      case "Encyclopedia":
+        sceneToLoad = previousScene;
+        break;
+      case "Settings":
+        sceneToLoad = previousScene;
+        break;
+      case "Code":
+        sceneToLoad = "CourseSelect";
+        break;
+    }
+
+    // Check if the scene to load is not empty and load it
+    if (sceneToLoad != "")
+    {
+      LoadScene(sceneToLoad);
+      return;
     }
   }
 
@@ -192,7 +196,7 @@ public class AppManager : MonoBehaviour
   // Send the user to the AR Scene based on parameters
   public void GoToARScene()
   {
-    if(AppManager.Instance.permission == true)
+    if (AppManager.Instance.permission == true)
     {
       LoadScene("ARWarning");
     }

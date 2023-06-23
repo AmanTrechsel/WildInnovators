@@ -56,11 +56,13 @@ public class ARItemEditorWindow : EditorWindow
       CreateNewARItem();
       GUI.FocusControl(null);
     }
+
     if (selectedARItem != null && GUILayout.Button("-"))
     {
       DeleteSelectedARItem();
       GUI.FocusControl(null);
     }
+
     GUILayout.EndHorizontal();
     GUILayout.EndVertical();
     GUILayout.Box("", GUILayout.ExpandHeight(true), GUILayout.Width(5));
@@ -77,6 +79,7 @@ public class ARItemEditorWindow : EditorWindow
         AssetDatabase.SaveAssets();
         selectedARItem.name = newFilename;
       }
+
       Editor editor = Editor.CreateEditor(selectedARItem);
       editor.DrawDefaultInspector();
       GUILayout.Space(20);
@@ -84,6 +87,7 @@ public class ARItemEditorWindow : EditorWindow
       {
         EditorGUIUtility.PingObject(selectedARItem);
       }
+
       GUILayout.EndVertical();
     }
     GUILayout.EndHorizontal();
@@ -110,6 +114,7 @@ public class ARItemEditorWindow : EditorWindow
         arItemObjects.Add(arItem);
       }
     }
+    
     // Check if there are any objects
     if (arItemObjects.Count > 0)
     {
@@ -132,6 +137,7 @@ public class ARItemEditorWindow : EditorWindow
       arItemName = "New ARItem (" + arItemIndex + ")";
       arItemPath = folderPath + "/" + arItemName + ".asset";
     }
+
     ARItem newARItem = ScriptableObject.CreateInstance<ARItem>();
     AssetDatabase.CreateAsset(newARItem, arItemPath);
     AssetDatabase.SaveAssets();

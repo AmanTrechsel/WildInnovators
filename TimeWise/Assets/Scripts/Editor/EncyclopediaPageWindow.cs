@@ -48,11 +48,13 @@ public class EncyclopediaPageEditorWindow : EditorWindow
       CreateNewEncyclopediaPage();
       GUI.FocusControl(null);
     }
+
     if (selectedEncyclopediaPage != null && GUILayout.Button("-"))
     {
       DeleteSelectedEncyclopediaPage();
       GUI.FocusControl(null);
     }
+
     GUILayout.EndHorizontal();
     GUILayout.EndVertical();
     GUILayout.Box("", GUILayout.ExpandHeight(true), GUILayout.Width(5));
@@ -69,6 +71,7 @@ public class EncyclopediaPageEditorWindow : EditorWindow
         AssetDatabase.SaveAssets();
         selectedEncyclopediaPage.name = newFilename;
       }
+
       Editor editor = Editor.CreateEditor(selectedEncyclopediaPage);
       editor.DrawDefaultInspector();
       GUILayout.Space(20);
@@ -76,6 +79,7 @@ public class EncyclopediaPageEditorWindow : EditorWindow
       {
         EditorGUIUtility.PingObject(selectedEncyclopediaPage);
       }
+
       GUILayout.EndVertical();
     }
     GUILayout.EndHorizontal();
@@ -94,6 +98,7 @@ public class EncyclopediaPageEditorWindow : EditorWindow
           encyclopediaPageObjects.Add(encyclopediaPage);
         }
       }
+
       if (encyclopediaPageObjects.Count > 0)
       {
         selectedEncyclopediaPageIndex = 0;
@@ -113,6 +118,7 @@ public class EncyclopediaPageEditorWindow : EditorWindow
         encyclopediaPageName = "New EncyclopediaPage (" + encyclopediaPageIndex + ")";
         encyclopediaPagePath = folderPath + "/" + encyclopediaPageName + ".asset";
       }
+      
       EncyclopediaPage newEncyclopediaPage = ScriptableObject.CreateInstance<EncyclopediaPage>();
       AssetDatabase.CreateAsset(newEncyclopediaPage, encyclopediaPagePath);
       AssetDatabase.SaveAssets();
