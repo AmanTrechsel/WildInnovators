@@ -5,45 +5,44 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Dropdown))]
-public class AchievementDropdownController : MonoBehaviour {
-
-    private Dropdown m_dropdown;
-    private Dropdown Dropdown {
-        get {
-            if (m_dropdown == null)
-            {
-                m_dropdown = GetComponent<Dropdown>();
-            }
-            return m_dropdown;
-        }
+public class AchievementDropdownController : MonoBehaviour
+{
+  private Dropdown m_dropdown;
+  private Dropdown Dropdown {
+    get {
+      if (m_dropdown == null)
+      {
+        m_dropdown = GetComponent<Dropdown>();
+      }
+      return m_dropdown;
     }
+  }
 
-    public Action<AchievementID> onValueChanged;
+  public Action<AchievementID> onValueChanged;
 
-    private void Start()
+  private void Start()
+  {
+    UpdateOptions();
+    Dropdown.onValueChanged.AddListener(HandleDropdownValueChanged);
+  }
+
+  [ContextMenu("UpdateOptions()")]
+  public void UpdateOptions()
+  {
+    Dropdown.options.Clear();
+    var ids = Enum.GetValues(typeof(AchievementID));
+    foreach (AchievementID id in ids)
     {
-        UpdateOptions();
-        Dropdown.onValueChanged.AddListener(HandleDropdownValueChanged);
+      Dropdown.options.Add(new Dropdown.OptionData(id.ToString()));
     }
+    Dropdown.RefreshShownValue();
+  }
 
-    [ContextMenu("UpdateOptions()")]
-    public void UpdateOptions()
+  private void HandleDropdownValueChanged(int value)
+  {
+    if (onValueChanged != null)
     {
-        Dropdown.options.Clear();
-        var ids = Enum.GetValues(typeof(AchievementID));
-        foreach (AchievementID id in ids)
-        {
-            Dropdown.options.Add(new Dropdown.OptionData(id.ToString()));
-        }
-        Dropdown.RefreshShownValue();
+      onValueChanged((AchievementID)value);
     }
-
-    private void HandleDropdownValueChanged(int value)
-    {
-        if (onValueChanged != null)
-        {
-            onValueChanged((AchievementID)value);
-        }
-    }
-
+  }
 }

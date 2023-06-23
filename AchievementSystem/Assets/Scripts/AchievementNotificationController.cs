@@ -4,21 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
-public class AchievementNotificationController : MonoBehaviour {
+public class AchievementNotificationController : MonoBehaviour
+{
+  [SerializeField]
+  Text achievementTitleLabel;
 
-    [SerializeField] Text achievementTitleLabel;
+  private Animator m_animator;
 
-    private Animator m_animator;
+  private void Awake()
+  {
+    m_animator = GetComponent<Animator>();
+  }
 
-    private void Awake()
-    {
-        m_animator = GetComponent<Animator>();
-    }
-
-    public void ShowNotification(Achievement achievement)
-    {
-        achievementTitleLabel.text = achievement.title;
-        m_animator.SetTrigger("Appear");
-    }	
+  public void ShowNotification(Achievement achievement)
+  {
+    achievementTitleLabel.text = achievement.title;
+    m_animator.SetTrigger("Appear");
+  }	
 }
 
