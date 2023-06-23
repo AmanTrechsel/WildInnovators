@@ -4,35 +4,48 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-  public AchievementDatabase database;
+  // Reference to the AchievementDatabase
+  public AchievementDatabase database; 
 
-  public AchievementNotificationController achievementNotificationController;
+  // Reference to the AchievementNotificationController
+  public AchievementNotificationController achievementNotificationController; 
 
-  public AchievementDropdownController achievementDropdownController;
+  // Reference to the AchievementDropdownController
+  public AchievementDropdownController achievementDropdownController; 
 
-  public GameObject achievementItemPrefab;
-  public Transform scrollViewContent;
+  // Prefab for the AchievementItemController
+  public GameObject achievementItemPrefab; 
+  // Parent transform for the instantiated achievement item objects
+  public Transform scrollViewContent; 
 
-  public AchievementID achievementToShow;
+  // ID of the achievement to show in the notification
+  public AchievementID achievementToShow; 
 
-  [SerializeField][HideInInspector]
-  private List<AchievementItemController> achievementItems;
+  [SerializeField]
+  [HideInInspector]
+  // List of instantiated AchievementItemControllers
+  private List<AchievementItemController> achievementItems; 
 
   private void Start()
   {
-    achievementDropdownController.onValueChanged += HandleAchievementDropdownValueChanged;
-    LoadAchievementsTable();
+    // Subscribe to the dropdown value changed event
+    achievementDropdownController.onValueChanged += HandleAchievementDropdownValueChanged; 
+    // Load and display the achievements table
+    LoadAchievementsTable(); 
   }
 
   public void ShowNotification()
   {
-    Achievement achievement = database.achievements[(int)achievementToShow];
-    achievementNotificationController.ShowNotification(achievement);
+    // Get the Achievement object based on the achievementToShow ID
+    Achievement achievement = database.achievements[(int)achievementToShow]; 
+    // Show the notification for the given achievement
+    achievementNotificationController.ShowNotification(achievement); 
   }
 
   private void HandleAchievementDropdownValueChanged(AchievementID achievement)
   {
-    achievementToShow = achievement;
+    // Update the achievementToShow with the selected achievement from the dropdown
+    achievementToShow = achievement; 
   }
 
   [ContextMenu("LoadAchievementsTable()")]
@@ -40,49 +53,72 @@ public class AchievementManager : MonoBehaviour
   {
     foreach (AchievementItemController item in achievementItems)
     {
-      DestroyImmediate(item.gameObject);
+      // Destroy existing achievement item objects
+      DestroyImmediate(item.gameObject); 
     }
-  
-    achievementItems.Clear();
-    foreach (Achievement achievement in database.achievements)
+
+    // Clear the list of achievement items
+    achievementItems.Clear(); 
+
+    // Iterate through each achievement in the database
+    foreach (Achievement achievement in database.achievements) 
     {
-      GameObject obj = Instantiate(achievementItemPrefab, scrollViewContent);
-      AchievementItemController item = obj.GetComponent<AchievementItemController>();
-      bool unlocked = PlayerPrefs.GetInt(achievement.id, 0) == 1;
-      item.unlocked = unlocked;
-      item.achievement = achievement;
-      item.RefreshView();
-      achievementItems.Add(item);
+      // Instantiate the achievement item object
+      GameObject obj = Instantiate(achievementItemPrefab, scrollViewContent); 
+      // Get the AchievementItemController component
+      AchievementItemController item = obj.GetComponent<AchievementItemController>(); 
+      // Check if the achievement is unlocked based on its ID in the PlayerPrefs
+      bool unlocked = PlayerPrefs.GetInt(achievement.id, 0) == 1; 
+      // Set the unlocked status of the achievement item
+      item.unlocked = unlocked; 
+      // Set the achievement data for the achievement item
+      item.achievement = achievement; 
+      // Refresh the view of the achievement item
+      item.RefreshView(); 
+      // Add the achievement item to the list
+      achievementItems.Add(item); 
     }
   }
 
   public void UnlockAchievement()
   {
-    UnlockAchievement(achievementToShow);
+    // Unlock the currently selected achievement from the dropdown
+    UnlockAchievement(achievementToShow); 
   }
 
-  public void UnlockAchievement(AchievementID achievement) 
+  public void UnlockAchievement(AchievementID achievement)
   {
-    AchievementItemController item = achievementItems[(int)achievement];
-    if (item.unlocked) { return; }
+    // Get the AchievementItemController for the specified achievement
+    AchievementItemController item = achievementItems[(int)achievement]; 
+    // If the achievement is already unlocked, return
+    if (item.unlocked) { return; } 
 
-    ShowNotification();
-    PlayerPrefs.SetInt(item.achievement.id, 1);
-    item.unlocked = true;
-    item.RefreshView();
+    // Show the notification for the unlocked achievement
+    ShowNotification(); 
+    // Set the achievement ID in PlayerPrefs to indicate it's unlocked
+    PlayerPrefs.SetInt(item.achievement.id, 1); 
+    // Set the unlocked status of the achievement item
+    item.unlocked = true; 
+    // Refresh the view of the achievement item
+    item.RefreshView(); 
   }
 
   public void LockAllAchievements()
   {
-    foreach (Achievement achievement in database.achievements)
+    // Iterate through each achievement in the database
+    foreach (Achievement achievement in database.achievements) 
     {
-      PlayerPrefs.DeleteKey(achievement.id);
+      // Remove the achievement ID from PlayerPrefs to indicate it's locked
+      PlayerPrefs.DeleteKey(achievement.id); 
     }
 
-    foreach (AchievementItemController item in achievementItems)
+    // Iterate through each achievement item
+    foreach (AchievementItemController item in achievementItems) 
     {
-      item.unlocked = false;
-      item.RefreshView();
+      // Set the unlocked status of the achievement item to false
+      item.unlocked = false; 
+      // Refresh the view of the achievement item
+      item.RefreshView(); 
     }
   }
 }

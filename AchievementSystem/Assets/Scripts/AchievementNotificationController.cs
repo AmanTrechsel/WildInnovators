@@ -7,19 +7,23 @@ using UnityEngine.UI;
 public class AchievementNotificationController : MonoBehaviour
 {
   [SerializeField]
-  Text achievementTitleLabel;
+  // Reference to the title label text component
+  Text achievementTitleLabel; 
 
-  private Animator m_animator;
+  // Reference to the Animator component
+  private Animator m_animator; 
 
   private void Awake()
   {
-    m_animator = GetComponent<Animator>();
+    // Get the Animator component attached to the same GameObject
+    m_animator = GetComponent<Animator>(); 
   }
 
   public void ShowNotification(Achievement achievement)
   {
-    achievementTitleLabel.text = achievement.title;
-    m_animator.SetTrigger("Appear");
-  }	
+    // Set the text of the achievement title label to the achievement's title
+    achievementTitleLabel.text = achievement.title; 
+    // Trigger the "Appear" animation in the Animator
+    m_animator.SetTrigger("Appear"); 
+  }
 }
-

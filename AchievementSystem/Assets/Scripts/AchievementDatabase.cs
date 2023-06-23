@@ -8,7 +8,8 @@ using Malee;
 public class AchievementDatabase : ScriptableObject
 {
   [Reorderable(sortable = false, paginate = false)]
-  public AchievementsArray achievements;
+  // Array of achievements
+  public AchievementsArray achievements; 
 
   [System.Serializable]
   public class AchievementsArray : ReorderableArray<Achievement> { }

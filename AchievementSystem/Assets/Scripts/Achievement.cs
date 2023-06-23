@@ -5,7 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Achievement
 {
-  public string id;
-  public string title;
-  public string description;
+  // Unique identifier for the achievement
+  public string id; 
+  // Title of the achievement
+  public string title; 
+  // Description of the achievement
+  public string description; 
 }
