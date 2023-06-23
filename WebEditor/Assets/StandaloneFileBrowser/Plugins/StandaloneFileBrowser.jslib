@@ -81,7 +81,7 @@ var StandaloneFileBrowserWebGLPlugin = {
 
             SendMessage(gameObjectName, methodName);
         }
-    }
+    },
 
     // Sets a cookie to a value, and adds to it if it is already set
     SetCookie: function(cookieName, cookieValue) {
