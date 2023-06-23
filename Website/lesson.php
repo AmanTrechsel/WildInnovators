@@ -114,7 +114,7 @@
                 <div id="webEditor">
                     <h4 id="pasOp">Pas Op! Zodra u de WebEditor opent kunt u niet meer de lesnaam aanpassen</h4>
                     <button onclick="loadScript()" class="buttonLesson">Open WebEditor</button>
-                    <canvas id="unity-canvas" width=1200 height=800 style="width: 1200px; height: 800px; background: #FF8800 display: none"></canvas>
+                    <canvas id="unity-canvas" width=1200 height=800 style="width: 1200px; height: 800px; background: #FF8800; display: none"></canvas>
                     <script src="WebEditor/Build/1.1.0.loader.js"></script>
                     <script>
                         function loadScript(){
